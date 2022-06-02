@@ -1,0 +1,23 @@
+grumphp:
+    tasks:
+        composer:
+            file: ./composer.json
+        eslint:
+            bin: node_modules/.bin/eslint
+            config: .eslintrc.yml
+        phpversion:
+            project: '8.0'
+        phpcpd:
+            directory: [ 'src' ]
+        phpcs:
+            standard: ~
+        phpstan:
+            configuration: ./phpstan.neon
+            level: 6
+        phpmd:
+            whitelist_patterns:
+                - 'src'
+            exclude:
+                - '\src\Kernel.php'
+            ruleset:
+                - 'phpmd.xml'

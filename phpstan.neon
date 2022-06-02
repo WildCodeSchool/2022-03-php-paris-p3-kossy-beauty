@@ -1,0 +1,11 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-doctrine/rules.neon
+    - vendor/phpstan/phpstan-symfony/extension.neon
+parameters:
+    excludePaths:
+    - src/Security
+    ignoreErrors:
+    reportUnmatchedIgnoredErrors: false
+    checkGenericClassInNonGenericObjectType: false
+    checkMissingIterableValueType: false
