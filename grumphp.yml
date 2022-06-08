@@ -13,7 +13,7 @@ grumphp:
             standard: ~
         phpstan:
             configuration: ./phpstan.neon
-            level: 6
+            level: 1
         phpmd:
             whitelist_patterns:
                 - 'src'

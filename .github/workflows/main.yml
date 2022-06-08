@@ -42,7 +42,7 @@ jobs:
       - name: code_quality
         run: |
           ./vendor/bin/phpcs
-          ./vendor/bin/phpstan analyse src --level max
+          ./vendor/bin/phpstan analyse src --level 6
           ./vendor/bin/phpmd src text phpmd.xml
           ./node_modules/.bin/eslint assets
 
