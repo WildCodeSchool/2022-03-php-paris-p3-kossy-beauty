@@ -16,9 +16,9 @@ class Catalog
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\ManyToOne(targetEntity: Provider::class, inversedBy: 'catalogs')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'catalogs')]
     #[ORM\JoinColumn(nullable: false)]
-    private $provider;
+    private $user;
 
     public function getId(): ?int
     {
@@ -37,14 +37,14 @@ class Catalog
         return $this;
     }
 
-    public function getProvider(): ?Provider
+    public function getUser(): ?User
     {
-        return $this->provider;
+        return $this->user;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setUser(?User $user): self
     {
-        $this->provider = $provider;
+        $this->user = $user;
 
         return $this;
     }
