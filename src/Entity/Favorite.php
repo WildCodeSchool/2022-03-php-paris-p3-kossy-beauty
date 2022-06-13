@@ -17,7 +17,7 @@ class Favorite
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\ManyToOne(targetEntity: Provider::class, inversedBy: 'favorites')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'favorites')]
     #[ORM\JoinColumn(nullable: false)]
     private $provider;
 
@@ -38,12 +38,12 @@ class Favorite
         return $this;
     }
 
-    public function getProvider(): ?Provider
+    public function getProvider(): ?User
     {
         return $this->provider;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setProvider(?User $provider): self
     {
         $this->provider = $provider;
 

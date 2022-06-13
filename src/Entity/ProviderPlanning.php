@@ -15,91 +15,38 @@ class ProviderPlanning
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Provider::class, inversedBy: 'providerPlannings')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'providerPlannings')]
     #[ORM\JoinColumn(nullable: false)]
     private $provider;
 
-    #[ORM\Column(type: 'datetimetz')]
-    private $workStart;
-
-    #[ORM\Column(type: 'datetimetz')]
-    private $workEnd;
-
-    #[ORM\OneToMany(mappedBy: 'providerPlanning', targetEntity: Booking::class)]
-    private $bookings;
-
-    public function __construct()
-    {
-        $this->bookings = new ArrayCollection();
-    }
+    #[ORM\Column(type: 'text')]
+    private $description;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getProvider(): ?Provider
+    public function getProvider(): ?User
     {
         return $this->provider;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setProvider(?User $provider): self
     {
         $this->provider = $provider;
 
         return $this;
     }
 
-    public function getWorkStart(): ?\DateTimeInterface
+    public function getDescription(): self
     {
-        return $this->workStart;
+        return $this->description;
     }
 
-    public function setWorkStart(\DateTimeInterface $workStart): self
+    public function setDescription($description): self
     {
-        $this->workStart = $workStart;
-
-        return $this;
-    }
-
-    public function getWorkEnd(): ?\DateTimeInterface
-    {
-        return $this->workEnd;
-    }
-
-    public function setWorkEnd(\DateTimeInterface $workEnd): self
-    {
-        $this->workEnd = $workEnd;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setProviderPlanning($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getProviderPlanning() === $this) {
-                $booking->setProviderPlanning(null);
-            }
-        }
+        $this->description = $description;
 
         return $this;
     }

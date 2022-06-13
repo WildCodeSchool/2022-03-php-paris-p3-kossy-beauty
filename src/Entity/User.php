@@ -30,14 +30,8 @@ class User
     #[ORM\Column(type: 'string', length: 20, nullable: true)]
     private $telephone;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $address;
-
     #[ORM\Column(type: 'boolean')]
     private $isArchived;
-
-    #[ORM\OneToOne(mappedBy: 'user', targetEntity: Provider::class, cascade: ['persist', 'remove'])]
-    private $provider;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Favorite::class)]
     private $favorites;
@@ -49,18 +43,33 @@ class User
     #[ORM\JoinColumn(nullable: false)]
     private $role;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
-    private $bookings;
-
     #[ORM\OneToMany(mappedBy: 'sender', targetEntity: Message::class)]
     private $messages;
+
+    #[ORM\ManyToMany(targetEntity: UserConversation::class, mappedBy: 'user')]
+    private $userConversations;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $companyName;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $town;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $district;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $image;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isTop;
 
     public function __construct()
     {
         $this->favorites = new ArrayCollection();
         $this->comments = new ArrayCollection();
-        $this->bookings = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->userConversations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -128,18 +137,6 @@ class User
         return $this;
     }
 
-    public function getAddress(): ?string
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?string $address): self
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
     public function isIsArchived(): ?bool
     {
         return $this->isArchived;
@@ -148,23 +145,6 @@ class User
     public function setIsArchived(bool $isArchived): self
     {
         $this->isArchived = $isArchived;
-
-        return $this;
-    }
-
-    public function getProvider(): ?Provider
-    {
-        return $this->provider;
-    }
-
-    public function setProvider(Provider $provider): self
-    {
-        // set the owning side of the relation if necessary
-        if ($provider->getUser() !== $this) {
-            $provider->setUser($this);
-        }
-
-        $this->provider = $provider;
 
         return $this;
     }
@@ -242,36 +222,6 @@ class User
     }
 
     /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getUser() === $this) {
-                $booking->setUser(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Message>
      */
     public function getMessages(): Collection
@@ -297,6 +247,93 @@ class User
                 $message->setSender(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserConversation>
+     */
+    public function getUserConversations(): Collection
+    {
+        return $this->userConversations;
+    }
+
+    public function addUserConversation(UserConversation $userConversation): self
+    {
+        if (!$this->userConversations->contains($userConversation)) {
+            $this->userConversations[] = $userConversation;
+            $userConversation->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserConversation(UserConversation $userConversation): self
+    {
+        if ($this->userConversations->removeElement($userConversation)) {
+            $userConversation->removeUser($this);
+        }
+
+        return $this;
+    }
+
+    public function getCompanyName(): ?string
+    {
+        return $this->companyName;
+    }
+
+    public function setCompanyName(?string $companyName): self
+    {
+        $this->companyName = $companyName;
+
+        return $this;
+    }
+
+    public function getTown(): ?string
+    {
+        return $this->town;
+    }
+
+    public function setTown(string $town): self
+    {
+        $this->town = $town;
+
+        return $this;
+    }
+
+    public function getDistrict(): ?string
+    {
+        return $this->district;
+    }
+
+    public function setDistrict(?string $district): self
+    {
+        $this->district = $district;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function isIsTop(): ?bool
+    {
+        return $this->isTop;
+    }
+
+    public function setIsTop(bool $isTop): self
+    {
+        $this->isTop = $isTop;
 
         return $this;
     }

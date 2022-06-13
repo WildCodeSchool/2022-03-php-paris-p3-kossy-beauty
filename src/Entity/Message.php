@@ -21,14 +21,15 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private $recipient;
 
-    #[ORM\ManyToOne(targetEntity: ProviderService::class, inversedBy: 'messages')]
-    private $providerService;
-
     #[ORM\Column(type: 'text')]
-    private $message;
+    private $content;
 
     #[ORM\Column(type: 'datetimetz')]
-    private $date;
+    private $createdAt;
+
+    #[ORM\ManyToOne(targetEntity: Conversation::class, inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $conversation;
 
     public function getId(): ?int
     {
@@ -59,38 +60,38 @@ class Message
         return $this;
     }
 
-    public function getProviderService(): ?ProviderService
+    public function getContent(): ?string
     {
-        return $this->providerService;
+        return $this->content;
     }
 
-    public function setProviderService(?ProviderService $providerService): self
+    public function setContent(string $content): self
     {
-        $this->providerService = $providerService;
+        $this->content = $content;
 
         return $this;
     }
 
-    public function getMessage(): ?string
+    public function getCreatedAt(): ?\DateTimeInterface
     {
-        return $this->message;
+        return $this->createdAt;
     }
 
-    public function setMessage(string $message): self
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
-        $this->message = $message;
+        $this->createdAt = $createdAt;
 
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getConversation(): ?Conversation
     {
-        return $this->date;
+        return $this->conversation;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setConversation(?Conversation $conversation): self
     {
-        $this->date = $date;
+        $this->conversation = $conversation;
 
         return $this;
     }

@@ -17,7 +17,7 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private $user;
 
-    #[ORM\ManyToOne(targetEntity: Provider::class, inversedBy: 'comments')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false)]
     private $provider;
 
@@ -44,12 +44,12 @@ class Comment
         return $this;
     }
 
-    public function getProvider(): ?Provider
+    public function getProvider(): ?User
     {
         return $this->provider;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setProvider(?User $provider): self
     {
         $this->provider = $provider;
 

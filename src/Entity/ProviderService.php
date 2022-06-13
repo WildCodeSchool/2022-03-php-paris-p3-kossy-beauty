@@ -15,7 +15,7 @@ class ProviderService
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\ManyToOne(targetEntity: Provider::class, inversedBy: 'providerServices')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'providerServices')]
     #[ORM\JoinColumn(nullable: false)]
     private $provider;
 
@@ -29,16 +29,16 @@ class ProviderService
     #[ORM\Column(type: 'integer', nullable: true)]
     private $duration;
 
-    #[ORM\OneToMany(mappedBy: 'providerService', targetEntity: Booking::class)]
-    private $bookings;
-
     #[ORM\OneToMany(mappedBy: 'providerService', targetEntity: Message::class)]
     private $messages;
 
+    #[ORM\OneToMany(mappedBy: 'subject', targetEntity: Conversation::class)]
+    private $conversations;
+
     public function __construct()
     {
-        $this->bookings = new ArrayCollection();
         $this->messages = new ArrayCollection();
+        $this->conversations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,12 +46,12 @@ class ProviderService
         return $this->id;
     }
 
-    public function getProvider(): ?Provider
+    public function getProvider(): ?User
     {
         return $this->provider;
     }
 
-    public function setProvider(?Provider $provider): self
+    public function setProvider(?User $provider): self
     {
         $this->provider = $provider;
 
@@ -95,36 +95,6 @@ class ProviderService
     }
 
     /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings[] = $booking;
-            $booking->setProviderService($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getProviderService() === $this) {
-                $booking->setProviderService(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Message>
      */
     public function getMessages(): Collection
@@ -132,22 +102,30 @@ class ProviderService
         return $this->messages;
     }
 
-    public function addMessage(Message $message): self
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getConversations(): Collection
     {
-        if (!$this->messages->contains($message)) {
-            $this->messages[] = $message;
-            $message->setProviderService($this);
+        return $this->conversations;
+    }
+
+    public function addConversation(Conversation $conversation): self
+    {
+        if (!$this->conversations->contains($conversation)) {
+            $this->conversations[] = $conversation;
+            $conversation->setSubject($this);
         }
 
         return $this;
     }
 
-    public function removeMessage(Message $message): self
+    public function removeConversation(Conversation $conversation): self
     {
-        if ($this->messages->removeElement($message)) {
+        if ($this->conversations->removeElement($conversation)) {
             // set the owning side to null (unless already changed)
-            if ($message->getProviderService() === $this) {
-                $message->setProviderService(null);
+            if ($conversation->getSubject() === $this) {
+                $conversation->setSubject(null);
             }
         }
 
