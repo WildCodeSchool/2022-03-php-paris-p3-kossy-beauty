@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ user.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>CompanyName</th>
+                <td>{{ user.companyName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Town</th>
+                <td>{{ user.town }}</td>
+            </tr>
+            <tr>
+                <th>District</th>
+                <td>{{ user.district }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ user.image }}</td>
+            </tr>
+            <tr>
+                <th>IsTop</th>
+                <td>{{ user.isTop ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>IsArchived</th>
+                <td>{{ user.isArchived ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>CompanyDescription</th>
+                <td>{{ user.companyDescription }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

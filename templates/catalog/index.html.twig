@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalog index{% endblock %}
+
+{% block body %}
+    <h1>Catalog index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for catalog in catalogs %}
+            <tr>
+                <td>{{ catalog.id }}</td>
+                <td>{{ catalog.image }}</td>
+                <td>
+                    <a href="{{ path('app_catalog_show', {'id': catalog.id}) }}">show</a>
+                    <a href="{{ path('app_catalog_edit', {'id': catalog.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_catalog_new') }}">Create new</a>
+{% endblock %}

@@ -83,6 +83,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $isArchived = false;
 
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $companyDescription;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -257,6 +260,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setIsArchived(bool $isArchived): self
     {
         $this->isArchived = $isArchived;
+
+        return $this;
+    }
+
+    public function getCompanyDescription(): ?string
+    {
+        return $this->companyDescription;
+    }
+
+    public function setCompanyDescription(?string $companyDescription): self
+    {
+        $this->companyDescription = $companyDescription;
 
         return $this;
     }

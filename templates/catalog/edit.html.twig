@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Catalog{% endblock %}
+
+{% block body %}
+    <h1>Edit Catalog</h1>
+
+    {{ include('catalog/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_catalog_index') }}">back to list</a>
+
+    {{ include('catalog/_delete_form.html.twig') }}
+{% endblock %}
