@@ -16,7 +16,9 @@ framework:
     #fragments: true
     php_errors:
         log: true
-
+    form:
+        legacy_error_messages: false
+        
 when@test:
     framework:
         test: true
