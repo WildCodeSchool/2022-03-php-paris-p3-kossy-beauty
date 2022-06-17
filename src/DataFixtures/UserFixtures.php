@@ -19,21 +19,21 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // Création d’un utilisateur de type “contributeur” (= auteur)
-        $contributor = new User();
-        $contributor->setFirstname('Plop');
-        $contributor->setLastname('Plop');
-        $contributor->setTown('PlopCity');
-        $contributor->setIsTop(false);
-        $contributor->setIsArchived(false);
-        $contributor->setEmail('plop@plop.com');
-        $contributor->setRoles(['ROLE_CONTRIBUTOR']);
+        $provider = new User();
+        $provider->setFirstname('Plop');
+        $provider->setLastname('Plop');
+        $provider->setTown('PlopCity');
+        $provider->setIsTop(false);
+        $provider->setIsArchived(false);
+        $provider->setTelephone('0123456789');
+        $provider->setRoles(['ROLE_PROVIDER']);
         $hashedPassword = $this->passwordHasher->hashPassword(
-            $contributor,
+            $provider,
             'plop'
         );
 
-        $contributor->setPassword($hashedPassword);
-        $manager->persist($contributor);
+        $provider->setPassword($hashedPassword);
+        $manager->persist($provider);
 
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
@@ -42,7 +42,7 @@ class UserFixtures extends Fixture
         $admin->setTown('AdminCity');
         $admin->setIsTop(false);
         $admin->setIsArchived(false);
-        $admin->setEmail('admin@admin.com');
+        $admin->setTelephone('0987654321');
         $admin->setRoles(['ROLE_ADMIN']);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $admin,

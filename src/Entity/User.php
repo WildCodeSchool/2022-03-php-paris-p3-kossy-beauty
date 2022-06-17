@@ -4,10 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['telephone'], message: 'There is already an account with this telephone')]
+#[Assert\EnableAutoMapping]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -16,54 +20,82 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    private $email;
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\Length(
+        min: 10,
+        minMessage: 'Le numéro de téléphone saisi est trop court, il doit faire {{ limit }} caractères au minimum',
+        max: 10,
+        maxMessage: 'Le numéro de téléphone saisi est trop long, il ne doit pas dépasser {{ limit }} caractères',
+    )]
+    private $telephone;
 
     #[ORM\Column(type: 'json')]
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\Length(
+        min: 8,
+        minMessage: 'Le mot de passe saisi est trop court, il doit contenir caractères minimum.',
+    )]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'Votre prénom ne peut pas contenir de chiffre.',
+    )]
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\Regex(
+        pattern: '/\d/',
+        match: false,
+        message: 'Votre nom ne peut pas contenir de chiffre.',
+    )]
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $companyName;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Email(
+        message: 'Veuillez renseigner ce champ avec un email valide.'
+    )]
+    private $email;
+
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
     private $town;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $district;
 
-    #[ORM\Column(type: 'string', length: 20, nullable: true)]
-    private $telephone;
-
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $image;
 
     #[ORM\Column(type: 'boolean')]
-    private $isTop;
+    private $isTop = false;
 
     #[ORM\Column(type: 'boolean')]
-    private $isArchived;
+    private $isArchived = false;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getEmail(): ?string
+    public function getTelephone(): ?string
     {
-        return $this->email;
+        return $this->telephone;
     }
 
-    public function setEmail(string $email): self
+    public function setTelephone(string $telephone): self
     {
-        $this->email = $email;
+        $this->telephone = $telephone;
 
         return $this;
     }
@@ -75,7 +107,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getUserIdentifier(): string
     {
-        return (string) $this->email;
+        return (string) $this->telephone;
     }
 
     /**
@@ -157,6 +189,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
     public function getTown(): ?string
     {
         return $this->town;
@@ -177,18 +221,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setDistrict(?string $district): self
     {
         $this->district = $district;
-
-        return $this;
-    }
-
-    public function getTelephone(): ?string
-    {
-        return $this->telephone;
-    }
-
-    public function setTelephone(?string $telephone): self
-    {
-        $this->telephone = $telephone;
 
         return $this;
     }
