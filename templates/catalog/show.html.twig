@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalog{% endblock %}
+
+{% block body %}
+    <h1>Catalog</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ catalog.id }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ catalog.image }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_catalog_index') }}">back to list</a>
+
+    <a href="{{ path('app_catalog_edit', {'id': catalog.id}) }}">edit</a>
+
+    {{ include('catalog/_delete_form.html.twig') }}
+{% endblock %}
