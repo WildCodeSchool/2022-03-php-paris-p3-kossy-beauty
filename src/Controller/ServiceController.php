@@ -69,7 +69,7 @@ class ServiceController extends AbstractController
     #[Route('/{id}', name: 'app_service_delete', methods: ['POST'])]
     public function delete(Request $request, Service $service, ServiceRepository $serviceRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $service->getId(), $request->request->get('_token'))) {
             $serviceRepository->remove($service, true);
         }
 

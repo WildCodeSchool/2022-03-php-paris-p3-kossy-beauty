@@ -69,7 +69,7 @@ class CatalogController extends AbstractController
     #[Route('/{id}', name: 'app_catalog_delete', methods: ['POST'])]
     public function delete(Request $request, Catalog $catalog, CatalogRepository $catalogRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$catalog->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $catalog->getId(), $request->request->get('_token'))) {
             $catalogRepository->remove($catalog, true);
         }
 
