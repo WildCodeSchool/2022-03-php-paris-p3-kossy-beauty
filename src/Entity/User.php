@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['telephone'], message: 'There is already an account with this telephone')]
+#[Assert\EnableAutoMapping]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -58,7 +59,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $company_name;
+    private $companyName;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Email(
@@ -178,12 +179,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getCompanyName(): ?string
     {
-        return $this->company_name;
+        return $this->companyName;
     }
 
-    public function setCompanyName(?string $company_name): self
+    public function setCompanyName(?string $companyName): self
     {
-        $this->company_name = $company_name;
+        $this->companyName = $companyName;
 
         return $this;
     }
