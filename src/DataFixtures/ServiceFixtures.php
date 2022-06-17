@@ -8,7 +8,7 @@ use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker\Factory;
 
-class ServiceFixtures extends Fixture
+class ServiceFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -19,7 +19,6 @@ class ServiceFixtures extends Fixture
             $service->setName($faker->paragraphs(1, true));
             $service->setCategory($this->getReference('category_' . $faker->numberBetween(1, 5)));
             $this->addReference('service_' . $i, $service);
-
             $manager->persist($service);
         }
 
