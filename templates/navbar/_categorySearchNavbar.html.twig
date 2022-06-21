@@ -1,0 +1,21 @@
+<div class="container">
+    <p>
+        {% for category in categories.getAll %}
+        <a
+            class="btn btn-primary"
+            data-bs-toggle="collapse"
+            href="#test"
+            role="button"
+            aria-expanded="false"
+            aria-controls="collapseExample"
+        >
+            {{ category.name }}
+        </a>
+        {% endfor %}
+    </p>
+    <div class="collapse" id="test">
+        <div class="card card-body">
+            <p>Yooo</p>
+        </div>
+    </div>
+</div>
