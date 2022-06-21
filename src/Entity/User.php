@@ -22,7 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
     #[Assert\Length(
-        min: 10,
+        min: 8,
         minMessage: 'Le numéro de téléphone saisi est trop court, il doit faire {{ limit }} caractères au minimum',
         max: 10,
         maxMessage: 'Le numéro de téléphone saisi est trop long, il ne doit pas dépasser {{ limit }} caractères',
@@ -33,11 +33,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
-    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
-    #[Assert\Length(
-        min: 8,
-        minMessage: 'Le mot de passe saisi est trop court, il doit contenir caractères minimum.',
-    )]
+    // #[Assert\NotBlank(message: 'Veuillez remplir ce champs. password')]
+    // #[Assert\Length(
+    //     min: 8,
+    // )]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
