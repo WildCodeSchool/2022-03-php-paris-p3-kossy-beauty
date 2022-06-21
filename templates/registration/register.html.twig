@@ -6,7 +6,6 @@ body %}
 {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}}) }}
 
 {{ form_row(registrationForm.telephone) }}
-{{ form_errors(registrationForm)}}
 {{
     form_row(registrationForm.plainPassword, {
         label: "Password"
