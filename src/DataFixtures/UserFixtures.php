@@ -51,6 +51,21 @@ class UserFixtures extends Fixture
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
 
+        // Création d’un utilisateur de type user
+        $user = new User();
+        $user->setFirstname('user');
+        $user->setLastname('user');
+        $user->setTown('userCity');
+        $user->setIsTop(false);
+        $user->setIsArchived(false);
+        $user->setTelephone('0102030405');
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $user,
+            'user'
+        );
+        $user->setPassword($hashedPassword);
+        $manager->persist($user);
+
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();
     }
