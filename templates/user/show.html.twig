@@ -32,10 +32,6 @@
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
-                <th>CompanyName</th>
-                <td>{{ user.companyName }}</td>
-            </tr>
-            <tr>
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
@@ -51,18 +47,26 @@
                 <th>Image</th>
                 <td>{{ user.image }}</td>
             </tr>
-            <tr>
-                <th>IsTop</th>
-                <td>{{ user.isTop ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>IsArchived</th>
-                <td>{{ user.isArchived ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>CompanyDescription</th>
-                <td>{{ user.companyDescription }}</td>
-            </tr>
+            {% if is_granted("ROLE_ADMIN") %}
+                <tr>
+                    <th>IsTop</th>
+                    <td>{{ user.isTop ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>IsArchived</th>
+                    <td>{{ user.isArchived ? 'Yes' : 'No' }}</td>
+                </tr>
+            {% endif %}
+            {% if is_granted("ROLE_PROVIDER") %}
+                <tr>
+                    <th>CompanyName</th>
+                    <td>{{ user.companyName }}</td>
+                </tr>
+                <tr>
+                    <th>CompanyDescription</th>
+                    <td>{{ user.companyDescription }}</td>
+                </tr>
+            {% endif %}
         </tbody>
     </table>
 
