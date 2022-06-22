@@ -3,72 +3,43 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Telephone</th>
-                <td>{{ user.telephone }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
-                <td>{{ user.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
-                <td>{{ user.lastname }}</td>
-            </tr>
-            <tr>
-                <th>CompanyName</th>
-                <td>{{ user.companyName }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Town</th>
-                <td>{{ user.town }}</td>
-            </tr>
-            <tr>
-                <th>District</th>
-                <td>{{ user.district }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ user.image }}</td>
-            </tr>
-            <tr>
-                <th>IsTop</th>
-                <td>{{ user.isTop ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>IsArchived</th>
-                <td>{{ user.isArchived ? 'Yes' : 'No' }}</td>
-            </tr>
-            <tr>
-                <th>CompanyDescription</th>
-                <td>{{ user.companyDescription }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
-
-    {{ include('user/_delete_form.html.twig') }}
+<h1>Profile Settings</h1>
+<div class="container rounded bg-white">
+    <div class="row">
+        <div class="col-md-2 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">{{ user.image }}<span class="font-weight-bold">{{ user.firstname }} {{ user.lastname }}</span><span class="text-black-50"></span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="row ">
+                    <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control"  value="{{ user.firstname }}"></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="{{ user.lastname }}"></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control"  value="{{ user.telephone }}"></div>
+                    <div class="col-md-12"><label class="labels">Town</label><input type="text" class="form-control" value="{{ user.town }}"></div>
+                    <div class="col-md-12"><label class="labels">District</label><input type="text" class="form-control" value="{{ user.district }}"></div>
+                    <div class="col-md-12"><label class="labels">Password</label><input type="text" class="form-control" value="{{ user.password }}"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="p-3 py-5">
+                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" value="{{ user.email }}"></div>
+                <div class="col-md-12"><label class="labels">IsTop</label><input type="text" class="form-control" value="{{ user.isTop ? 'Yes' : 'No' }}"></div>
+                <div class="col-md-12"><label class="labels">IsArchived</label><input type="text" class="form-control" value="{{ user.isArchived ? 'Yes' : 'No' }}"></div>
+                <div class="col-md-12"><label class="labels">Company Name</label><input type="text" class="form-control" value="{{ user.companyName }}"></div>
+                <div class="col-md-12"><label class="labels">Company Description</label><input type="text" class="form-control" value="{{ user.companyDescription }}"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+    <div class="container d-flex justify-content-center">
+        <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_index') }}">Edite</a></div>
+        <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_edit', {'id': user.id}) }}">Back to the liste</a></div>
+        <div class="text-center m-3"><a>{{ include('user/_delete_form.html.twig') }}</a></div>
+    </div>
 {% endblock %}
+
