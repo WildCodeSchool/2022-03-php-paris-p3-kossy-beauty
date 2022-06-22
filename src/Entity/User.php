@@ -10,8 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['telephone'], message: 'There is already an account with this telephone')]
-#[Assert\EnableAutoMapping]
+#[UniqueEntity(fields: ['telephone'], message: 'Il y a déjà un compte avec ce numéro de téléphone')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -20,7 +19,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champ.')]
+    #[Assert\Regex(
+        pattern: '/[a-z A-Z]/',
+        // pattern: '/[0-9]/',
+        match: false,
+        message: 'Votre numéro de téléphone ne peut pas contenir de lettre ou de caractères spéciaux.',
+    )]
     #[Assert\Length(
         min: 8,
         minMessage: 'Le numéro de téléphone saisi est trop court, il doit faire {{ limit }} caractères au minimum',
@@ -37,10 +42,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     // #[Assert\Length(
     //     min: 8,
     // )]
+    #[Assert\Type(
+        type: 'string',
+        message: 'Le format du mot de passe est incorrect',
+    )]
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champ.')]
+    #[Assert\Type(
+        type: 'string',
+        message: 'Le format du prénom est incorrect',
+    )]
     #[Assert\Regex(
         pattern: '/\d/',
         match: false,
@@ -49,7 +62,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $firstname;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champ.')]
+    #[Assert\Type(
+        type: 'string',
+        message: 'Le format du nom de famille est incorrect',
+    )]
     #[Assert\Regex(
         pattern: '/\d/',
         match: false,
@@ -67,7 +84,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $email;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez remplir ce champs.')]
+    #[Assert\NotBlank(message: 'Veuillez remplir ce champ.')]
     private $town;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
