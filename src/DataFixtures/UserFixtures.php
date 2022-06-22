@@ -85,9 +85,9 @@ class UserFixtures extends Fixture
             );
             $provider->setPassword($hashedPassword);
             $manager->persist($provider);
+            $this->addReference('provider_' . $i, $provider);
         }
 
-        // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();
     }
 }

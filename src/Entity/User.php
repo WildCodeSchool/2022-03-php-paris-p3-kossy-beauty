@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -100,6 +102,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'text', nullable: true)]
     private $companyDescription;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProviderService::class)]
+    private $providerServices;
+
+    public function __construct()
+    {
+        $this->providerServices = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -287,6 +297,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCompanyDescription(?string $companyDescription): self
     {
         $this->companyDescription = $companyDescription;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ProviderService>
+     */
+    public function getProviderServices(): Collection
+    {
+        return $this->providerServices;
+    }
+
+    public function addProviderService(ProviderService $providerService): self
+    {
+        if (!$this->providerServices->contains($providerService)) {
+            $this->providerServices[] = $providerService;
+            $providerService->setProvider($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProviderService(ProviderService $providerService): self
+    {
+        if ($this->providerServices->removeElement($providerService)) {
+            // set the owning side to null (unless already changed)
+            if ($providerService->getProvider() === $this) {
+                $providerService->setProvider(null);
+            }
+        }
 
         return $this;
     }
