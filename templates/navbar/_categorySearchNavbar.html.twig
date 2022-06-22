@@ -1,21 +1,26 @@
-<div class="container">
-    <p>
-        {% for category in categories.getAll %}
-        <a
-            class="btn btn-primary"
-            data-bs-toggle="collapse"
-            href="#test"
-            role="button"
-            aria-expanded="false"
-            aria-controls="collapseExample"
-        >
-            {{ category.name }}
-        </a>
-        {% endfor %}
-    </p>
-    <div class="collapse" id="test">
-        <div class="card card-body">
-            <p>Yooo</p>
+    <div class="container d-flex justify-content-center mt-2">
+    {% for category in categories.getAll %}
+    <div class="me-3">
+        <p>
+            <button
+                class="btn btn-primary"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#category{{ category.id }}"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+            >
+                {{ category.name }}
+            </button>
+        </p>
+
+        <div class="collapse" id="category{{ category.id }}">
+            <div class="card card-body">
+                {% for service in services.getServiceByCategoryId(category.id) %}
+                <p>{{ service.name }}</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
+    {% endfor %}
 </div>
