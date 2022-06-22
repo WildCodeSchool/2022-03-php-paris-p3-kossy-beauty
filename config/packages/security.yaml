@@ -26,6 +26,9 @@ security:
                 enable_csrf: true
             logout:
                 path: app_logout
+    role_hierarchy:
+        ROLE_PROVIDER: ROLE_USER
+        ROLE_ADMIN: ROLE_PROVIDER
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 

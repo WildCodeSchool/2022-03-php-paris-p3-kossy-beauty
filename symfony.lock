@@ -703,6 +703,9 @@
     "theseer/tokenizer": {
         "version": "1.2.1"
     },
+    "twbs/bootstrap-icons": {
+        "version": "v1.8.3"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.8"
     },

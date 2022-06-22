@@ -22,7 +22,7 @@ class CategoryFixtures extends Fixture
             $category = new Category();
             $category->setName($categoryName);
             $manager->persist($category);
-            $catId = $key + 1; // Parce que l'id de la 1ère catégorie vaut 1 et non 0
+            $catId = $key + 1;
             $this->addReference('category_' . $catId, $category);
         }
 
