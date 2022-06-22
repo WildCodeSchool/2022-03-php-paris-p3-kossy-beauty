@@ -21,8 +21,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank(message: 'Veuillez remplir ce champ.')]
     #[Assert\Regex(
-        pattern: '/[a-z A-Z]/',
-        // pattern: '/[0-9]/',
+        pattern: '/[^0-9]/',
         match: false,
         message: 'Votre numéro de téléphone ne peut pas contenir de lettre ou de caractères spéciaux.',
     )]
