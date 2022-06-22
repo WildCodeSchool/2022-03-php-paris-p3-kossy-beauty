@@ -4,6 +4,7 @@ body %}
 
 
 {{ form_start(registrationForm, {attr: {'novalidate': 'novalidate'}}) }}
+{{ form_errors(registrationForm) }}
 
 {{ form_row(registrationForm.telephone) }}
 {{
@@ -13,9 +14,9 @@ body %}
 }}
 {{ form_row(registrationForm.firstname) }}
 {{ form_row(registrationForm.lastname) }}
+{{ form_row(registrationForm.email) }}
 {{ form_row(registrationForm.town) }}
 {{ form_row(registrationForm.district) }}
-{{ form_row(registrationForm.email) }}
 
 {{ form_row(registrationForm.agreeTerms) }}
 
