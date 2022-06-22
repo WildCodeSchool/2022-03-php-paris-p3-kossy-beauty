@@ -3,32 +3,30 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <h1>Mon profil</h1>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
+            {% if is_granted("ROLE_ADMIN") %}
+                <tr>
+                    <th>Identifiant</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+            {% endif %}
             <tr>
                 <th>Telephone</th>
                 <td>{{ user.telephone }}</td>
             </tr>
             <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <th>Mot de passe</th>
+                <td>********</td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
+                <th>Prénom</th>
                 <td>{{ user.firstname }}</td>
             </tr>
             <tr>
-                <th>Lastname</th>
+                <th>Nom</th>
                 <td>{{ user.lastname }}</td>
             </tr>
             <tr>
@@ -36,7 +34,7 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Town</th>
+                <th>Ville</th>
                 <td>{{ user.town }}</td>
             </tr>
             <tr>
@@ -49,30 +47,34 @@
             </tr>
             {% if is_granted("ROLE_ADMIN") %}
                 <tr>
-                    <th>IsTop</th>
-                    <td>{{ user.isTop ? 'Yes' : 'No' }}</td>
+                    <th>Type de compte</th>
+                    <td>{{ role }}</td>
                 </tr>
                 <tr>
-                    <th>IsArchived</th>
-                    <td>{{ user.isArchived ? 'Yes' : 'No' }}</td>
+                    <th>Featured</th>
+                    <td>{{ user.isTop ? 'Oui' : 'Non' }}</td>
+                </tr>
+                <tr>
+                    <th>Compte archivé</th>
+                    <td>{{ user.isArchived ? 'Oui' : 'Non' }}</td>
                 </tr>
             {% endif %}
             {% if is_granted("ROLE_PROVIDER") %}
                 <tr>
-                    <th>CompanyName</th>
+                    <th>Nom du prestataire</th>
                     <td>{{ user.companyName }}</td>
                 </tr>
                 <tr>
-                    <th>CompanyDescription</th>
+                    <th>Description du prestataire</th>
                     <td>{{ user.companyDescription }}</td>
                 </tr>
             {% endif %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_user_index') }}">back to list</a>
-
-    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+    <a href="{{ path('app_user_index') }}">Retour</a>
+    
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a>
 
     {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
