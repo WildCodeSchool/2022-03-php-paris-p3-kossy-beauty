@@ -17,7 +17,7 @@
         <div class="collapse" id="category{{ category.id }}">
             <div class="card card-body">
                 {% for service in services.getServiceByCategoryId(category.id) %}
-                <p>{{ service.name }}</p>
+                <a href="{{ path('app_service_show_provider', {id: service.id}) }}">{{ service.name }}</a>
                 {% endfor %}
             </div>
         </div>

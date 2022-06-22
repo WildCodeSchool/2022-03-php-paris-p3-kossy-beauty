@@ -21,7 +21,7 @@
             <i class="bi bi-person"></i>Mon compte
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="/user/{{ app.user.id}}">Voir mon profil</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
           </ul>

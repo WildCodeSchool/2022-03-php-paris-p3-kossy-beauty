@@ -66,6 +66,27 @@ class UserFixtures extends Fixture
         $user->setPassword($hashedPassword);
         $manager->persist($user);
 
+        for ($i = 0; $i < 50; $i++) {
+            $provider = new User();
+            $provider->setFirstname('Plop' . $i);
+            $provider->setLastname('Plopinette' . $i);
+            $provider->setTown('PlopCity');
+            $provider->setIsTop(false);
+            $provider->setIsArchived(false);
+            if ($i > 9) {
+                $provider->setTelephone('01000000' . $i);
+            } else {
+                $provider->setTelephone('010000000' . $i);
+            }
+            $provider->setRoles(['ROLE_PROVIDER']);
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $provider,
+                'plop'
+            );
+            $provider->setPassword($hashedPassword);
+            $manager->persist($provider);
+        }
+
         // Sauvegarde des 2 nouveaux utilisateurs :
         $manager->flush();
     }

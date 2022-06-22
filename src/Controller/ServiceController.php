@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Service;
 use App\Form\ServiceType;
 use App\Repository\ServiceRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +45,14 @@ class ServiceController extends AbstractController
     public function show(Service $service): Response
     {
         return $this->render('service/show.html.twig', [
+            'service' => $service,
+        ]);
+    }
+
+    #[Route('/list/{id}', name: 'app_service_show_provider', methods: ['GET'])]
+    public function showProvider(Service $service, UserRepository $userRepository): Response
+    {
+        return $this->render('service/showProvider.html.twig', [
             'service' => $service,
         ]);
     }
