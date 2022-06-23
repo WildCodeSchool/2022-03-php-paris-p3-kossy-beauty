@@ -85,6 +85,8 @@ class UserFixtures extends Fixture
                 $provider,
                 'plop'
             );
+            $provider->setCompanyName('C dans l\' hair' . $i);
+            $provider->setCompanyDescription('Nous sommes ouverts tous les jours de la semaine'); 
             $provider->setPassword($hashedPassword);
             $manager->persist($provider);
             $this->addReference('provider_' . $i, $provider);

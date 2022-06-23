@@ -49,15 +49,6 @@ class ServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/list/{id}', name: 'app_service_show_provider', methods: ['GET'])]
-    public function showProvider(Service $service, UserRepository $userRepository): Response
-    {
-        // $providers = $userRepository->findBy(['service' => $service]);
-        return $this->render('service/showProvider.html.twig', [
-            'service' => $service,
-        ]);
-    }
-
     #[Route('/{id}/edit', name: 'app_service_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Service $service, ServiceRepository $serviceRepository): Response
     {
