@@ -5,7 +5,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <a class="ms-auto me-5" href="/register/pro"><i class="bi bi-plus-square me-2"></i>Devenir prestataire</a>
+      <a class="ms-auto me-5" href="{{ path('app_register_pro') }}"><i class="bi bi-plus-square me-2"></i>Devenir prestataire</a>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item position-relative me-3">
           <i class="bi bi-chat-left-text p-0"></i>
@@ -21,7 +21,7 @@
             <i class="bi bi-person"></i>Mon compte
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Voir mon profil</a></li>
+            <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
           </ul>

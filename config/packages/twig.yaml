@@ -3,6 +3,7 @@ twig:
     globals:
         categories: '@App\Service\CategoryService'
         services: '@App\Service\ServiceService'
+        provider: '@App\Service\ProviderService'
 
 when@test:
     twig:
