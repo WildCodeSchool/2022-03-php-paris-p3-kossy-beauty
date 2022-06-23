@@ -89,7 +89,7 @@ class ProviderServiceController extends AbstractController
     public function showProviderByService(
         Service $service,
         ProviderServiceRepository $provServRepository
-        ): Response {
+    ): Response {
         return $this->render('provider_service/showProviderByService.html.twig', [
             'service' => $service,
             'providerServices' => $provServRepository->findBy(['service' => $service]),
