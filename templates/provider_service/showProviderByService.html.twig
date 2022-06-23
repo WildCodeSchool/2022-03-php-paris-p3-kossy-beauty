@@ -21,5 +21,6 @@
     {% for provider in provider.getProviderById(providerService.provider.id) %}
         {{ provider.firstname }}
     {% endfor %}
+    <p>{{ providerService.price}} € / {{ providerService.duration}} min</p>
     {% endfor %}
 {% endblock %}
