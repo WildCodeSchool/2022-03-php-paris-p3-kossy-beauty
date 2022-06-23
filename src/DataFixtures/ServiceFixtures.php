@@ -20,7 +20,6 @@ class ServiceFixtures extends Fixture implements DependentFixtureInterface
             $service->setName($faker->word());
             $service->setCategory($this->getReference('category_' . $faker->numberBetween(1, 5)));
             $this->addReference('service_' . $i, $service);
-
             $manager->persist($service);
         }
 

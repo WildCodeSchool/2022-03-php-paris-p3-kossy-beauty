@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class RegistrationFormType extends AbstractType
+class ProRegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,6 +23,8 @@ class RegistrationFormType extends AbstractType
             ->add('district')
             ->add('email')
             ->add('telephone')
+            ->add('companyName')
+            ->add('companyDescription')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -39,12 +41,10 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez remplir ce champ',
                     ]),
                     new Length([
-                        'min' => 8,
-                        'minMessage' => 'Le mot de passe saisi est trop court, 
-                            il doit contenir {{ limit }} caractères minimum.',
-                        'max' => 30,
-                        'maxMessage' => 'Le mot de passe saisi est trop long, 
-                            il doit contenir {{ limit }} caractères maximum.',
+                        'min' => 6,
+                        'minMessage' => 'Votre mot de passe doit contenir {{ limit }} caractères minimum.',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
                     ]),
                 ],
             ])

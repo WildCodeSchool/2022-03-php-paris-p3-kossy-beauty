@@ -27,6 +27,8 @@ class UserFixtures extends Fixture
         $provider->setIsArchived(false);
         $provider->setTelephone('0123456789');
         $provider->setRoles(['ROLE_PROVIDER']);
+        $provider->setCompanyName('Ma coiffure afro');
+        $provider->setCompanyDescription('Nous sommes ouverts tous les jours de la semaine');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $provider,
             'plop'
