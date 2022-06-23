@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %} {% block title %}Register{% endblock %} {% block
+body %}
+<h1>Register</h1>
+
+
+{{ form_start(proRegistrationForm, {attr: {'novalidate': 'novalidate'}}) }}
+{{ form_errors(proRegistrationForm) }}
+
+{{ form_row(proRegistrationForm.telephone) }}
+{{
+    form_row(proRegistrationForm.plainPassword, {
+        label: "Password"
+    })
+}}
+{{ form_row(proRegistrationForm.firstname) }}
+{{ form_row(proRegistrationForm.lastname) }}
+{{ form_row(proRegistrationForm.email) }}
+{{ form_row(proRegistrationForm.town) }}
+{{ form_row(proRegistrationForm.district) }}
+{{ form_row(proRegistrationForm.companyName) }}
+{{ form_row(proRegistrationForm.companyDescription) }}
+
+{{ form_row(proRegistrationForm.agreeTerms) }}
+
+<button type="submit" class="btn">Register</button>
+{{ form_end(proRegistrationForm) }}
+{% endblock %}
