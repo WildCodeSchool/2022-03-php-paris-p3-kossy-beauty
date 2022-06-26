@@ -36,9 +36,4 @@ class ResetPasswordRequest implements ResetPasswordRequestInterface
     {
         return $this->user;
     }
-
-    public function getHashedToken(): string
-    {
-        return $this->hashedToken;
-    }
 }

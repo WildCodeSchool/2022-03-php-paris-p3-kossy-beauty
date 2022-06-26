@@ -18,6 +18,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
+use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken as ResetPasswordToken;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use DateTime;
 
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
@@ -49,7 +52,8 @@ class ResetPasswordController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             return $this->processSendingPasswordResetMessage(
                 $form->get('telephone')->getData(),
-                $translator
+                $translator,
+                $request
             );
         }
 
@@ -63,7 +67,8 @@ class ResetPasswordController extends AbstractController
      */
     private function processSendingPasswordResetMessage(
         string $telephoneFormData,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        Request $request
     ): RedirectResponse {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'telephone' => $telephoneFormData,
@@ -95,7 +100,7 @@ class ResetPasswordController extends AbstractController
 
         // We Update the user object with the most updated data (the last valid hashedToken)
         $this->entityManager->refresh($user);
-        $this->sendToWhatsapp($user, $resetToken);
+        $this->sendToWhatsapp($user, $resetToken, $request);
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
@@ -103,7 +108,7 @@ class ResetPasswordController extends AbstractController
         return $this->redirectToRoute('app_check_email');
     }
 
-    private function sendToWhatsapp(User $user, $resetToken)
+    private function sendToWhatsapp(User $user, ResetPasswordToken $resetToken, Request $request)
     {
         //$session = $this->requestStack->getSession();
         // Call to the Meta API to send the message to the user Whatsapp account
@@ -112,14 +117,15 @@ class ResetPasswordController extends AbstractController
         $apiTokenAccess = 'EAAJ4ewfbeNwBACxMRphHaZCkq2cz1XoZCaAWJ8SjhFa2BeQ2I543KwAbQA43pZAqI3IMQWNpAc5bp7WVprMAgqiY7anG8roI9TfB3BQgkSXhJhZCeVLA5RhCt5YiaDQ65wVXZC2iZBjZB6YZCs8VESIutD5DpUWNnhaoVrgeRQrmAXwLZBTwpOTuxSLDdLh29ivKdzbEn8GoePNRFM6odLYcEYDWdC70qVPwZD';
         $userTelephone = '33' . substr($user->getTelephone(), 1);
         $userFirstname = $user->getFirstname();
-        //$hashedToken = $user->getHashedToken();
-        //var_dump($resetToken); die;
-        // foreach($user as $key => $value){
-        //     $hashedToken = $value->getHashedToken();
-        // }
-        //var_dump($resetToken->getToken()); die;
-        //$userExpirationTime = $tokenData['expiresAt'];
-        $urlResetToken = 'https://www.kossybeauty.com/reset/' . $resetToken->getToken();
+        $resetTokenCreatedAt = new DateTime();
+        $resetTokenExpiresAt = $resetToken->getExpiresAt();
+        // https://www.php.net/manual/en/dateinterval.format.php
+        $resetTokenExpiration = $resetTokenCreatedAt
+            ->diff($resetTokenExpiresAt)
+            ->format('%i minutes.');
+        $urlResetToken = $request->getBaseUrl() . $this->generateUrl('app_reset_password', [
+            'token' => $resetToken->getToken()
+        ]);
 
         // For debug only
         // $userTelephone = '33645417754';
@@ -149,7 +155,7 @@ class ResetPasswordController extends AbstractController
                             ],
                             [
                                 "type" => "text",
-                                "text" => "10 minutes"
+                                "text" => $resetTokenExpiration
                             ]
                         ]
                     ]
