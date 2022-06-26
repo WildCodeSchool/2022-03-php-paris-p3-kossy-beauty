@@ -122,7 +122,7 @@ class ResetPasswordController extends AbstractController
         $urlResetToken = 'https://www.kossybeauty.com/reset/' . $resetToken->getToken();
 
         // For debug only
-        $userTelephone = '33645417754';
+        // $userTelephone = '33645417754';
 
         // Data to pass to the API
         $data = array();
