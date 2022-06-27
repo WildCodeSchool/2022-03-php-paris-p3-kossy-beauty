@@ -114,7 +114,7 @@ class ResetPasswordController extends AbstractController
         // Call to the Meta API to send the message to the user Whatsapp account
         $apiMetaUrl = 'https://graph.facebook.com/v13.0/104765845620729/messages';
         // phpcs:ignore -- The token access of the API can't be splitted or shortened
-        $apiTokenAccess = 'EAAJ4ewfbeNwBACxMRphHaZCkq2cz1XoZCaAWJ8SjhFa2BeQ2I543KwAbQA43pZAqI3IMQWNpAc5bp7WVprMAgqiY7anG8roI9TfB3BQgkSXhJhZCeVLA5RhCt5YiaDQ65wVXZC2iZBjZB6YZCs8VESIutD5DpUWNnhaoVrgeRQrmAXwLZBTwpOTuxSLDdLh29ivKdzbEn8GoePNRFM6odLYcEYDWdC70qVPwZD';
+        $apiTokenAccess = 'EAAJ4ewfbeNwBAIPaNfZCUz7TTZC4oXsvfiQrUyfT3zEyWpu5r4vKDlINCRt65zHADPZC1ZBdsnNP06PNC3tcPZB3clO3q8JU4ZB5GS43u0QLgKnxcONcj8pOfeXoZB6mZCvT2PFHjGnPPXQnCGNZAIrP4h2ZCBDZBgdCiaBVc91yPZAp2MgsZBEHATXcm2827ZC0j14QTFmdJapAAmlNGkLQZAhZBqFjqYkqocbQKCUZD';
         $userTelephone = '33' . substr($user->getTelephone(), 1);
         $userFirstname = $user->getFirstname();
         $resetTokenCreatedAt = new DateTime();
