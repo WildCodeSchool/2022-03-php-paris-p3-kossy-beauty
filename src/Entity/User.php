@@ -106,6 +106,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProviderService::class)]
     private $providerServices;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
+
     public function __construct()
     {
         $this->providerServices = new ArrayCollection();
@@ -327,6 +330,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $providerService->setProvider(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): self
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }
