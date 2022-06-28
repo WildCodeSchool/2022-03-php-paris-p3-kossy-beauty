@@ -1,38 +1,63 @@
 {% extends 'base.html.twig' %} {% block title %}Login{% endblock %} {% block
 body %}
 <div class="container">
-        {% if error %}
-        <div>
-            {{ error.messageKey|trans(error.messageData, 'security') }}
+    {% if error %}
+    <div>
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+    </div>
+    {% endif %}
+
+    <section class="vh-100" style="background: linear-gradient(#f2d281, #00a19a)" ;) <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                    <div class="row g-0">
+                        <div class="col-md-6 col-lg-5 d-none d-md-block">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+                                alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem;" />
+                        </div>
+                        <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                            <div class="card-body p-4 p-lg-5 text-black">
+                                <div class="d-flex align-items-center mb-3 pb-1">
+                                    <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                                    <span class="h1 fw-bold mb-0">Kossy Beauty</span>
+                                </div>
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Connectez-vous à
+                                    votre compte</h5>
+
+                                <form action="{{ path('login') }}" method="post">
+                                    <div class="form-outline mb-4">
+                                        <input type="text" id="username" name="_username"
+                                            class="form-control form-control-lg" value="{{ last_username }}" />
+                                        <label class="form-label" for="form2Example17">Numéro de téléphone</label>
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="password" name="_password"
+                                            class="form-control form-control-lg" />
+                                        <label class="form-label" for="password">Mot de passe</label>
+                                    </div>
+
+                                    <input type="hidden" name="_target_path" value="/" />
+                                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+
+                                    <div class="pt-1 mb-4">
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit">Se
+                                            connecter</button>
+                                    </div>
+                                </form>
+                                <a class="small text-muted" href="#!">Mot de passe oublié ?</a>
+                                <p class="mb-5 pb-lg-2" style="color: #393f81;">Vous n'avez-pas de compte ? <a
+                                        href="/register" style="color: #393f81;">Inscrivez-vous</a></p>
+                                <a href="#!" class="small text-muted">Conditions d'utilisation</a>
+                                <a href="#!" class="small text-muted">Politique de confidentialité</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        {% endif %}
-
-        <form action="{{ path('login') }}" method="post">
-            <label for="telephone">Telephone:</label>
-            <input
-                type="text"
-                id="username"
-                name="_username"
-                value="{{ last_username }}"
-            />
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="_password" />
-
-            {# If you want to control the URL the user is redirected to on
-            success#}
-            <input type="hidden" name="_target_path" value="/" />
-            <input
-                type="hidden"
-                name="_csrf_token"
-                value="{{ csrf_token('authenticate') }}"
-            />
-
-            <button type="submit">login</button>
-        </form>
-
-        <div>
-            <a href="/register">Se créer un compte</a>
-        </div>
+</div>
+</section>
 </div>
 {% endblock %}
