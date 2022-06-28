@@ -31,16 +31,20 @@
             aria-labelledby="profile-tab"
             tabindex="0"
         >
-            {% for service in services.getServiceByCategoryId(category.id) %}
-            <a
-                href="{{
-                    path('app_provider_service_show_provider_by_service', {
-                        id: service.id
-                    })
-                }}"
-                >{{ service.name }}</a
-            >
-            {% endfor %}
+            <div class="row row-cols-1 row-cols-md-5 g-4 mt-1">
+                {% for service in services.getServiceByCategoryId(category.id)%}
+                <div class="col">
+                    <div class="card d-flex align-items-center pt-1">
+                        <img src="https://picsum.photos/200" class="card-img-top w-25 rounded-circle" alt="..." />
+                        <div class="card-body p-1">
+                            <p class="card-text">
+                                <a href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">{{ service.name }}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
         {% endfor %}
     </div>
