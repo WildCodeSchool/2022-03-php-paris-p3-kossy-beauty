@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<h1>Profile Settings</h1>
+<h1>Profile de {{ user.firstname ~ ' ' ~ user.lastname }}</h1>
 <div class="container rounded bg-white">
     <div class="row">
         <div class="col-md-2 border-right">
@@ -56,7 +56,7 @@
 </div>
 </div>
     <div class="container d-flex justify-content-center">
-        <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_index') }}">Retour à la liste</a></div>
+        <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_index') }}">Retour</a></div>
         <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a></div>
         <div class="text-center m-3"><a>{{ include('user/_delete_form.html.twig') }}</a></div>
     </div>

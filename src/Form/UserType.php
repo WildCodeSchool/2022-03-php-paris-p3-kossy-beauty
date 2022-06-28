@@ -27,7 +27,7 @@ class UserType extends AbstractType
             ->add('email', TextType::class, ['label' => 'Email'])
             ->add('town', TextType::class, ['label' => 'Ville'])
             ->add('district', TextType::class, ['label' => 'Quartier'])
-            ->add('image')
+            //->add('image')
         ;
 
         // Display additionnal fields for a specific role
