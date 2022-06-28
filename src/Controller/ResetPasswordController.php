@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\WhatsappService;
 use App\Entity\User;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
@@ -20,7 +21,6 @@ use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
 use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 use SymfonyCasts\Bundle\ResetPassword\Model\ResetPasswordToken as ResetPasswordToken;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use DateTime;
 
 #[Route('/reset-password')]
 class ResetPasswordController extends AbstractController
@@ -44,7 +44,8 @@ class ResetPasswordController extends AbstractController
     #[Route('', name: 'app_forgot_password_request')]
     public function request(
         Request $request,
-        TranslatorInterface $translator
+        TranslatorInterface $translator,
+        WhatsappService $whatsapp
     ): Response {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
@@ -53,7 +54,8 @@ class ResetPasswordController extends AbstractController
             return $this->processSendingPasswordResetMessage(
                 $form->get('telephone')->getData(),
                 $translator,
-                $request
+                $request,
+                $whatsapp
             );
         }
 
@@ -68,7 +70,8 @@ class ResetPasswordController extends AbstractController
     private function processSendingPasswordResetMessage(
         string $telephoneFormData,
         TranslatorInterface $translator,
-        Request $request
+        Request $request,
+        WhatsappService $whatsapp
     ): RedirectResponse {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'telephone' => $telephoneFormData,
@@ -100,92 +103,22 @@ class ResetPasswordController extends AbstractController
 
         // We Update the user object with the most updated data (the last valid hashedToken)
         $this->entityManager->refresh($user);
-        $this->sendToWhatsapp($user, $resetToken, $request);
+
+        // Send the message to reset the password using Whatsapp
+        $message = [];
+        $message['expiration'] = $resetToken->getExpiresAt();
+        $message['urlVerification'] = $request->getBaseUrl() . $this->generateUrl(
+            'app_reset_password',
+            [
+                'token' => $resetToken->getToken()
+            ]
+        );
+        $whatsapp->sendMessage($user, 'reset_password', $message, $request);
 
         // Store the token object in session for retrieval in check-email route.
         $this->setTokenObjectInSession($resetToken);
 
         return $this->redirectToRoute('app_check_email');
-    }
-
-    private function sendToWhatsapp(User $user, ResetPasswordToken $resetToken, Request $request)
-    {
-        //$session = $this->requestStack->getSession();
-        // Call to the Meta API to send the message to the user Whatsapp account
-        $apiMetaUrl = 'https://graph.facebook.com/v13.0/104765845620729/messages';
-        // phpcs:ignore -- The token access of the API can't be splitted or shortened
-        $apiTokenAccess = 'EAAJ4ewfbeNwBAC8YDWzvZCubaLd66OiUJH3Tgh6p4kGBnl6wW5ZC0uPJEnFcSnY7OfnXNMEX4kEppQNyyueGkKjRy4Mizo3AJK3rXAMVMh9AcNoB6RSCRO2XnyJdGvcJzvXSTQwjPdoKGPzeZBYtojfaoMYPzbRTVKUchlK3xldmQwjjeDPgBYbJZCkeIKYce6f93ZC4LXwZDZD';
-        $userTelephone = '33' . substr($user->getTelephone(), 1);
-        $userFirstname = $user->getFirstname();
-        $resetTokenCreatedAt = new DateTime();
-        $resetTokenExpiresAt = $resetToken->getExpiresAt();
-        // https://www.php.net/manual/en/dateinterval.format.php
-        $resetTokenExpiration = $resetTokenCreatedAt
-            ->diff($resetTokenExpiresAt)
-            ->format('%i minutes.');
-        $urlResetToken = $request->getBaseUrl() . $this->generateUrl('app_reset_password', [
-            'token' => $resetToken->getToken()
-        ]);
-
-        // For debug only
-        // $userTelephone = '33645417754';
-
-        // Data to pass to the API
-        $data = array();
-        $data = [
-            "messaging_product" => "whatsapp",
-            "to" => $userTelephone,
-            "type" => "template",
-            "template" => [
-                "name" => "reset_password",
-                "language" => [
-                    "code" => "fr"
-                ],
-                "components" => [
-                    [
-                        "type" => "body",
-                        "parameters" => [
-                            [
-                                "type" => "text",
-                                "text" => $userFirstname
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => $urlResetToken
-                            ],
-                            [
-                                "type" => "text",
-                                "text" => $resetTokenExpiration
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ];
-
-        // We convert the data to Json format before to send it to the API
-        $data = json_encode($data);
-
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $apiMetaUrl);
-        curl_setopt($curl, CURLOPT_POST, true);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-
-        $headers = array(
-            'Content-Type: application/json',
-            "Accept: application/json",
-            'Authorization: Bearer ' . $apiTokenAccess,
-        );
-        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
-        curl_exec($curl);
-        // Error handler
-        // Please don't delete theses lines
-        // if (curl_errno($curl)) {
-        //     echo 'Error:' . curl_error($curl);
-        // }
-        curl_close($curl);
     }
 
     /**
