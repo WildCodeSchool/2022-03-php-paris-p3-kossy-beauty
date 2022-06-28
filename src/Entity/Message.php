@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\MessageRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
@@ -44,7 +43,7 @@ class Message
         return $this->author;
     }
 
-    public function setAuthor(?UserInterface $author): self
+    public function setAuthor(?User $author): self
     {
         $this->author = $author;
 
