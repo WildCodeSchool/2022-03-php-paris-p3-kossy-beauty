@@ -5,6 +5,9 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      {% if is_granted("ROLE_SUPER_ADMIN") %}
+      <a href="{{ path('app_admin') }}">Super Admin Dashboard</a>
+      {% endif %}
       <a class="ms-auto me-5" href="{{ path('app_register_pro') }}"><i class="bi bi-plus-square me-2"></i>Devenir prestataire</a>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item position-relative me-3">
