@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conversation index{% endblock %}
+
+{% block body %}
+    <h1>Conversation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>IsRead</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for conversation in conversations %}
+            <tr>
+                <td>{{ conversation.id }}</td>
+                <td>{{ conversation.createdAt ? conversation.createdAt|date('Y-m-d H:i:s T') : '' }}</td>
+                <td>{{ conversation.isRead ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_conversation_show', {'id': conversation.id}) }}">show</a>
+                    <a href="{{ path('app_conversation_edit', {'id': conversation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_conversation_new') }}">Create new</a>
+{% endblock %}

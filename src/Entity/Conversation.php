@@ -36,9 +36,13 @@ class Conversation
     #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: Message::class)]
     private $messages;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'conversation')]
+    private $users;
+
     public function __construct()
     {
         $this->messages = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -131,6 +135,33 @@ class Conversation
             if ($message->getConversation() === $this) {
                 $message->setConversation(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addConversation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            $user->removeConversation($this);
         }
 
         return $this;

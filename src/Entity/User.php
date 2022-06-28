@@ -106,9 +106,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: ProviderService::class)]
     private $providerServices;
 
+    #[ORM\ManyToMany(targetEntity: Conversation::class, inversedBy: 'users')]
+    private $conversation;
+
     public function __construct()
     {
         $this->providerServices = new ArrayCollection();
+        $this->conversation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -327,6 +331,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $providerService->setProvider(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Conversation>
+     */
+    public function getConversation(): Collection
+    {
+        return $this->conversation;
+    }
+
+    public function addConversation(Conversation $conversation): self
+    {
+        if (!$this->conversation->contains($conversation)) {
+            $this->conversation[] = $conversation;
+        }
+
+        return $this;
+    }
+
+    public function removeConversation(Conversation $conversation): self
+    {
+        $this->conversation->removeElement($conversation);
 
         return $this;
     }
