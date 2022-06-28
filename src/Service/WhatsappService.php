@@ -4,45 +4,10 @@ namespace App\Service;
 
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use DateTime;
 
 class WhatsappService
 {
-    private VerifyEmailHelperInterface $verifyTelHelper;
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(
-        VerifyEmailHelperInterface $helper,
-        EntityManagerInterface $manager
-    ) {
-        $this->verifyTelHelper = $helper;
-        $this->entityManager = $manager;
-    }
-
-    public function messageDetails(
-        string $verifyTelRoute,
-        $user
-    ): array {
-        $signatureComponents = $this->verifyTelHelper->generateSignature(
-            $verifyTelRoute,
-            $user->getId(),
-            $user->getTelephone(),
-            ['id' => $user->getId()]
-        );
-
-        $context = [];
-        $context['urlVerification'] = $signatureComponents->getSignedUrl();
-        $context['expiresAtMessageKey'] = $signatureComponents->getExpirationMessageKey();
-        $context['expirationMessageData'] = $signatureComponents->getExpirationMessageData();
-        $context['expiration'] = $signatureComponents->getExpiresAt();
-
-        return $context;
-    }
-
     public function sendMessage(User $user, $apiTemplateName, array $message, Request $request)
     {
         // Call to the Meta API to send the message to the user Whatsapp account
@@ -58,9 +23,6 @@ class WhatsappService
             ->diff($messageExpiresAt)
             ->format('%i minutes.');
         $urlVerification = $message['urlVerification'];
-        // $urlVerification = $request->getBaseUrl() . $this->generateUrl('app_reset_password', [
-        //     'token' => $resetToken->getToken()
-        // ]);
 
         // For debug only
         // $userTelephone = '33645417754';
@@ -121,18 +83,5 @@ class WhatsappService
         //     echo 'Error:' . curl_error($curl);
         // }
         curl_close($curl);
-    }
-
-    /**
-     * @throws VerifyEmailExceptionInterface
-     */
-    public function handleEmailConfirmation(Request $request, $user): void
-    {
-        $this->verifyTelHelper->validateEmailConfirmation($request->getUri(), $user->getId(), $user->getTelephone());
-
-        $user->setIsVerified(true);
-
-        $this->entityManager->persist($user);
-        $this->entityManager->flush();
     }
 }
