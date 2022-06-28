@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use App\Repository\UserRepository;
-use App\Security\EmailVerifier;
+use App\Service\WhatsappService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,16 +14,18 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
-use App\Service\WhatsappService;
 
 class RegistrationController extends AbstractController
 {
-    private EmailVerifier $emailVerifier;
+    private WhatsappService $telVerifier;
+    private VerifyEmailHelperInterface $verifyTelHelper;
 
-    public function __construct(EmailVerifier $emailVerifier)
+    public function __construct(WhatsappService $telVerifier, VerifyEmailHelperInterface $helper)
     {
-        $this->emailVerifier = $emailVerifier;
+        $this->telVerifier = $telVerifier;
+        $this->verifyTelHelper = $helper;
     }
 
     #[Route('/register', name: 'app_register')]
@@ -49,14 +51,16 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user);
-            (new WhatsappService())->send($user->getId());
-                    // ->from(new Address('val.quinola@gmail.com', 'Admin'))
-                    // ->to($user->getEmail())
-                    // ->subject('Please Confirm your Email')
-                    // ->htmlTemplate('registration/confirmation_email.html.twig')
-           // );
+            // generate a signed url and message it to the user
+            $message = $this->telVerifier;
+            $message = new WhatsappService($this->verifyTelHelper, $entityManager);
+            $content = $message->messageDetails('app_verify_email', $user);
+            $message->sendMessage(
+                $user,
+                'verify_telephone_template',
+                $content,
+                $request
+            );
 
             return $this->redirectToRoute('login');
         }
@@ -86,7 +90,7 @@ class RegistrationController extends AbstractController
 
         // validate email confirmation link, sets User::isVerified=true and persists
         try {
-            $this->emailVerifier->handleEmailConfirmation($request, $user);
+            $this->telVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
@@ -94,7 +98,10 @@ class RegistrationController extends AbstractController
         }
 
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
-        $this->addFlash('success', 'Votre email a été vérifié.');
+        $this->addFlash(
+            'success',
+            'Votre email a été vérifié. Vous pouvez à présent vous connecter à votre compte.'
+        );
 
         return $this->redirectToRoute('login');
     }
