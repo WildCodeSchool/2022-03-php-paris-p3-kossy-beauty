@@ -6,6 +6,7 @@ use App\Repository\ConversationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ConversationRepository::class)]
 class Conversation
@@ -15,34 +16,22 @@ class Conversation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToOne(inversedBy: 'conversation', targetEntity: Message::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $lastMessage;
-
-    #[ORM\Column(type: 'datetimetz')]
-    private $createdAt;
-
-    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $lastSender;
-
-    #[ORM\ManyToOne(targetEntity: ProviderService::class, inversedBy: 'conversations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $subject;
-
-    #[ORM\Column(type: 'boolean')]
-    private $isRead;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'conversations')]
+    private $users;
 
     #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: Message::class)]
     private $messages;
 
-    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'conversation')]
-    private $users;
+    #[ORM\OneToOne(targetEntity: Message::class, cascade: ['persist', 'remove'])]
+    private $lastMessage;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $subject;
 
     public function __construct()
     {
-        $this->messages = new ArrayCollection();
         $this->users = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -50,62 +39,26 @@ class Conversation
         return $this->id;
     }
 
-    public function getLastMessage(): ?Message
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
     {
-        return $this->lastMessage;
+        return $this->users;
     }
 
-    public function setLastMessage(Message $lastMessage): self
+    public function addUser(UserInterface $user): self
     {
-        $this->lastMessage = $lastMessage;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function removeUser(User $user): self
     {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getLastSender(): ?User
-    {
-        return $this->lastSender;
-    }
-
-    public function setLastSender(User $lastSender): self
-    {
-        $this->lastSender = $lastSender;
-
-        return $this;
-    }
-
-    public function getSubject(): ?ProviderService
-    {
-        return $this->subject;
-    }
-
-    public function setSubject(?ProviderService $subject): self
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    public function isIsRead(): ?bool
-    {
-        return $this->isRead;
-    }
-
-    public function setIsRead(bool $isRead): self
-    {
-        $this->isRead = $isRead;
+        $this->users->removeElement($user);
 
         return $this;
     }
@@ -140,29 +93,26 @@ class Conversation
         return $this;
     }
 
-    /**
-     * @return Collection<int, User>
-     */
-    public function getUsers(): Collection
+    public function getLastMessage(): ?Message
     {
-        return $this->users;
+        return $this->lastMessage;
     }
 
-    public function addUser(User $user): self
+    public function setLastMessage(?Message $lastMessage): self
     {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addConversation($this);
-        }
+        $this->lastMessage = $lastMessage;
 
         return $this;
     }
 
-    public function removeUser(User $user): self
+    public function getSubject(): ?string
     {
-        if ($this->users->removeElement($user)) {
-            $user->removeConversation($this);
-        }
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }

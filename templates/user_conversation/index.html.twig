@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %} {% block title %}My conversations{% endblock %}
+{% block body %}
+
+{% for conversation in conversations|sort((a, b) => b.lastMessage.createdAt|date('Y-m-d H:i:s') <=> a.lastMessage.createdAt|date('Y-m-d H:i:s')) %}
+
+<div class="card mt-3 mb-3">
+    <div class="card-header d-flex">
+        <p class="me-2">
+            Dernier message : 
+            {{ conversation.lastMessage.author.firstname }} le
+            {{ conversation.lastMessage.createdAt|date('d-m-Y') }} à
+            {{ conversation.lastMessage.createdAt|date('H:i:s') }}
+        </p>
+    </div>
+    <div class="card-body">
+        {% if is_granted('ROLE_PROVIDER') %}
+        <h5 class="card-title">
+            {{ conversation.subject }}, pour
+            {{ conversation.users.0.firstname }}
+        </h5>
+        {% else %}
+        <h5 class="card-title">
+            {{ conversation.subject }}, par {{ conversation.users.1.firstname }}
+        </h5>
+        {% endif %}
+        <p class="card-text">{{ conversation.lastMessage.content }}</p>
+        <a
+            href="{{ path('app_conversation', { id: conversation.id }) }}"
+            class="btn btn-success"
+            >Répondre</a
+        >
+    </div>
+</div>
+
+{% endfor %} {% endblock %}

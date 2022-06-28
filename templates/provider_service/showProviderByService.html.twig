@@ -20,6 +20,10 @@
     {% for providerService in providerServices %}
     {% for provider in provider.getProviderById(providerService.provider.id) %}
         {{ provider.firstname }}
+        {% if is_granted('ROLE_PROVIDER') %}
+            {% else %}
+            <a href="{{ path('app_create_conversation', {id: provider.id, service: service.name}) }}" class="btn btn-primary">Envoyer un message</a>
+        {% endif %}
     {% endfor %}
     <p>{{ providerService.price}} € / {{ providerService.duration}} min</p>
     {% endfor %}

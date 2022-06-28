@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\MessageRepository;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
 class Message
@@ -15,59 +17,36 @@ class Message
 
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    private $sender;
+    private $author;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'messages')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $recipient;
+    #[ORM\Column(type: 'datetime')]
+    private $createdAt;
 
     #[ORM\Column(type: 'text')]
     private $content;
 
-    #[ORM\Column(type: 'datetimetz')]
-    private $createdAt;
-
     #[ORM\ManyToOne(targetEntity: Conversation::class, inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
     private $conversation;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getSender(): ?User
+    public function getAuthor(): ?User
     {
-        return $this->sender;
+        return $this->author;
     }
 
-    public function setSender(?User $sender): self
+    public function setAuthor(?UserInterface $author): self
     {
-        $this->sender = $sender;
-
-        return $this;
-    }
-
-    public function getRecipient(): ?User
-    {
-        return $this->recipient;
-    }
-
-    public function setRecipient(?User $recipient): self
-    {
-        $this->recipient = $recipient;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
+        $this->author = $author;
 
         return $this;
     }
@@ -80,6 +59,18 @@ class Message
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
 
         return $this;
     }

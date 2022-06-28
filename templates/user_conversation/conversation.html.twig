@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conversation{% endblock %}
+
+{% block body %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message.content }}</li>
+    {% endfor %}
+</ul>
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Send') }}</button>
+{{ form_end(form) }}
+{% endblock %}
