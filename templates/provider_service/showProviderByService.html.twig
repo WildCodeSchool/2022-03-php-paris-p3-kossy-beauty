@@ -33,6 +33,7 @@ by(5) %}
         </div>
         <div class="card-footer">
             <a class="btn btn-dark" role="button">Détails</a>
+            <a href="{{ path('app_create_conversation', {id: provider.id, service: service.name}) }}" class="btn btn-success" role="button">Envoyer un message</a>
         </div>
     </div>
     {% endfor %} {% if loop.index is divisible by(5) or loop.last %}
