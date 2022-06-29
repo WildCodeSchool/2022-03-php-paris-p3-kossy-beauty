@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message de réinitialisation du mot de passe envoyé{% endblock %}
+
+{% block body %}
+    <p>
+        Si un compte correspond à votre numéro de téléphone, alors un message contenant un lien pour réinitialiser votre mot de passe vous a été envoyé sur votre compte Whatsapp.
+        Ce lien expire dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+    </p>
+    <p> Si vous n'avez pas reçu ce message, veuillez vérifier votre numéro de téléphone ou <a href="{{ path('app_forgot_password_request') }}">Réessayez à nouveau</a>.</p>
+{% endblock %}
