@@ -27,6 +27,8 @@ class UserFixtures extends Fixture
         $provider->setIsArchived(false);
         $provider->setTelephone('0123456789');
         $provider->setRoles(['ROLE_PROVIDER']);
+        $provider->setCompanyName('Ma coiffure afro');
+        $provider->setCompanyDescription('Nous sommes ouverts tous les jours de la semaine');
         $hashedPassword = $this->passwordHasher->hashPassword(
             $provider,
             'plop'
@@ -66,7 +68,30 @@ class UserFixtures extends Fixture
         $user->setPassword($hashedPassword);
         $manager->persist($user);
 
-        // Sauvegarde des 2 nouveaux utilisateurs :
+        for ($i = 0; $i < 50; $i++) {
+            $provider = new User();
+            $provider->setFirstname('Plop' . $i);
+            $provider->setLastname('Plopinette' . $i);
+            $provider->setTown('PlopCity');
+            $provider->setIsTop(false);
+            $provider->setIsArchived(false);
+            if ($i > 9) {
+                $provider->setTelephone('01000000' . $i);
+            } else {
+                $provider->setTelephone('010000000' . $i);
+            }
+            $provider->setRoles(['ROLE_PROVIDER']);
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $provider,
+                'plop'
+            );
+            $provider->setCompanyName('C dans l\' hair' . $i);
+            $provider->setCompanyDescription('Nous sommes ouverts tous les jours de la semaine');
+            $provider->setPassword($hashedPassword);
+            $manager->persist($provider);
+            $this->addReference('provider_' . $i, $provider);
+        }
+
         $manager->flush();
     }
 }
