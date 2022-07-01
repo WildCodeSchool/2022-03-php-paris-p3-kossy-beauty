@@ -66,7 +66,8 @@ class RegistrationController extends AbstractController
 
             $this->addFlash(
                 'success',
-                'Pour vous connecter, vous devez dabord confirmer votre numéro de téléphone
+                'Votre compte a été crée avec succès mais n\'est pas encore activé. 
+                Pour vous connecter, vous devez dabord confirmer votre numéro de téléphone
                 via le message Whatsapp qui vous a été envoyé.'
             );
 
@@ -111,7 +112,8 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash(
             'success',
-            'Votre email a été vérifié. Vous pouvez à présent vous connecter à votre compte.'
+            'Votre email a été vérifié ! Votre compte est désormais activé. 
+            Vous pouvez à présent vous connecter avec vos identifiants.'
         );
 
         return $this->redirectToRoute('login');
@@ -138,6 +140,15 @@ class RegistrationController extends AbstractController
         $context['expiration'] = $signatureComponents->getExpiresAt();
 
         return $context;
+    }
+
+    /**
+     * User can request again a new Whatsapp message
+     */
+    #[Route('/verify/resend', name: 'app_verify_resend_email')]
+    public function resendVerifyEmail()
+    {
+        return $this->render('registration/resend_verify_email.html.twig');
     }
 
     /**
