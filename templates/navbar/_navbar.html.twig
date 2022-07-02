@@ -12,7 +12,7 @@
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item position-relative me-3">
           <i class="bi bi-chat-left-text p-0"></i>
-          <a class="nav-link active stretched-link p-0" aria-current="page" href="#"></i>Messages</a>
+          <a class="nav-link active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}"></i>Messages</a>
         </li>
         <li class="nav-item position-relative me-3">
           <i class="bi bi-heart p-0"></i>
@@ -20,23 +20,25 @@
         </li>
         {% if is_granted("ROLE_USER") %}
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
             <i class="bi bi-person"></i>Mon compte
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
-            <li><hr class="dropdown-divider"></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
             <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
           </ul>
         </li>
-          {% else %}
-          <li class="nav-item position-relative">
-            <i class="bi bi-person p-0"></i>
-            <a class="nav-link active stretched-link p-0" aria-current="page" href="/login"></i>Connexion</a>
-          </li>
+        {% else %}
+        <li class="nav-item position-relative">
+          <i class="bi bi-person p-0"></i>
+          <a class="nav-link active stretched-link p-0" aria-current="page" href="/login"></i>Connexion</a>
+        </li>
         {% endif %}
-        
-        
+
       </ul>
     </div>
   </div>
