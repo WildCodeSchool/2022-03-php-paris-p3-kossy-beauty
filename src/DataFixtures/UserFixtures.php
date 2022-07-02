@@ -93,11 +93,11 @@ class UserFixtures extends Fixture
             $superAdmin->setPassword($hashedPassword);
             $manager->persist($superAdmin);
 
-            // Création d’utilisateurs "clients"”
         for ($i = 0; $i < 25; $i++) {
             $user = new User();
             $user->setFirstname('userfirstname' . $i);
             $user->setLastname('userlastname' . $i);
+            $user->setEmail('user' . $i . '@gmail.com');
             $user->setTown('UserCity');
             $user->setIsTop(false);
             $user->setIsArchived(false);

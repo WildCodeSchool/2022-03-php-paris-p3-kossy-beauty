@@ -1,12 +1,12 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-0">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">LOGO</a>
+    <a class="navbar-brand" href="/"><img class="position-relative start-2 top-0 mt-0"src="{{ asset('build/images/LogosymbolKB1.e2883951.jpeg') }}" style="width:4rem" alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse pt-0" id="navbarSupportedContent">
       {% if is_granted("ROLE_SUPER_ADMIN") %}
-      <a href="{{ path('app_admin') }}">Super Admin Dashboard</a>
+      <a class="ms-auto"href="{{ path('app_admin') }}">Super Admin Dashboard</a>
       {% endif %}
       <a class="ms-auto me-5" href="{{ path('app_register_pro') }}"><i class="bi bi-plus-square me-2"></i>Devenir prestataire</a>
       <ul class="navbar-nav mb-2 mb-lg-0">
