@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Service\WhatsappService;
 use App\Entity\User;
+use App\Service\WhatsappService;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -43,7 +43,6 @@ class ResetPasswordController extends AbstractController
     public function request(
         Request $request,
         TranslatorInterface $translator,
-        WhatsappService $whatsapp
     ): Response {
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
@@ -52,8 +51,7 @@ class ResetPasswordController extends AbstractController
             return $this->processSendingPasswordResetMessage(
                 $form->get('telephone')->getData(),
                 $translator,
-                $request,
-                $whatsapp
+                $request
             );
         }
 
@@ -69,7 +67,6 @@ class ResetPasswordController extends AbstractController
         string $telephoneFormData,
         TranslatorInterface $translator,
         Request $request,
-        WhatsappService $whatsapp
     ): RedirectResponse {
         $user = $this->entityManager->getRepository(User::class)->findOneBy([
             'telephone' => $telephoneFormData,
@@ -111,6 +108,7 @@ class ResetPasswordController extends AbstractController
                 'token' => $resetToken->getToken()
             ]
         );
+        $whatsapp = new WhatsappService();
         $whatsapp->sendMessage($user, 'reset_password', $message, $request);
 
         // Store the token object in session for retrieval in check-email route.
