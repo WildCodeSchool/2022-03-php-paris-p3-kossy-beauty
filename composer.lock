@@ -7651,7 +7651,7 @@
                 "doctrine/orm": "^2.7",
                 "symfony/framework-bundle": "^4.4 | ^5.0 | ^6.0",
                 "symfony/phpunit-bridge": "^5.0 | ^6.0",
-                "vimeo/psalm": "^4.3"
+                "vimeo/psalm": "^4.3",
                 "doctrine/persistence": "^2.0",
                 "symfony/http-kernel": "^4.4 | ^5.0 | ^6.0"
             },
