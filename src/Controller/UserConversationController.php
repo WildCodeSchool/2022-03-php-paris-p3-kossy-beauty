@@ -14,12 +14,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserConversationController extends AbstractController
 {
     #[Route('/my-conversations', name: 'app_my_conversations')]
     public function index(): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login', [
+            ]);
+        }
+
         return $this->render('user_conversation/index.html.twig', [
             'conversations' => $this->getUser()->getConversations()
         ]);
@@ -33,6 +39,17 @@ class UserConversationController extends AbstractController
         ConversationRepository $convRepository,
         MessageRepository $messageRepository
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login', [
+            ]);
+        }
+
+        if (isset($this->getUser()->getRoles()[1])) {
+            return $this->redirectToRoute('login', [
+            ]);
+        }
+
         $convsCurrentUser = $this->getUser()->getConversations();
 
         foreach ($convsCurrentUser as $conversation) {
