@@ -717,7 +717,7 @@
     },
     "symfonycasts/verify-email-bundle": {
         "version": "v1.10.0"
-    }
+    },
     "symfonycasts/reset-password-bundle": {
         "version": "1.13",
         "recipe": {
