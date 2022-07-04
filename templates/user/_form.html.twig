@@ -11,10 +11,14 @@
                 <div class="row">
                     <div class="col-md-6" id="form-edit"><div>{{ form_row(userForm.firstname, {'attr': {'class': 'edit'}}) }}</div></div>
                     <div class="col-md-6"><div>{{ form_row(userForm.lastname, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
-                    <div class="col-md-6"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% if is_granted("ROLE_PROVIDER") %}
-                    <div class="col-md-6"><div>{{ form_row(userForm.companyName, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyName, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isTop, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isArchived, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% endif %}
                 </div>
             </div>
@@ -25,7 +29,7 @@
                     <div class="col-md-6"><div>{{ form_row(userForm.town, {'attr': {'class': 'edit'}}) }}</div></div>
                     <div class="col-md-6"><div>{{ form_row(userForm.district, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% if is_granted("ROLE_PROVIDER") %}
-                    <div class="col-md-6"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% endif %}              
                 </div>
             </div>

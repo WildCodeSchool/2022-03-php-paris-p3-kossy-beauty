@@ -13,6 +13,8 @@ use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
+use Symfony\Component\Security\Core\Security;
 
 class UserType extends AbstractType
 {
@@ -31,14 +33,18 @@ class UserType extends AbstractType
         ;
 
         // Display additionnal fields for a specific role
-        if (in_array('ROLE_ADMIN', $options['role'])) {
+        if (in_array('ROLE_ADMIN', $options ['role'])) {
             $builder
-                ->add('roles')
-                ->add('isTop')
-                ->add('isArchived')
+                ->add('isTop', null, ['label' => 'En avant'])
+                ->add('isArchived', null, ['label' => 'Archiver'])
+                ->add('companyName', TextType::class, ['label' => 'Entreprise'])
+                ->add('companyDescription', TextareaType::class, [
+                    'label' => 'Description',
+                    'attr' => ['cols' => '46', 'rows' => '5']
+                ]);
             ;
         }
-        if (in_array('ROLE_PROVIDER', $options['role'])) {
+        if (in_array('ROLE_PROVIDER', $options ['role'])) {
             $builder
                 ->add('companyName', TextType::class, ['label' => 'Entreprise'])
                 ->add('companyDescription', TextareaType::class, [
