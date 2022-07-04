@@ -22,6 +22,11 @@ class RegistrationFormType extends AbstractType
             ->add('town')
             ->add('district')
             ->add('email')
+            // ->add('email', TextType::class, [
+            //     'attr' => [
+            //         'class' => 'bg-transparent block mt-10 mx-auto border-b-2 w-1/5 h-20 text-2xl outline-none'
+            //     ],
+            // ])
             ->add('telephone')
             ->add('agreeTerms', CheckboxType::class, [
                 'mapped' => false,
@@ -33,7 +38,9 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
-                'attr' => ['autocomplete' => 'new-password'],
+                'attr' => [
+                    'autocomplete' => 'new-password',
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez remplir ce champ',
