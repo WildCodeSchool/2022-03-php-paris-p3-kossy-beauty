@@ -18,25 +18,6 @@ class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        // Création d’un utilisateur de type “contributeur” (= auteur)
-        $provider = new User();
-        $provider->setFirstname('Plop');
-        $provider->setLastname('Plop');
-        $provider->setTown('PlopCity');
-        $provider->setIsTop(false);
-        $provider->setIsArchived(false);
-        $provider->setTelephone('0123456789');
-        $provider->setRoles(['ROLE_PROVIDER']);
-        $provider->setCompanyName('Ma coiffure afro');
-        $provider->setCompanyDescription('Nous sommes ouverts tous les jours de la semaine');
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $provider,
-            'plop'
-        );
-
-        $provider->setPassword($hashedPassword);
-        $manager->persist($provider);
-
         // Création d’un utilisateur de type “administrateur”
         $admin = new User();
         $admin->setFirstname('Admin');
@@ -53,21 +34,7 @@ class UserFixtures extends Fixture
         $admin->setPassword($hashedPassword);
         $manager->persist($admin);
 
-        // Création d’un utilisateur de type user
-        $user = new User();
-        $user->setFirstname('user');
-        $user->setLastname('user');
-        $user->setTown('userCity');
-        $user->setIsTop(false);
-        $user->setIsArchived(false);
-        $user->setTelephone('0102030405');
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $user,
-            'user'
-        );
-        $user->setPassword($hashedPassword);
-        $manager->persist($user);
-
+        // Création d’un utilisateur de type “prestataire”
         for ($i = 0; $i < 50; $i++) {
             $provider = new User();
             $provider->setFirstname('Plop' . $i);
@@ -92,6 +59,44 @@ class UserFixtures extends Fixture
             $this->addReference('provider_' . $i, $provider);
         }
 
+        // Création d’un utilisateur de type “super administrateur”
+        $superAdmin = new User();
+        $superAdmin->setFirstname('SuperAdmin');
+        $superAdmin->setLastname('SuperAdmin');
+        $superAdmin->setTown('SuperAdminCity');
+        $superAdmin->setIsTop(false);
+        $superAdmin->setIsArchived(false);
+        $superAdmin->setTelephone('0975318642');
+        $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+        $hashedPassword = $this->passwordHasher->hashPassword(
+            $superAdmin,
+            'superadmin'
+        );
+        $superAdmin->setPassword($hashedPassword);
+        $manager->persist($superAdmin);
+
+        // Création d’un utilisateur de type “client”
+        for ($i = 0; $i < 25; $i++) {
+            $user = new User();
+            $user->setFirstname('userfirstname' . $i);
+            $user->setLastname('userlastname' . $i);
+            $user->setEmail('user' . $i . '@gmail.com');
+            $user->setTown('UserCity');
+            $user->setIsTop(false);
+            $user->setIsArchived(false);
+            $user->setRoles(['ROLE_USER']);
+            if ($i > 9) {
+                $user->setTelephone('01200000' . $i);
+            } else {
+                $user->setTelephone('012000000' . $i);
+            }
+            $hashedPassword = $this->passwordHasher->hashPassword(
+                $user,
+                'user'
+            );
+            $user->setPassword($hashedPassword);
+            $manager->persist($user);
+        }
         $manager->flush();
     }
 }
