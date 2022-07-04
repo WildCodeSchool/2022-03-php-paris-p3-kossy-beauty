@@ -15,29 +15,21 @@ class Conversation
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToOne(inversedBy: 'conversation', targetEntity: Message::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $lastMessage;
-
-    #[ORM\Column(type: 'datetimetz')]
-    private $createdAt;
-
-    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $lastSender;
-
-    #[ORM\ManyToOne(targetEntity: ProviderService::class, inversedBy: 'conversations')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $subject;
-
-    #[ORM\Column(type: 'boolean')]
-    private $isRead;
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'conversations')]
+    private $users;
 
     #[ORM\OneToMany(mappedBy: 'conversation', targetEntity: Message::class)]
     private $messages;
 
+    #[ORM\OneToOne(targetEntity: Message::class, cascade: ['persist', 'remove'])]
+    private $lastMessage;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $subject;
+
     public function __construct()
     {
+        $this->users = new ArrayCollection();
         $this->messages = new ArrayCollection();
     }
 
@@ -46,62 +38,26 @@ class Conversation
         return $this->id;
     }
 
-    public function getLastMessage(): ?Message
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUsers(): Collection
     {
-        return $this->lastMessage;
+        return $this->users;
     }
 
-    public function setLastMessage(Message $lastMessage): self
+    public function addUser(User $user): self
     {
-        $this->lastMessage = $lastMessage;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function removeUser(User $user): self
     {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getLastSender(): ?User
-    {
-        return $this->lastSender;
-    }
-
-    public function setLastSender(User $lastSender): self
-    {
-        $this->lastSender = $lastSender;
-
-        return $this;
-    }
-
-    public function getSubject(): ?ProviderService
-    {
-        return $this->subject;
-    }
-
-    public function setSubject(?ProviderService $subject): self
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-    public function isIsRead(): ?bool
-    {
-        return $this->isRead;
-    }
-
-    public function setIsRead(bool $isRead): self
-    {
-        $this->isRead = $isRead;
+        $this->users->removeElement($user);
 
         return $this;
     }
@@ -132,6 +88,30 @@ class Conversation
                 $message->setConversation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLastMessage(): ?Message
+    {
+        return $this->lastMessage;
+    }
+
+    public function setLastMessage(?Message $lastMessage): self
+    {
+        $this->lastMessage = $lastMessage;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(string $subject): self
+    {
+        $this->subject = $subject;
 
         return $this;
     }
