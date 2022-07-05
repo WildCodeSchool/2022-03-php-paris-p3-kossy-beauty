@@ -25,13 +25,13 @@ class SearchController extends AbstractController
             ->add('query', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control me-2',
+                    'class' => 'form-control text-nowrap me-2 rounded-0',
                     'placeholder' => 'Entrez un mot-clé'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-outline-success'
+                    'class' => 'btn btn-success text-nowrap submit-searchbar'
                 ]
             ])
             ->getForm();
