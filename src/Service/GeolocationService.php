@@ -44,7 +44,11 @@ class GeolocationService
         }
 
         // if no valid IP address found, we assign a fake IP address to the user
-        if ($this->ipAddr === null or $this->ipAddr === '127.0.0.1') {
+        if (
+            empty($this->ipAddr) ||
+            $this->ipAddr === null ||
+            $this->ipAddr === '127.0.0.1'
+        ) {
             $this->ipAddr = '41.205.31.234';
         }
 

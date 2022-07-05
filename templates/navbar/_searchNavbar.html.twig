@@ -2,12 +2,21 @@
     <div class="container-fluid">
         <div class="container">
             <form class="d-flex w-50 ms-auto me-auto" role="search">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <select name="pets" id="pet-select">
+                            <option value="">--Please choose an option--</option>
+                            <option value="dog">Dog</option>
+                        </select>
+                    </div>
+                
                 <input
                     class="form-control me-2"
                     type="search"
                     placeholder="Search"
                     aria-label="Search"
                 />
+                </div>
                 <button class="btn btn-outline-success" type="submit">
                     Search
                 </button>
