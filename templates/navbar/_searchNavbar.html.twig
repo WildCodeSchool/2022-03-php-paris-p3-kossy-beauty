@@ -2,24 +2,30 @@
     <div class="container-fluid">
         <div class="container">
             <form class="d-flex w-50 ms-auto me-auto" role="search">
-                <div class="input-group">
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text bg-success text-white select-location">
+                        <i class="bi bi-geo-alt"></i>
+                    </span>
                     <div class="input-group-prepend">
-                        <select name="pets" id="pet-select">
-                            <option value="">--Please choose an option--</option>
-                            <option value="dog">Dog</option>
+                        <select name="district" class="form-control btn btn-success text-nowrap text-white rounded-0">
+                            <option value="{{ geolocation.district }}">{{ geolocation.district }}</option>
+                            {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
+                                <option value="{{ district }}">{{ district }}</option>
+                            {% endfor %}
                         </select>
                     </div>
-                
-                <input
-                    class="form-control me-2"
-                    type="search"
-                    placeholder="Search"
-                    aria-label="Search"
-                />
+                    <div class="input-group-append">
+                        <input
+                            class="form-control text-nowrap me-2 rounded-0"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                    </div>
+                    <button class="btn btn-success text-nowrap submit-searchbar" type="submit">
+                        Search
+                    </button>
                 </div>
-                <button class="btn btn-outline-success" type="submit">
-                    Search
-                </button>
             </form>
         </div>
     </div>

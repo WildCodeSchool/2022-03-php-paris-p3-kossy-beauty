@@ -1,46 +1,58 @@
 {
     "Countries": {
-        "Cameroon": [
+        "Cameroon": 
+        {
+            "Cities": 
             {
-                "Cities": [
-                    {
-                        "Name": "Douala",
-                        "Districts": [
-                            "Bali",
-                            "Bonamikengue",
-                            "Bessengue",
-                            "Bonamoudourou",
-                            "Bona Bekombo",
-                            "Bonamouti Akwa 2",
-                            "Bonadibong",
-                            "Bonamouti",
-                            "Deïdo",
-                            "Bonadouma",
-                            "Bonanjo",
-                            "Bonadoumbé",
-                            "Bonapriso",
-                            "Bonajinjo",
-                            "Bonateki",
-                            "Bonakouamouang",
-                            "Bonatene",
-                            "Bonalembe",
-                            "Bonantone",
-                            "Bonajang",
-                            "Hydrocarbures",
-                            "Bonelang",
-                            "Joss",
-                            "Bonoleke",
-                            "Koumassi",
-                            "Bonakeke Akwa",
-                            "Ngodi",
-                            "Grand Moulin",
-                            "Nkongmondo",
-                            "Nouvelle zone d'Akwa Nord",
-                            "Nouvelle zone de New-Deido"
-                        ]
-                    }
+                "Name": "Douala",
+                "Districts": [
+                    "Bali",
+                    "Bonamikengue",
+                    "Bessengue",
+                    "Bonamoudourou",
+                    "Bona Bekombo",
+                    "Bonamouti Akwa 2",
+                    "Bonadibong",
+                    "Bonamouti",
+                    "Deïdo",
+                    "Bonadouma",
+                    "Bonanjo",
+                    "Bonadoumbé",
+                    "Bonapriso",
+                    "Bonajinjo",
+                    "Bonateki",
+                    "Bonakouamouang",
+                    "Bonatene",
+                    "Bonalembe",
+                    "Bonantone",
+                    "Bonajang",
+                    "Hydrocarbures",
+                    "Bonelang",
+                    "Joss",
+                    "Bonoleke",
+                    "Koumassi",
+                    "Bonakeke Akwa",
+                    "Ngodi",
+                    "Grand Moulin",
+                    "Nkongmondo",
+                    "Nouvelle zone d'Akwa Nord",
+                    "Nouvelle zone de New-Deido"
+                ]
+            }     
+        },
+        "France": 
+        {
+            "Cities": 
+            {
+                "Name": "Paris",
+                "Districts": [
+                    "Tour Eiffel",
+                    "Barbès",
+                    "Montmartre",
+                    "Buttes-CHaumont"
                 ]
             }
-        ]
+            
+        }
     }
 }
