@@ -18,9 +18,9 @@
                             {% endfor %} #}
                         </select>
                     </div>
+                    {{ form_widget(searchForm.query) }}
                     <div class="input-group-append">
-                        {{ form_widget(searchForm.query) }}
-                        {# {{ form_widget(searchForm.recherche) }} #}
+                        {{ form_widget(searchForm.recherche) }} 
                     </div>
                 </div>
             {{ form_end(searchForm) }}
