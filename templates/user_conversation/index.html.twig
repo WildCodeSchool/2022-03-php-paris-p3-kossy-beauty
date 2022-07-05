@@ -16,11 +16,11 @@
         {% if is_granted('ROLE_PROVIDER') %}
         <h5 class="card-title">
             {{ conversation.subject }}, pour
-            {{ conversation.users.0.firstname }}
+            {{ conversation.users.1.firstname }}
         </h5>
         {% else %}
         <h5 class="card-title">
-            {{ conversation.subject }}, par {{ conversation.users.1.firstname }}
+            {{ conversation.subject }}, par {{ conversation.users.0.firstname }}
         </h5>
         {% endif %}
         <p class="card-text">{{ conversation.lastMessage.content }}</p>

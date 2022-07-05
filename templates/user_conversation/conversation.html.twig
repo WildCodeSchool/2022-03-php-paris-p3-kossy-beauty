@@ -1,16 +1,37 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Conversation{% endblock %}
+{% extends 'base.html.twig' %} {% block title %}Conversation{% endblock %} 
 
 {% block body %}
-<ul>
-    {% for message in messages %}
-    <li>{{ message.content }}</li>
-    {% endfor %}
-</ul>
+<div class="">
+    <div class="container w-50">
+        {% for message in messages %} 
+        {% if message.author.id is same as app.user.id %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col text-center">
+                {{ message.content }}
+            </div>
+        </div>
+        {% else %}
+        <div class="row">
+            <div class="col text-center">
+                {{ message.content }}
+            </div>
+            <div class="col"></div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
 
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Send') }}</button>
-{{ form_end(form) }}
+    <div class="container w-50">
+        <table>
+            {{ form_start(form) }}
+            <td>{{ form_row(form.content) }}</td>
+            <td><button class="btn">{{ button_label|default('Envoyer') }}</button></td>
+            
+            {{ form_end(form) }}
+        </table>
+    
+    
+</div>
+</div>
 {% endblock %}
