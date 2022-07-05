@@ -97,4 +97,14 @@ class UserController extends AbstractController
         }
         return true;
     }
+
+    // public function geoLocation(): Response
+    // {
+    //     $geolocation = new GeolocationService();
+    //     $geolocation = $geolocation->getLocation();
+
+    //     return $this->render('navbar/_navbar.html.twig', [
+    //         'geolocation' => $geolocation
+    //     ]);
+    // }
 }
