@@ -1,20 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+<nav class="navbar navbar-expand-lg navbar-light bg-secundary-kb py-3 pb-1">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><img class="position-relative start-2 top-0 mt-0"src="{{ asset('build/images/LogosymbolKB1.e2883951.jpeg') }}" style="width:4rem" alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse pt-0" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse pt-0 justify-content-end" id="navbarSupportedContent">
       {% if is_granted("ROLE_SUPER_ADMIN") %}
         <a class="ms-auto"href="{{ path('app_admin') }}">Super Admin Dashboard</a>
       {% endif %}
-      <a class="ms-auto me-5" href="{{ path('app_register_pro') }}"><i class="bi bi-plus-square me-2"></i>Devenir prestataire</a>
+      <a class="color-black me-5" href="{{ path('app_register_pro') }}"><i class="bi bi-plus-square me-2"></i>Devenir prestataire</a>
       <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-        <li class="nav-item me-3">
+        <li class="nav-item me-5 d-flex align-items-center">
           <span class="d-inline-block" id="tooltip-geolocation" tabindex="0" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Géolocalisation automatique">
             <button class="btn btn-primary" type="button" disabled>
               <i class="bi bi-geo-alt-fill"></i> 
-              {{ geolocation.district }}
+              {# {{ geolocation.district }} #}
             </button>
           </span>
         </li>
@@ -28,11 +28,12 @@
         </li>
         {% if is_granted("ROLE_USER") %}
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            <i class="bi bi-person p-0"></i>
+            <a class="nav-link dropdown-toggle active p-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
-              <i class="bi bi-person"></i>Mon compte
+              Mon compte
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
               <li>
                 <hr class="dropdown-divider">
