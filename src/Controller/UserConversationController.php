@@ -4,12 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Conversation;
 use App\Entity\Message;
-use App\Entity\Service;
 use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\ConversationRepository;
 use App\Repository\MessageRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +18,11 @@ class UserConversationController extends AbstractController
     #[Route('/my-conversations', name: 'app_my_conversations')]
     public function index(): Response
     {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login', [
+            ]);
+        }
+
         return $this->render('user_conversation/index.html.twig', [
             'conversations' => $this->getUser()->getConversations()
         ]);
@@ -33,6 +36,17 @@ class UserConversationController extends AbstractController
         ConversationRepository $convRepository,
         MessageRepository $messageRepository
     ): Response {
+
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('login', [
+            ]);
+        }
+
+        if (isset($this->getUser()->getRoles()[1])) {
+            return $this->redirectToRoute('login', [
+            ]);
+        }
+
         $convsCurrentUser = $this->getUser()->getConversations();
 
         foreach ($convsCurrentUser as $conversation) {

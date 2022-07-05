@@ -4,6 +4,8 @@ twig:
         categories: '@App\Service\CategoryService'
         services: '@App\Service\ServiceService'
         provider: '@App\Service\ProviderService'
+        whatsapp: '@App\Service\WhatsappService'
+        geolocation: '@App\Service\GeolocationService'
 
 when@test:
     twig:
