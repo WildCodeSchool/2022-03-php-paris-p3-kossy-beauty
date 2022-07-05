@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand-lg bg-light pt-0">
+    <div class="container-fluid">
+        <div class="container">
+            {{ form_start(searchForm, {attr: {
+                'novalidate': 'novalidate',
+                'class' : 'd-flex w-50 ms-auto me-auto',
+            }}) }}
+                {{ form_errors(searchForm) }}
+                {{ form_widget(searchForm.query) }}
+                {# {{ form_widget(searchForm.recherche) }} #}
+            {{ form_end(searchForm) }}
+        </div>
+    </div>
+</nav>
