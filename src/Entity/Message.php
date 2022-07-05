@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\MessageRepository;
+use Symfony\Component\Security\Core\User\UserInterface;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
-class Message
+class Message implements UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -84,5 +85,32 @@ class Message
         $this->conversation = $conversation;
 
         return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return '';
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        return [];
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
