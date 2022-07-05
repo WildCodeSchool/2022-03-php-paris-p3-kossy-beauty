@@ -2,7 +2,6 @@
     <div class="container-fluid">
         <div class="container">
             {{ form_start(searchForm, {attr: {
-                'novalidate': 'novalidate',
                 'class' : 'd-flex w-50 ms-auto me-auto',
             }}) }}
                 {{ form_errors(searchForm) }}
@@ -18,10 +17,10 @@
                             {% endfor %} #}
                         </select>
                     </div>
-                    {{ form_widget(searchForm.query) }}
                     <div class="input-group-append">
-                        {{ form_widget(searchForm.recherche) }} 
+                        {{ form_widget(searchForm.query) }} 
                     </div>
+                    {{ form_widget(searchForm.recherche) }}
                 </div>
             {{ form_end(searchForm) }}
         </div>

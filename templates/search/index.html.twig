@@ -3,35 +3,21 @@
 {% block title %}Hello SearchController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/tidjy/Bureau/COURS/PHP/PROJETS/PROJET 3/src/Controller/SearchController.php'|file_link(0) }}">src/Controller/SearchController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/tidjy/Bureau/COURS/PHP/PROJETS/PROJET 3/templates/search/index.html.twig'|file_link(0) }}">templates/search/index.html.twig</a></code></li>
-    </ul>
-</div>
 
 {% if app.request.method == 'POST' %}
     <div>
-        {% if articles | length == 0 %}
+        {% if services | length == 0 %}
             <h4>Aucun résulat pour votre recherche.</h4>
-           {% else %}
-               <h3 class="mt-3">Vos résulats de recherche :</h3>
-               {% for service in services %}
-                   <div class="mt-3 p-3 bg-light border rounded">
-                       <a href="{{ path('app_service_show', {'slug': article.slug}) }}">
-                            <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ article.title }}</h6>
-                       </a>
-                   </div>
-              {% endfor %}
-          {% endif %}
+        {% else %}
+            <h3 class="mt-3">Vos résulats de recherche :</h3>
+            {% for searchedService in searchedServices %}
+                <div class="mt-3 p-3 bg-light border rounded">
+                    <a href="{{ path('app_service_show', {'id': searchedService.id}) }}">
+                        <h6 class="text-dark"><i class="bi bi-arrow-down-right-square-fill text-primary"></i> {{ searchedService.name }}</h6>
+                    </a>
+                </div>
+            {% endfor %}
+        {% endif %}
      </div>
 {% endif %}
 {% endblock %}

@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -43,15 +45,15 @@ class SearchController extends AbstractController
     /**
      * @param Request $request
      */
-    #[Route('/handleSearch', name: 'handleSearch')]
+    #[Route('/handleSearch', name: 'handleSearch', methods: ['POST'])]
     public function handleSearch(Request $request, ServiceRepository $serviceRepository)
     {
-        $query = $request->request->get('form')['query'];
+        $query = $request->request->all('form')['query'];
         if($query) {
-            $services = $serviceRepository->findServicesByName($query);
+            $searchedServices = $serviceRepository->findServicesByName($query);
         }
         return $this->render('search/index.html.twig', [
-            'services' => $services
+            'searchedServices' => $searchedServices
         ]);
     }
 }

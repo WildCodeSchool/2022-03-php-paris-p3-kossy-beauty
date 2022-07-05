@@ -50,7 +50,6 @@ class ServiceRepository extends ServiceEntityRepository
                         $qb->expr()->like('p.name', ':query'),
                         //$qb->expr()->like('p.content', ':query'),
                     ),
-                    $qb->expr()->isNotNull('p.created_at')
                 )
             )
             ->setParameter('query', '%' . $query . '%')
