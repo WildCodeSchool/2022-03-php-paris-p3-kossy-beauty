@@ -23,26 +23,6 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_SUPER_ADMIN')]
-    public function new(Request $request, UserRepository $userRepository): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
-    }
-
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     #[IsGranted('ROLE_USER')]
     public function show(User $user): Response
@@ -87,9 +67,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_user_show', ['id' => $user->getId()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('user/edit.html.twig', [
+        return $this->render('user/edit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            'userForm' => $form->createView(),
         ]);
     }
 
@@ -117,4 +97,14 @@ class UserController extends AbstractController
         }
         return true;
     }
+
+    // public function geoLocation(): Response
+    // {
+    //     $geolocation = new GeolocationService();
+    //     $geolocation = $geolocation->getLocation();
+
+    //     return $this->render('navbar/_navbar.html.twig', [
+    //         'geolocation' => $geolocation
+    //     ]);
+    // }
 }

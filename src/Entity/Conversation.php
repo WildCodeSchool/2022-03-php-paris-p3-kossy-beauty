@@ -6,6 +6,7 @@ use App\Repository\ConversationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: ConversationRepository::class)]
 class Conversation
@@ -46,7 +47,7 @@ class Conversation
         return $this->users;
     }
 
-    public function addUser(User $user): self
+    public function addUser(User | UserInterface $user): self
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;

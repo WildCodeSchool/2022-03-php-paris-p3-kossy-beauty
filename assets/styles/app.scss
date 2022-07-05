@@ -2,4 +2,8 @@
 
 
 @import "~bootstrap/scss/bootstrap";
+@import "_edit.scss";
 
+body {
+  overflow-x: hidden;
+}

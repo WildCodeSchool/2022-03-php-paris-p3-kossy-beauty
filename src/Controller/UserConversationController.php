@@ -4,17 +4,14 @@ namespace App\Controller;
 
 use App\Entity\Conversation;
 use App\Entity\Message;
-use App\Entity\Service;
 use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\ConversationRepository;
 use App\Repository\MessageRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserConversationController extends AbstractController
 {
