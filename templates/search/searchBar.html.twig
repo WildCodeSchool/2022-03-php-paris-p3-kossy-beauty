@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg bg-light pt-0">
+    <div class="container-fluid">
+        <div class="container">
+            {{ form_start(searchForm, {attr: {
+                'class' : 'd-flex w-50 ms-auto me-auto',
+            }}) }}
+                {{ form_errors(searchForm) }}
+                <div class="input-group flex-nowrap">
+                    <span class="input-group-text bg-success text-white select-location">
+                        <i class="bi bi-geo-alt"></i>
+                    </span>
+                    <div class="input-group-prepend">
+                        <select name="district" class="form-control btn btn-success text-nowrap text-white rounded-0">
+                            <option value="{{ geolocation.district }}">{{ geolocation.district }}</option>
+                            {# {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
+                                <option value="{{ district }}">{{ district }}</option>
+                            {% endfor %} #}
+                        </select>
+                    </div>
+                    <div class="input-group-append">
+                        {{ form_widget(searchForm.query) }} 
+                    </div>
+                    {{ form_widget(searchForm.recherche) }}
+                </div>
+            {{ form_end(searchForm) }}
+        </div>
+    </div>
+</nav>
