@@ -35,34 +35,5 @@
         </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-
-        <script>
-            // var exampleEl = document.getElementById('tooltip-geolocation')
-            // var tooltip = new bootstrap.Tooltip(exampleEl, options)
-
-            const triggerTabList = document.querySelectorAll('#myTab li button')
-
-            triggerTabList.forEach(triggerEl => {
-                const tabTrigger = new bootstrap.Tab(triggerEl)
-
-                triggerEl.addEventListener('click', event => {
-                    event.preventDefault()
-                    tabTrigger.show()
-                })
-
-                triggerEl.addEventListener('shown.bs.tab', function (event) {
-                    // event.target // newly activated tab
-                    // event.relatedTarget // previous active tab
-                    const dataBsTarget = event.target.dataset.bsTarget
-                    const smallNavId = dataBsTarget.slice(1);
-                    const smallNav = document.querySelector('#' + smallNavId)
-                    smallNav.addEventListener('mouseleave', event => {
-                        event.preventDefault()
-                        this.classList.remove('active')
-                        smallNav.classList.remove('active', 'show')
-                    })
-                })
-            })
-        </script>
     </body>
 </html>
