@@ -4,8 +4,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        {# <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"> #}
+        
         <title>
-            {% block title %}Projet 3 Name{% endblock %}
+            Kossy Beauty - {% block title %}{% endblock %}
         </title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -17,6 +20,25 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% include "navbar/_navbar.html.twig" %}
+        {% include "navbar/_categorySearchNavbar.html.twig" %}
+        
+        <main class="container my-5 pb-5">
+            {% for category, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ category }} text-center">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% block body %}{% endblock %}
+        </main>
+
+        {# <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> #}
+
+        <script>
+            var exampleEl = document.getElementById('tooltip-geolocation')
+            var tooltip = new bootstrap.Tooltip(exampleEl, options)
+        </script>
     </body>
 </html>

@@ -1,0 +1,48 @@
+{{ form_start(userForm) }}
+
+<div class="container rounded bg-white">
+    <div class="row">
+        <div class="col-md-2 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"></span>  
+            </div>
+        </div>
+        <div class="col-md-5 border-right mt-5">
+            <div class="p-3 py-5">
+                <div class="row">
+                    <div class="col-md-6" id="form-edit"><div>{{ form_row(userForm.firstname, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6"><div>{{ form_row(userForm.lastname, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% if is_granted("ROLE_PROVIDER") %}
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyName, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isTop, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isArchived, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right mt-5">
+            <div class="p-3 py-5">
+                <div class="row">
+                    <div class="col-md-6"><div>{{ form_row(userForm.town, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6"><div>{{ form_row(userForm.district, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% if is_granted("ROLE_PROVIDER") %}
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% endif %}              
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+</div>
+</div>
+
+<div class="container d-flex justify-content-center">
+    <div class="text-center m-3"><button class="btn btn-primary profile-button">{{ button_label|default('Save') }}</button></div>
+</div>
+
+
+
+{{ form_end(userForm) }}

@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light py-3 pb-1">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"><img class="position-relative start-2 top-0 mt-0"src="{{ asset('build/images/LogosymbolKB1.e2883951.jpeg') }}" style="width:4rem" alt="Logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse pt-0 justify-content-end" id="navbarSupportedContent">
+      {% if is_granted("ROLE_SUPER_ADMIN") %}
+        <a class="ms-auto"href="{{ path('app_admin') }}">Super Admin Dashboard</a>
+      {% endif %}
+
+      {{ render(controller(
+        'App\\Controller\\SearchController::searchBar'
+    )) }}
+          
+      <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+        <li class="nav-item position-relative me-3">
+          <i class="bi bi-chat-left-text p-0"></i>
+          <a class="nav-link active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a>
+        </li>
+        <li class="nav-item position-relative me-3">
+          <i class="bi bi-heart p-0"></i>
+          <a class="nav-link active stretched-link p-0" aria-current="page" href="#"></i>Favoris</a>
+        </li>
+        {% if is_granted("ROLE_USER") %}
+          <li class="nav-item dropdown">
+            <i class="bi bi-person p-0"></i>
+            <a class="nav-link dropdown-toggle active p-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Mon compte
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>
+            </ul>
+          </li>
+        {% else %}
+        <li class="nav-item position-relative">
+          <i class="bi bi-person p-0"></i>
+          <a class="nav-link active stretched-link p-0" aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
+        </li>
+        {% endif %}
+      </ul>
+</nav>
