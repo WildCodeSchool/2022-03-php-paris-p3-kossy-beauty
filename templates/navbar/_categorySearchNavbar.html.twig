@@ -12,7 +12,7 @@
         {% for category in categories.getAll %}
         <div class="tab-pane fade" id="category{{ category.id }}" role="tabpanel" aria-labelledby="profile-tab"
             tabindex="0">
-            <div class="row row-cols-1 row-cols-md-5 g-4 mt-1">
+            <div class="container row row-cols-1 row-cols-md-5 g-4 mt-1">
                 {% for service in globalServices.getServiceByCategoryId(category.id)%}
                 <div class="col">
                     <div class="card d-flex align-items-center pt-1">
