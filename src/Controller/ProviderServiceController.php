@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\ProviderService;
 use App\Entity\Service;
+use App\Entity\User;
 use App\Form\ProviderServiceType;
 use App\Repository\ProviderServiceRepository;
 use App\Repository\ServiceRepository;
@@ -93,6 +94,15 @@ class ProviderServiceController extends AbstractController
         return $this->render('provider_service/showProviderByService.html.twig', [
             'service' => $service,
             'providerServices' => $provServRepository->findBy(['service' => $service]),
+        ]);
+    }
+
+    #[Route('/{id}/services', name: 'app_provider_services_list', methods: ['GET'])]
+    public function showServiceByProvider(User $user, ProviderServiceRepository $provServRepository): Response
+    {
+        return $this->render('provider_service/provider_services.html.twig', [
+            'services' => $provServRepository->findBy(['provider' => $user]),
+            'user' => $user
         ]);
     }
 }

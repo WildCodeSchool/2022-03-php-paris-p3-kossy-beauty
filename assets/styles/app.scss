@@ -28,3 +28,19 @@ body {
 .color-white {
   color: white;
 }
+
+.select-location {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 1px;
+}
+
+.select-districts option {
+  background-color: white;
+  color: green;
+}
+
+.submit-searchbar {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
