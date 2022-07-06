@@ -9,8 +9,10 @@
         <a class="ms-auto"href="{{ path('app_admin') }}">Super Admin Dashboard</a>
       {% endif %}
 
-      {% include "navbar/_searchNavbar.html.twig" %}
-      
+      {{ render(controller(
+        'App\\Controller\\SearchController::searchBar'
+    )) }}
+          
       <ul class="navbar-nav mb-2 mb-lg-0 text-center">
         <li class="nav-item position-relative me-3">
           <i class="bi bi-chat-left-text p-0"></i>

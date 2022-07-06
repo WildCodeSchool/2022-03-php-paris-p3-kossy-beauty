@@ -1,6 +1,9 @@
     <div class="container-fluid">
         <div class="container">
-            <form class="d-flex w-50 ms-auto me-auto" role="search">
+            {{ form_start(searchForm, {attr: {
+                'class' : 'd-flex w-50 ms-auto me-auto',
+            }}) }}
+                {{ form_errors(searchForm) }}
                 <div class="input-group flex-nowrap">
                     <span class="input-group-text bg-success text-white select-location">
                         <i class="bi bi-geo-alt"></i>
@@ -8,23 +11,16 @@
                     <div class="input-group-prepend">
                         <select name="district" class="form-control btn btn-success text-nowrap text-white rounded-0">
                             <option value="{{ geolocation.district }}">{{ geolocation.district }}</option>
-                            {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
+                            {# {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
                                 <option value="{{ district }}">{{ district }}</option>
-                            {% endfor %}
+                            {% endfor %} #}
                         </select>
                     </div>
                     <div class="input-group-append">
-                        <input
-                            class="form-control text-nowrap me-2 rounded-0"
-                            type="search"
-                            placeholder="Search"
-                            aria-label="Search"
-                        />
+                        {{ form_widget(searchForm.query) }} 
                     </div>
-                    <button class="btn btn-success text-nowrap submit-searchbar" type="submit">
-                        Search
-                    </button>
+                    {{ form_widget(searchForm.recherche) }}
                 </div>
-            </form>
+            {{ form_end(searchForm) }}
         </div>
     </div>
