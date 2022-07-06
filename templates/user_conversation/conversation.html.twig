@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %} {% block title %}Conversation{% endblock %} 
 
 {% block body %}
-<div class="">
     <div class="container w-50">
         {% for message in messages %} 
         {% if message.author.id is same as app.user.id %}
@@ -30,8 +29,9 @@
             
             {{ form_end(form) }}
         </table>
-    
-    
 </div>
-</div>
+
+
+
+
 {% endblock %}
