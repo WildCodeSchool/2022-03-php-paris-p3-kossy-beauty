@@ -49,11 +49,12 @@ class SearchController extends AbstractController
     public function handleSearch(Request $request, ServiceRepository $serviceRepository)
     {
         $query = $request->request->all('form')['query'];
-        if($query) {
+        $searchedServices = '';
+        if ($query) {
             $searchedServices = $serviceRepository->findServicesByName($query);
         }
         return $this->render('search/index.html.twig', [
-            'searchedServices' => $searchedServices
+            'searchedServices' => $searchedServices,
         ]);
     }
 }
