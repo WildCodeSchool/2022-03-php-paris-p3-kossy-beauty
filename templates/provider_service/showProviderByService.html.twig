@@ -21,7 +21,8 @@ by(5) %}
             />
         </div>
         <div class="card-body">
-            <h6 class="card-title text-break">{{ provider.companyName }}</h6>
+            <a href="{{ path('app_provider_services_list', {id: provider.id }) }}"><h6 class="card-title text-break">{{ provider.companyName }}</h6></a>
+            
             <p class="fw-bold">
                 <span class="text-primary"
                     ><i class="bi bi-wallet2"></i>

@@ -39,6 +39,26 @@ class ServiceRepository extends ServiceEntityRepository
         }
     }
 
+    // Find/search services by name/content
+    public function findServicesByName(string $query)
+    {
+        $qb = $this->createQueryBuilder('p');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('p.name', ':query'),
+                        //$qb->expr()->like('p.content', ':query'),
+                    ),
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Service[] Returns an array of Service objects
 //     */
