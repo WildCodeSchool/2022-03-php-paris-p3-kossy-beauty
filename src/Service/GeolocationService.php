@@ -53,11 +53,14 @@ class GeolocationService
             $this->ipAddr = $_SERVER['REMOTE_ADDR'];
         }
 
+        // var_dump($_SERVER['REMOTE_ADDR']); die;
+
         // if no valid IP address found, we assign a fake IP address to the user
         if (
             empty($this->ipAddr) ||
             $this->ipAddr === null ||
-            $this->ipAddr === '127.0.0.1'
+            $this->ipAddr === '127.0.0.1' ||
+            $this->ipAddr === '::1'
         ) {
             $this->ipAddr = '41.205.31.234';
         }
