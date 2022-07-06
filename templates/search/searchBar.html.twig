@@ -5,7 +5,10 @@
             }}) }}
                 {{ form_errors(searchForm) }}
                 <div class="input-group flex-nowrap">
-                    <span class="input-group-text bg-success text-white select-location">
+                    <span id="tooltip-geolocation" class="input-group-text select-location px-2"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
+                        title="Vous avez été automatiquement géolocalisé à <b><u>{{ geolocation.getDistrict }}</u></b>.
+                        <br />Vous pouvez changer ce choix avant d'effectuer une recherche">
                         <i class="bi bi-geo-alt"></i>
                     </span>
                     <div class="input-group-prepend">
