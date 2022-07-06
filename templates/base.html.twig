@@ -21,10 +21,6 @@
     </head>
     <body>
         {% include "navbar/_navbar.html.twig" %}
-        {{ render(controller(
-            'App\\Controller\\SearchController::searchBar'
-        )) }}
-        {# {% include "navbar/_searchNavbar.html.twig" %} #}
         {% include "navbar/_categorySearchNavbar.html.twig" %}
         
         <main class="container my-5 pb-5">
