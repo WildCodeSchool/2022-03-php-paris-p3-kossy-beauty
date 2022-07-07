@@ -11,7 +11,7 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-require('bootstrap');
+//require('bootstrap');
 
 // var exampleEl = document.getElementById('tooltip-geolocation')
 // var tooltip = new bootstrap.Tooltip(exampleEl, options)
