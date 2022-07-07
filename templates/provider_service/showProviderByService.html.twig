@@ -33,7 +33,7 @@ by(5) %}
             </p>
         </div>
         <div class="card-footer">
-            <a class="btn btn-dark" role="button">Détails</a>
+            <a href="{{ path('app_service_show', {'id': service.id}) }}" class="btn btn-dark" role="button">Détails</a>
             {% if app.user.roles.1 is defined %}
             {% elseif app.user is defined %}
             <a href="{{ path('app_create_conversation', {id: provider.id, service: service.name}) }}" class="btn btn-success" role="button">Envoyer un message</a>
