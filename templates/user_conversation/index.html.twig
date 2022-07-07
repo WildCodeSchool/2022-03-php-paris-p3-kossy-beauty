@@ -3,9 +3,15 @@
 
 {% for conversation in conversations|sort((a, b) => b.lastMessage.createdAt|date('Y-m-d H:i:s') <=> a.lastMessage.createdAt|date('Y-m-d H:i:s')) %}
 
-<div class="card mt-3 mb-3">
-    <div class="card-header d-flex">
-        <p class="me-2">
+{% if conversation.lastMessage.author is not same as app.user %}
+<div class="card mt-3 mb-3 border-2 border-danger">
+    <div class="card-header d-flex border-1 border-danger">
+    {% else %}
+    <div class="card mt-3 mb-3">
+        <div class="card-header d-flex">
+    {% endif %}
+
+        <p class="m-0">
             Dernier message : 
             {{ conversation.lastMessage.author.firstname }} le
             {{ conversation.lastMessage.createdAt|date('d-m-Y') }} à
@@ -23,10 +29,15 @@
             {{ conversation.subject }}, par {{ conversation.users.0.firstname }}
         </h5>
         {% endif %}
+        <div class="d-flex">
+        {% if conversation.lastMessage.author is not same as app.user %}
+        <i class="bi bi-exclamation-circle-fill color-red me-3"></i>
+        {% endif %}
         <p class="card-text">{{ conversation.lastMessage.content }}</p>
+    </div>
         <a
             href="{{ path('app_conversation', { id: conversation.id }) }}"
-            class="btn btn-success"
+            class="btn btn-success mt-2"
             >Répondre</a
         >
     </div>

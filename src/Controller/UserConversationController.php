@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\ConversationRepository;
 use App\Repository\MessageRepository;
+use App\Service\NotificationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +20,7 @@ class UserConversationController extends AbstractController
     public function index(): Response
     {
         if (!$this->getUser()) {
-            return $this->redirectToRoute('login', [
-            ]);
+            return $this->redirectToRoute('login', []);
         }
 
         return $this->render('user_conversation/index.html.twig', [
@@ -38,13 +38,11 @@ class UserConversationController extends AbstractController
     ): Response {
 
         if (!$this->getUser()) {
-            return $this->redirectToRoute('login', [
-            ]);
+            return $this->redirectToRoute('login', []);
         }
 
         if (isset($this->getUser()->getRoles()[1])) {
-            return $this->redirectToRoute('login', [
-            ]);
+            return $this->redirectToRoute('login', []);
         }
 
         $convsCurrentUser = $this->getUser()->getConversations();
@@ -95,11 +93,18 @@ class UserConversationController extends AbstractController
         Conversation $conversation,
         Request $request,
         MessageRepository $messageRepository,
-        ConversationRepository $convRepository
+        ConversationRepository $convRepository,
+        NotificationService $notificationService,
     ): Response {
         $convsCurrentUser = $this->getUser()->getConversations();
         if (!$convsCurrentUser->contains($conversation)) {
             return $this->redirectToRoute('app_my_conversations');
+        }
+
+        if ($notificationService->notification()) {
+            $notificationService->toggleNotif();
+            var_dump($notificationService->toggleNotif());
+            die;
         }
 
         $message = new Message();
@@ -120,6 +125,7 @@ class UserConversationController extends AbstractController
             ]);
         }
         return $this->render('user_conversation/conversation.html.twig', [
+            'conversation' => $conversation,
             'messages' => $conversation->getMessages(),
             'form' => $form->createView()
         ]);
