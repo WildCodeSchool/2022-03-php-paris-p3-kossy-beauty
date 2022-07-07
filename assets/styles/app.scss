@@ -45,3 +45,7 @@ a.no-decoration {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
+
+.tab-pane.position_absolute {
+  z-index: 100 !important;
+}
