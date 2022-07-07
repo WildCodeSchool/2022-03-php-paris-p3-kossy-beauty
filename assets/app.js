@@ -11,11 +11,11 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-require('bootstrap');
+//require('bootstrap');
 
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
+    return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
 /**
