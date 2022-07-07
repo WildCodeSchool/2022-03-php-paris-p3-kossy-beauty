@@ -21,12 +21,4 @@ class NotificationService extends AbstractController
         }
         return false;
     }
-
-    public function toggleNotif(): bool
-    {
-        if ($this->notification()) {
-            return false;
-        }
-        return true;
-    }
 }

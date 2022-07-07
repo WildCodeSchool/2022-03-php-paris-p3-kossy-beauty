@@ -14,14 +14,11 @@
     )) }}
           
       <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-        {% if notification.toggleNotif is same as false %}
-
         {% if notification.notification is same as true %}
         <li class="nav-item position-relative me-3 color-red">
           <i class="bi bi-exclamation-circle-fill"></i>
-          {% elseif notification.toggleNotif is same as true %}
+          {% else %}
           <li class="nav-item position-relative me-3">
-          {% endif %}
           {% endif %}
           <i class="bi bi-chat-left-text p-0"></i>
           <a class="nav-link active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 

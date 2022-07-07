@@ -101,12 +101,6 @@ class UserConversationController extends AbstractController
             return $this->redirectToRoute('app_my_conversations');
         }
 
-        if ($notificationService->notification()) {
-            $notificationService->toggleNotif();
-            var_dump($notificationService->toggleNotif());
-            die;
-        }
-
         $message = new Message();
 
         $form = $this->createForm(MessageType::class, $message);
