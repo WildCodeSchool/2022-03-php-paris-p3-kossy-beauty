@@ -84,14 +84,14 @@
                     <div class="container px-0">
                 </div>
             </div>
+            {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
+            <h2 class="" id="headingTwo">
+                <button class="btn-admin btn btn-light bg-white border-dark" type="button">
+                <a class="text-dark text-decoration-none" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer votre profil<i class="bi bi-plus"></i></a>
+                </button>
+            </h2>
+            {% endif %}
         </div>
-        {% if is_granted("ROLE_PROVIDER") %}
-        <h2 class="" id="headingTwo">
-            <button class="btn-admin btn btn-light bg-white border-dark" type="button">
-            <a class="text-dark text-decoration-none" href="{{ path('app_service_new') }}">Editer la description<i class="bi bi-plus"></i></a>
-            </button>
-        </h2>
-        {% endif %}
     </div>
     <div class="">
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
