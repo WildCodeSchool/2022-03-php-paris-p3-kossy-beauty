@@ -71,11 +71,11 @@ class UserConversationController extends AbstractController
 
             $message->setAuthor($this->getUser());
             $message->setConversation($conversation);
+            $message->setIsSeen(false);
 
             $messageRepository->add($message, true);
 
             $conversation->setLastMessage($message);
-            $conversation->getLastMessage()->setIsSeen(false);
             $convRepository->add($conversation, true);
 
             return $this->redirectToRoute('app_conversation', [
