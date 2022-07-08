@@ -8,10 +8,15 @@
   font-family: 'Raleway', sans-serif;
 }
 
-body {
-  overflow-x: hidden;
+html {
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  flex:1;
   height: 100%;
 }
 
