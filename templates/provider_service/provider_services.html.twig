@@ -3,36 +3,118 @@
 {% block title %}ProviderService index{% endblock %}
 
 {% block body %}
-    <h1>ProviderService index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Price</th>
-                <th>Duration</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for service in services %}
-            <tr>
-              {{ dump(service.service.name) }}
-                {# <td>{{ service.servicename }}</td>
-                <td>{{ service.price }}</td>
-                <td>{{ service.duration }}</td> #}
-                <td>
-                    {# <a href="{{ path('app_provider_service_show', {'id': provider_service.id}) }}">show</a>
-                    <a href="{{ path('app_provider_service_edit', {'id': provider_service.id}) }}">edit</a> #}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {# <a href="{{ path('app_provider_service_new') }}">Create new</a> #}
+<div class="d-flex gap-4 align-items-end mb-4">
+    <div><img class="rounded-circle" src="https://picsum.photos/150" alt="photo presta"></div>
+    <div>
+        <h1>{{user.companyName}}</h1>
+        <p class="mb-0">{{user.town}}</p>
+        <p class="mb-0">{{user.district}} Quartier</p>
+    </div>
+</div>
+<div class="accordion" id="accordionExample">
+    <div class="">
+        <div class="d-flex">
+            <h2 class="" id="headingOne">
+                <button class="btn-admin btn btn-light bg-white border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Prestations
+                </button>
+            </h2>
+            <h2 class="" id="headingTwo">
+                <button class="btn-admin btn btn-light bg-white border-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Description/disponibilités
+                </button>
+            </h2>
+            <h2 class="" id="headingThree">
+                <button class="btn-admin btn btn-light bg-white border-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Gallerie
+                </button>
+            </h2>
+        </div>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div class="container px-0">
+                    <div class="d-flex rounded-pill fw-bolder">
+                        <p class="col-4 mt-3 ms-3">Prestation</p>
+                        <div class="d-flex col-4 justify-content-around mt-3">
+                            <p>Prix</p>
+                            <p>Durée</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container px-0">
+                    {% for service in services %}
+                        <div class="service_card d-flex border border-dark mb-4 rounded-pill border-2">
+                            <p class="col-4 mt-3 ms-3 fw-bold">{{ service.service.name }}</p>
+                            <div class="d-flex col-4 justify-content-around mt-3">
+                                <p>{{ service.price }} €</p>
+                                <p>{{ service.duration }} minutes</p>
+                            </div>
+                            <div class="d-flex col-4 justify-content-center gap-5">
+                                <p class="mt-3"><a href="{{ path('app_service_show', {'id': service.service.id}) }}">Détail</a></p>
+                                {% if is_granted("ROLE_PROVIDER") %}
+                                <p class="mt-3"><a href="{{ path('app_service_edit', {'id': service.service.id}) }}">Editer</a></p>
+                                <form method="post" action="{{ path('app_service_delete', {'id': service.service.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ service.service.id) }}">
+                                    <button class="btn p-0 mt-3 border border-dark border-1">Supprimer</button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% if is_granted("ROLE_PROVIDER") %}
+                <h2 class="" id="headingTwo">
+                    <button class="btn-admin btn btn-light bg-white border-dark" type="button">
+                    <a class="text-dark text-decoration-none" href="{{ path('app_service_new') }}">Ajouter une prestation<i class="bi bi-plus"></i></a>
+                    </button>
+                </h2>
+            {% endif %}
+        </div>
+    </div>
+    <div class="">
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body px-0">
+                <div class="container px-0 width-100 border border-2 border-dark height-auto rounded ps-2">
+                    <p class="mb-0">{{user.companyDescription}}</p>
+                    <p class="mb-0">Blabla</p>
+                    <p class="mb-0">Blabla</p>
+                </div>
+                    <div class="container px-0">
+                </div>
+            </div>
+            {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
+            <h2 class="" id="headingTwo">
+                <button class="btn-admin btn btn-light bg-white border-dark" type="button">
+                <a class="text-dark text-decoration-none" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer votre profil<i class="bi bi-plus"></i></a>
+                </button>
+            </h2>
+            {% endif %}
+        </div>
+    </div>
+    <div class="">
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <div>
+                    <div class="container ">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                        <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+{# <a href="{{ path('app_provider_service_new') }}">Create new</a> #}
 {% endblock %}
