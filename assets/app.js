@@ -11,10 +11,12 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-require('bootstrap');
+//require('bootstrap');
 
-// var exampleEl = document.getElementById('tooltip-geolocation')
-// var tooltip = new bootstrap.Tooltip(exampleEl, options)
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+})
 
 /**
  * Events for click and mouseleave for the small nav
