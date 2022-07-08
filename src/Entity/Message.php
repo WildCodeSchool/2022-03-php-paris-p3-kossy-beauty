@@ -29,6 +29,9 @@ class Message
     #[ORM\JoinColumn(nullable: false)]
     private $conversation;
 
+    #[ORM\Column(type: 'boolean')]
+    private $isSeen;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -83,6 +86,18 @@ class Message
     public function setConversation(?Conversation $conversation): self
     {
         $this->conversation = $conversation;
+
+        return $this;
+    }
+
+    public function isIsSeen(): ?bool
+    {
+        return $this->isSeen;
+    }
+
+    public function setIsSeen(bool $isSeen): self
+    {
+        $this->isSeen = $isSeen;
 
         return $this;
     }
