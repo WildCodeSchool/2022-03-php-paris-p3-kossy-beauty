@@ -42,9 +42,8 @@ triggerTabList.forEach(triggerEl => {
         const smallNavId = dataBsTarget.slice(1);
         const smallNav = document.querySelector('#' + smallNavId)
         document.querySelector('body').addEventListener('click', event => {
-            event.preventDefault()
             if (event.target.classList.contains('nav-link') || event.target.classList.contains('smallnav')) {
-                // Do nothing
+                return;
             } else {
                 this.classList.remove('active')
                 triggerEl.ariaSelected = 'false'
