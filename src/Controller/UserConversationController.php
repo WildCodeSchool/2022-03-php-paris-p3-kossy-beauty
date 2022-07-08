@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Form\MessageType;
 use App\Repository\ConversationRepository;
 use App\Repository\MessageRepository;
+use App\Service\NotificationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +20,7 @@ class UserConversationController extends AbstractController
     public function index(): Response
     {
         if (!$this->getUser()) {
-            return $this->redirectToRoute('login', [
-            ]);
+            return $this->redirectToRoute('login', []);
         }
 
         return $this->render('user_conversation/index.html.twig', [
@@ -38,13 +38,11 @@ class UserConversationController extends AbstractController
     ): Response {
 
         if (!$this->getUser()) {
-            return $this->redirectToRoute('login', [
-            ]);
+            return $this->redirectToRoute('login', []);
         }
 
         if (isset($this->getUser()->getRoles()[1])) {
-            return $this->redirectToRoute('login', [
-            ]);
+            return $this->redirectToRoute('login', []);
         }
 
         $convsCurrentUser = $this->getUser()->getConversations();
@@ -73,6 +71,7 @@ class UserConversationController extends AbstractController
 
             $message->setAuthor($this->getUser());
             $message->setConversation($conversation);
+            $message->setIsSeen(false);
 
             $messageRepository->add($message, true);
 
@@ -95,11 +94,17 @@ class UserConversationController extends AbstractController
         Conversation $conversation,
         Request $request,
         MessageRepository $messageRepository,
-        ConversationRepository $convRepository
+        ConversationRepository $convRepository,
     ): Response {
         $convsCurrentUser = $this->getUser()->getConversations();
         if (!$convsCurrentUser->contains($conversation)) {
             return $this->redirectToRoute('app_my_conversations');
+        }
+
+        $lastMessage = $conversation->getLastMessage();
+        if ($lastMessage->getAuthor() !== $this->getUser()) {
+            $lastMessage->setIsSeen(true);
+            $messageRepository->add($lastMessage, true);
         }
 
         $message = new Message();
@@ -110,6 +115,7 @@ class UserConversationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setAuthor($this->getUser());
             $message->setConversation($conversation);
+            $message->setIsSeen(false);
             $messageRepository->add($message, true);
 
             $conversation->setLastMessage($message);
@@ -120,6 +126,7 @@ class UserConversationController extends AbstractController
             ]);
         }
         return $this->render('user_conversation/conversation.html.twig', [
+            'conversation' => $conversation,
             'messages' => $conversation->getMessages(),
             'form' => $form->createView()
         ]);
