@@ -1,0 +1,8 @@
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+       profileImg_file:
+            uri_prefix: /images/profileImg
+                upload_destination: '%upload_directory%'
+                namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
