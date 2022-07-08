@@ -2,8 +2,7 @@
 {% block body %}
 
 {% for conversation in conversations|sort((a, b) => b.lastMessage.createdAt|date('Y-m-d H:i:s') <=> a.lastMessage.createdAt|date('Y-m-d H:i:s')) %}
-
-{% if conversation.lastMessage.author is not same as app.user %}
+{% if conversation.lastMessage.author is not same as app.user and conversation.lastMessage.isSeen is same as false %}
 <div class="card mt-3 mb-3 border-2 border-danger">
     <div class="card-header d-flex border-1 border-danger">
     {% else %}
@@ -30,8 +29,8 @@
         </h5>
         {% endif %}
         <div class="d-flex">
-        {% if conversation.lastMessage.author is not same as app.user %}
-        <i class="bi bi-exclamation-circle-fill color-red me-3"></i>
+            {% if conversation.lastMessage.author is not same as app.user and conversation.lastMessage.isSeen is same as false %}
+            <i class="bi bi-exclamation-circle-fill color-red me-3"></i>
         {% endif %}
         <p class="card-text">{{ conversation.lastMessage.content }}</p>
     </div>

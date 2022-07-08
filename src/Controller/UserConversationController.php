@@ -75,6 +75,7 @@ class UserConversationController extends AbstractController
             $messageRepository->add($message, true);
 
             $conversation->setLastMessage($message);
+            $conversation->getLastMessage()->setIsSeen(false);
             $convRepository->add($conversation, true);
 
             return $this->redirectToRoute('app_conversation', [
@@ -94,11 +95,16 @@ class UserConversationController extends AbstractController
         Request $request,
         MessageRepository $messageRepository,
         ConversationRepository $convRepository,
-        NotificationService $notificationService,
     ): Response {
         $convsCurrentUser = $this->getUser()->getConversations();
         if (!$convsCurrentUser->contains($conversation)) {
             return $this->redirectToRoute('app_my_conversations');
+        }
+
+        $lastMessage = $conversation->getLastMessage();
+        if ($lastMessage->getAuthor() !== $this->getUser()) {
+            $lastMessage->setIsSeen(true);
+            $messageRepository->add($lastMessage, true);
         }
 
         $message = new Message();
@@ -109,6 +115,7 @@ class UserConversationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $message->setAuthor($this->getUser());
             $message->setConversation($conversation);
+            $message->setIsSeen(false);
             $messageRepository->add($message, true);
 
             $conversation->setLastMessage($message);
