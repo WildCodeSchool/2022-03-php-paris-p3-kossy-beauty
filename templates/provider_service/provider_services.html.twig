@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="d-flex gap-4 align-items-end mb-4">
+<div class="d-flex gap-4 align-items-end mb-4 ps-3">
     <div><img class="rounded-circle" src="https://picsum.photos/150" alt="photo presta"></div>
     <div>
         <h1>{{user.companyName}}</h1>
@@ -14,7 +14,7 @@
 </div>
 <div class="accordion" id="accordionExample">
     <div class="">
-        <div class="d-flex">
+        <div class="d-flex justify-content-center">
             <h2 class="" id="headingOne">
                 <button class="btn-admin btn btn-light bg-white border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Prestations
@@ -75,8 +75,8 @@
     </div>
     <div class="">
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body px-0">
-                <div class="container px-0 width-100 border border-2 border-dark height-auto rounded ps-2">
+            <div class="accordion-body px-3">
+                <div class="container width-100 border border-2 border-dark height-auto rounded ps-2">
                     <p class="mb-0">{{user.companyDescription}}</p>
                     <p class="mb-0">Blabla</p>
                     <p class="mb-0">Blabla</p>
@@ -97,7 +97,7 @@
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div>
-                    <div class="container ">
+                    <div class="d-flex flex-wrap container justify-content-center ">
                         <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
                         <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
                         <img class="col-2 mx-3 my-3 rounded" src="https://picsum.photos/150" alt="photo_gallerie">
