@@ -13,6 +13,10 @@ import './bootstrap';
 
 //require('bootstrap');
 
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
+
+
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
@@ -37,10 +41,16 @@ triggerTabList.forEach(triggerEl => {
         const dataBsTarget = event.target.dataset.bsTarget
         const smallNavId = dataBsTarget.slice(1);
         const smallNav = document.querySelector('#' + smallNavId)
-        smallNav.addEventListener('mouseleave', event => {
+        document.querySelector('body').addEventListener('click', event => {
             event.preventDefault()
-            this.classList.remove('active')
-            smallNav.classList.remove('active', 'show')
+            if (event.target.classList.contains('nav-link') || event.target.classList.contains('smallnav')) {
+                // Do nothing
+            } else {
+                this.classList.remove('active')
+                triggerEl.ariaSelected = 'false'
+                triggerEl.tabIndex = '-1'
+                smallNav.classList.remove('active', 'show')
+            }
         })
     })
 })
