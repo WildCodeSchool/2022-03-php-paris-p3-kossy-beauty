@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import "_navbar.scss";
 @import "_edit.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
 
@@ -28,25 +29,4 @@ body {
 
 a.no-decoration {
   text-decoration: none;
-}
-
-.select-location {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding: 1px;
-}
-
-.select-districts option {
-  background-color: white;
-  color: green;
-}
-
-.submit-searchbar {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.tab-pane.position-absolute {
-  z-index: 100 !important;
-  background-color: #f2d281;
 }
