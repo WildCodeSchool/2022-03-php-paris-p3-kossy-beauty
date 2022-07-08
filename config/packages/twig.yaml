@@ -6,6 +6,7 @@ twig:
         provider: '@App\Service\ProviderService'
         whatsapp: '@App\Service\WhatsappService'
         geolocation: '@App\Service\GeolocationService'
+        notification: '@App\Service\NotificationService'
 
 when@test:
     twig:

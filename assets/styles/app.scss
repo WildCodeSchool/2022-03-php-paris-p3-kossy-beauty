@@ -1,9 +1,7 @@
-//start coding by removing this file and adding yours ;)
-
-
 @import "~bootstrap/scss/bootstrap";
 @import "_edit.scss";
 @import "_show_one_provider.scss";
+@import "_message.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
 
 * {
@@ -18,8 +16,12 @@ body {
   background-color: #00a19a;
 }
 
-.bg-secundary-kb {
+.bg-secondary-kb {
   background-color: #f2d281;
+}
+
+.bg-gray-500 {
+  background-color: #adb5bd;
 }
 
 .color-black {
@@ -30,10 +32,32 @@ body {
   color: white;
 }
 
+.color-red {
+  color: red;
+}
+
 .select-location {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   padding: 1px;
+}
+
+a.no-decoration {
+  text-decoration: none;
+}
+
+.tooltip-geolocation {
+  background: none;
+}
+
+.tooltip-geolocation, 
+.input-searchbox {
+  border-color: #198754;
+}
+
+select.form-select.select-locations {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='white' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  background-position: right 0.3rem center;
 }
 
 .select-districts option {
@@ -41,7 +65,18 @@ body {
   color: green;
 }
 
+input.input-searchbox::placeholder,
+input.input-searchbox:focus,
+input.input-searchbox {
+  color: #198754;
+}
+
 .submit-searchbar {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.tab-pane.position-absolute {
+  z-index: 100 !important;
+  background-color: #f2d281;
 }
