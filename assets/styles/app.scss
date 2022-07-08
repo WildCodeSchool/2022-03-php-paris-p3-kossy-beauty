@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_navbar.scss";
 @import "_edit.scss";
+@import "_message.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
 
 * {
@@ -15,8 +16,12 @@ body {
   background-color: #00a19a;
 }
 
-.bg-secundary-kb {
+.bg-secondary-kb {
   background-color: #f2d281;
+}
+
+.bg-gray-500 {
+  background-color: #adb5bd;
 }
 
 .color-black {

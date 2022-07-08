@@ -27,7 +27,8 @@ class SearchController extends AbstractController
             ->add('query', TextType::class, [
                 'label' => false,
                 'attr' => [
-                    'class' => 'form-control text-nowrap me-2 rounded-0',
+                    'class' => 'form-control text-nowrap me-2 rounded-0 input-searchbox',
+                    'size' => 40,
                     'placeholder' => 'Entrez un mot-clé'
                 ]
             ])
