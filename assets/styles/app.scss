@@ -10,16 +10,22 @@
   font-family: 'Raleway', sans-serif;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
 body {
   overflow-x: hidden;
-  flex:1;
-  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .bg-primary-kb {
@@ -51,4 +57,8 @@ body {
 
 a.no-decoration {
   text-decoration: none;
+}
+
+main {
+  flex: 1;
 }
