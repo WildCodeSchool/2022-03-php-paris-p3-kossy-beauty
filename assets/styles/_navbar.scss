@@ -4,6 +4,10 @@ footer {
     background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
 }
 
+footer {
+    z-index: 100;
+}
+
 .select-location {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;

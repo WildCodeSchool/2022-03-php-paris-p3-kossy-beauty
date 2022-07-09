@@ -1,0 +1,19 @@
+main.login {
+    overflow: hidden;
+}
+
+section#login-form {
+    top: 0;
+    left: 0;
+    padding: 0;
+}
+
+section#login-form .row > * {
+    padding: 0;
+}
+
+.nav-tabs,
+section#login-form .card {
+    border: 0;
+    border-radius: 0;
+}
