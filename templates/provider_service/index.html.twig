@@ -17,43 +17,38 @@
             </tr>
         </thead>
         <tbody>
-
-            {% if app.user is null %}
-                {{ render(path('login')) }}
-            {% else %}
-                {% for provider_service in provider_services %}
-                    {% if provider_service.provider.id == app.user.id %}
-                        <tr>
-                            <td>{{ provider_service.id }}</td>
-                            <td>{{ provider_service.provider.id }}</td>
-                            <td>{{ provider_service.service.id }}</td>
-                            <td>{{ provider_service.price }}</td>
-                            <td>{{ provider_service.duration }}</td>
-                            <td>
-                                <a href="{{ path('app_provider_service_show', {'id': provider_service.id}) }}">show</a>
-                                <a href="{{ path('app_provider_service_edit', {'id': provider_service.id}) }}">edit</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                    {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
-                        <tr>
-                            <td>{{ provider_service.id }}</td>
-                            <td>{{ provider_service.provider.id }}</td>
-                            <td>{{ provider_service.service.id }}</td>
-                            <td>{{ provider_service.price }}</td>
-                            <td>{{ provider_service.duration }}</td>
-                            <td>
-                                <a href="{{ path('app_provider_service_show', {'id': provider_service.id}) }}">show</a>
-                                <a href="{{ path('app_provider_service_edit', {'id': provider_service.id}) }}">edit</a>
-                            </td>
-                        </tr>
-                    {% endif %}
-                {% else %}
+            {% for provider_service in provider_services %}
+                {% if provider_service.provider.id == app.user.id %}
                     <tr>
-                        <td colspan="4">no records found</td>
+                        <td>{{ provider_service.id }}</td>
+                        <td>{{ provider_service.provider.id }}</td>
+                        <td>{{ provider_service.service.id }}</td>
+                        <td>{{ provider_service.price }}</td>
+                        <td>{{ provider_service.duration }}</td>
+                        <td>
+                            <a href="{{ path('app_provider_service_show', {'id': provider_service.id}) }}">show</a>
+                            <a href="{{ path('app_provider_service_edit', {'id': provider_service.id}) }}">edit</a>
+                        </td>
                     </tr>
-                {% endfor %}
-            {% endif %}
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') or is_granted('ROLE_SUPER_ADMIN') %}
+                    <tr>
+                        <td>{{ provider_service.id }}</td>
+                        <td>{{ provider_service.provider.id }}</td>
+                        <td>{{ provider_service.service.id }}</td>
+                        <td>{{ provider_service.price }}</td>
+                        <td>{{ provider_service.duration }}</td>
+                        <td>
+                            <a href="{{ path('app_provider_service_show', {'id': provider_service.id}) }}">show</a>
+                            <a href="{{ path('app_provider_service_edit', {'id': provider_service.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
