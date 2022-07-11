@@ -22,7 +22,7 @@ class ProviderServiceController extends AbstractController
     #[Route('/', name: 'app_provider_service_index', methods: ['GET'])]
     public function index(ProviderServiceRepository $provServRepository): Response
     {
-        if ($this->getUser()->getRoles()[0] === 'ROLE_USER'){
+        if ($this->getUser()->getRoles()[0] === 'ROLE_USER') {
             return $this->render('home/index.html.twig');
         } else {
             return $this->render('provider_service/index.html.twig', [
