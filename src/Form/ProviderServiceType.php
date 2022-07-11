@@ -14,8 +14,8 @@ class ProviderServiceType extends AbstractType
         $builder
             ->add('price')
             ->add('duration')
-            ->add('provider')
-            ->add('service')
+            // ->add('provider')
+            // ->add('service')
         ;
     }
 

@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/provider/service')]
 class ProviderServiceController extends AbstractController
@@ -20,9 +22,13 @@ class ProviderServiceController extends AbstractController
     #[Route('/', name: 'app_provider_service_index', methods: ['GET'])]
     public function index(ProviderServiceRepository $provServRepository): Response
     {
-        return $this->render('provider_service/index.html.twig', [
-            'provider_services' => $provServRepository->findAll(),
-        ]);
+        if ($this->getUser()->getRoles()[0] === 'ROLE_USER'){
+            return $this->render('home/index.html.twig');
+        } else {
+            return $this->render('provider_service/index.html.twig', [
+                'provider_services' => $provServRepository->findAll(),
+            ]);
+        }
     }
 
     #[Route('/new', name: 'app_provider_service_new', methods: ['GET', 'POST'])]
