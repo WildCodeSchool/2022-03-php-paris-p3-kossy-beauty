@@ -30,6 +30,15 @@ form.search-form {
     background-color: #f2d281;
 }
 
+li.nav-item button.nav-link {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0;
+    border: none;
+    position: relative;
+}
+
 li.nav-item button.nav-link:hover,
 li.nav-item button.nav-link.active {
     background: rgb(242, 210, 129);
@@ -37,11 +46,19 @@ li.nav-item button.nav-link.active {
     color: black;
 }
 
-li.nav-item button.nav-link {
-    font-weight: bold;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: -2px;
+li.nav-item button.nav-link:hover::before,
+li.nav-item button.nav-link.active::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: #00a19a;
+    border-radius: 50%;
+    border: 1px solid darkgrey;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 0.5rem;
+    margin-top: -5px;
 }
 
 div.tab-pane.smallnav {
