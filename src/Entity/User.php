@@ -101,6 +101,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     private $image;
 
     #[Vich\UploadableField(mapping: 'provider_file', fileNameProperty: 'image')]
+    #[Assert\File(
+        maxSize: '1M',
+        mimeTypes: ['image/jpeg', 'image/png', 'image/webp'],
+    )]
     private ?File $imageFile = null;
 
     #[ORM\Column(type: 'datetime')]
