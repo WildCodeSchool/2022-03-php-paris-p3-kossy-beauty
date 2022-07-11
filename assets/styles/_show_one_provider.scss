@@ -1,3 +1,23 @@
 .service_card {
-    box-shadow: 5px 5px 2px 1px rgb(228, 227, 227);
+    box-shadow: rgba(0, 0, 0, 0.15) 3px 3px 4px;
+}
+
+.delete-btn {
+    padding : 1px;
+    padding-top : 2px;
+    margin-top : 13px;
+    margin-right : 10px;
+}
+
+.a-prov {
+    color:black !important;
+}
+
+.btn-prov:hover {
+    background : #157347 !important ;
+    color : white !important;
+}
+
+.a-prov:hover {
+    color:white !important;
 }
