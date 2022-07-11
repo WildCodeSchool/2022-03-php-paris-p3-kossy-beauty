@@ -2,7 +2,12 @@ vich_uploader:
     db_driver: orm
 
     mappings:
-       profileImg_file:
-            uri_prefix: /images/profileImg
-                upload_destination: '%upload_directory%'
-                namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+       provider_file:
+            # alias qui nous permet d'accéder à nos images depuis le navigateur
+            uri_prefix: '%upload_directory%'
+            # Chemin vers le dossier de stockage
+            upload_destination: '%kernel.project_dir%/public%upload_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+
+    metadata:
+        type: attribute
