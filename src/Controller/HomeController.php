@@ -2,15 +2,27 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
+use App\Repository\ProviderServiceRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(UserRepository $userRepository, ProviderServiceRepository $provServRepository): Response
     {
-        return $this->render('home/index.html.twig');
+        $topProviders = $userRepository->findByIsTop(true);
+        $randomTopProvider = array_rand($topProviders, 2);
+        $selectedProvider = [];
+
+        foreach ($randomTopProvider as $value) {
+            $selectedProvider[] = $provServRepository->findByProvider($topProviders[$value]);
+        }
+
+        return $this->render('home/index.html.twig', [
+            'selectedProvider' => $selectedProvider,
+        ]);
     }
 }

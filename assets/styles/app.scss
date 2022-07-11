@@ -55,10 +55,38 @@ body {
   color: red;
 }
 
+.btn-secondary-kb {
+  background-color:#f2d281;
+  color: black;
+}
+
+.btn-secondary-kb:hover {
+  background-color: #00a19a;
+  color: white;
+}
+
 a.no-decoration {
   text-decoration: none;
 }
 
 main {
   flex: 1;
+}
+
+.card.top-provider:hover {
+  border-color: #f2d281;
+}
+
+.card.top-provider .card-body {
+  padding-bottom: 0;
+}
+
+.card.top-provider small {
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+i.icon-reward {
+  z-index: 90;
 }
