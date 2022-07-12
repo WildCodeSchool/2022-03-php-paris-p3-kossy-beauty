@@ -9,21 +9,41 @@
 {% for provider in selectedProvider %}
   <div class="col">
     <div class="card top-provider mb-3 border-0 position-relative">
-      <i class="icon-reward bi bi-award-fill text-success fs-2 position-absolute end-0 me-2"></i>
+      <i class="icon-reward bi bi-award-fill text-black fs-2 position-absolute end-0 me-2"></i>
       <div class="row g-0">
         <div class="col-md-4">
           <img class="img-fluid rounded-start" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" alt="Photo de">
         </div>
         <div class="col-md-8 border border-start-0">
           <div class="card-body">
-            <h5 class="card-title">{{ provider[loop.index0].service.name }}</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <h6 class="card-title">{{ provider[0].service.name }}</h6>
+            <p class="card-text">
+              <span class="d-block smalltext">
+                <i class="bi bi-person-fill"></i> {{ provider[0].provider.companyName }}
+              </span>
+              <span class="d-block smalltext">
+                <i class="bi bi-geo-alt-fill"></i> {{ provider[0].provider.district }}, {{ provider[0].provider.town }}
+              </span>
+              <span class="d-block smalltext description">
+                <i class="bi bi-card-text"></i> bla bla bla {{ provider[0].provider.companyDescription }}
+              </span>
+              <div class="price-duration">
+                <span class="badge bg-success fw-bold">
+                  <i class="bi bi-wallet2"></i>
+                  {{ provider[0].price }} €
+                </span>
+                <span class="badge bg-secondary fw-bold">
+                  <i class="bi bi-clock-history"></i>
+                  {{ provider[0].duration }} minutes
+                </span>
+              </div>
+            </p>
             <div class="row align-items-center">
               <div class="col-7">
-                <p class="card-text"><small class="text-muted">{{ provider[loop.index0].service.category.name }}</small></p>
+                <p class="card-text"><small class="text-muted">{{ provider[0].service.category.name }}</small></p>
               </div>
               <div class="col text-end">
-                <a class="btn btn-secondary-kb" href="{{ path('app_service_show', {'id': provider[loop.index0].service.id}) }}">Découvrir <i class="bi bi-box-arrow-right fw-bolder"></i></a>
+                <a class="btn btn-secondary-kb btn-to-service btn-sm" href="{{ path('app_service_show', {'id': provider[0].service.id}) }}">Découvrir <i class="bi bi-box-arrow-right fw-bolder"></i></a>
               </div>
             </div>
           </div>

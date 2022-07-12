@@ -65,6 +65,10 @@ body {
   color: white;
 }
 
+.smalltext {
+  font-size: 0.8rem;
+}
+
 a.no-decoration {
   text-decoration: none;
 }
@@ -79,6 +83,21 @@ main {
 
 .card.top-provider .card-body {
   padding-bottom: 0;
+}
+
+.card.top-provider .description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: auto;
+}
+
+.card.top-provider .price-duration {
+  margin-top: -0.5rem;
+}
+
+.card.top-provider .btn-to-service {
+  margin-top: -0.75rem;
+  margin-right: -0.5rem;
 }
 
 .card.top-provider small {

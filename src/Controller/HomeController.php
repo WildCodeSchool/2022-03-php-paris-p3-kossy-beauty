@@ -13,12 +13,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(UserRepository $userRepository, ProviderServiceRepository $provServRepository): Response
     {
-        $topProviders = $userRepository->findByIsTop(true);
-        $randomTopProvider = array_rand($topProviders, 2);
+        // Display 2 top providers
+        $topProviders = $userRepository->findByIsTop(true, null, 2);
         $selectedProvider = [];
 
-        foreach ($randomTopProvider as $value) {
-            $selectedProvider[] = $provServRepository->findByProvider($topProviders[$value]);
+        foreach ($topProviders as $topProvider) {
+            // Display only the first service for each provider
+            $selectedProvider[] = $provServRepository->findByProvider($topProvider, null, 1);
         }
 
         return $this->render('home/index.html.twig', [
