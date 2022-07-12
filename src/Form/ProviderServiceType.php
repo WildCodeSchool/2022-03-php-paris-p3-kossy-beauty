@@ -23,9 +23,6 @@ class ProviderServiceType extends AbstractType
                     'class' => Service::class,
                     'choice_label' => 'name'
                     ])
-                ->add('provider', HiddenType::class, [
-                    'data' => 'abcdef'
-                    ])
                 ;
     }
 
