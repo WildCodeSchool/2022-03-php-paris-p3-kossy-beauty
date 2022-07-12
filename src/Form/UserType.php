@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 use Symfony\Component\Security\Core\Security;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class UserType extends AbstractType
 {
@@ -29,7 +30,11 @@ class UserType extends AbstractType
             ->add('email', TextType::class, ['label' => 'Email'])
             ->add('town', TextType::class, ['label' => 'Ville'])
             ->add('district', TextType::class, ['label' => 'Quartier'])
-            //->add('image')
+            ->add('imageFile', VichFileType::class, [
+                'required'      => false,
+                'allow_delete'  => true, // not mandatory, default is true
+                'download_uri' => true, // not mandatory, default is true
+                ])
         ;
 
         // Display additionnal fields for a specific role
