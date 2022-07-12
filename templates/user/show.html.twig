@@ -10,7 +10,7 @@
 <div class="container rounded bg-white">
     <div class="row">
         <div class="col-md-2 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">{{ user.image }}<span class="font-weight-bold">{{ user.firstname }} {{ user.lastname }}</span>  
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ vich_uploader_asset(user) }}"><span class="font-weight-bold">{{ user.firstname }} {{ user.lastname }}</span>  
             {% if is_granted("ROLE_ADMIN") %}
             <span>{{ user.id }}</span>
             {% endif %}
