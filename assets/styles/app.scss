@@ -101,9 +101,9 @@ main {
 }
 
 .card.top-provider small {
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 i.icon-reward {
