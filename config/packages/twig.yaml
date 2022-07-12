@@ -7,6 +7,9 @@ twig:
         whatsapp: '@App\Service\WhatsappService'
         geolocation: '@App\Service\GeolocationService'
         notification: '@App\Service\NotificationService'
+    date:
+        format: j F Y
+        timezone: Europe/Paris
 
 when@test:
     twig:
