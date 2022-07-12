@@ -4,7 +4,5 @@
 
 {% block body %}
     <h1>Edition des informations de {{ user.firstname ~ ' ' ~ user.lastname }}</h1>
-
     {{ include('user/_form.html.twig', {'button_label': 'Valider'}) }}
-
 {% endblock %}
