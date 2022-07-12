@@ -41,6 +41,7 @@ class UserFixtures extends Fixture
             $provider->setLastname('Plopinette' . $i);
             $provider->setTown('PlopCity');
             $provider->setIsTop(false);
+            $provider->setEmail('provider' . $i . '@gmail.com');
             $provider->setIsArchived(false);
             if ($i > 9) {
                 $provider->setTelephone('01000000' . $i);
