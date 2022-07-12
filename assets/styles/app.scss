@@ -86,9 +86,9 @@ main {
 }
 
 .card.top-provider .description {
+  overflow-x: clip;
   text-overflow: ellipsis;
-  overflow: hidden;
-  width: auto;
+  white-space: nowrap;
 }
 
 .card.top-provider .price-duration {
