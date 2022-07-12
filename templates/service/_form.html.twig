@@ -1,9 +1,5 @@
 {{ form_start(form) }}
 <p class="mt-3 mb-0">{{ form_label(form.name, 'Nom du service :')}} {{ form_widget(form.name) }}</p>
 <p class="mt-3 mb-0">{{ form_label(form.category, 'Catégorie :')}} {{ form_widget(form.category) }}</p>
-{# <p class="mt-3 mb-0">{{ form.download_uri }}</p> #}
-
-
-
 <button class="btn btn-success p-2 mt-2">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
