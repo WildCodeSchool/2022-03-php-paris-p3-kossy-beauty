@@ -4,30 +4,29 @@ namespace App\Form;
 
 use App\Entity\ProviderService;
 use App\Entity\User;
+use App\Entity\Service;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class ProviderServiceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        if (in_array('ROLE_PROVIDER', $options ['role'])) {
             $builder
                 ->add('price')
                 ->add('duration')
-                // ->add('provider')
-                // ->add('service')
-            ;
-        }
-        if (in_array('ROLE_ADMIN', $options ['role'])) {
-            $builder
-                ->add('price')
-                ->add('duration')
-                ->add('provider')
-                ->add('service')
-            ;
-        }
+                ->add('service', EntityType::class, [
+                    'placeholder' => 'Service',
+                    'class' => Service::class,
+                    'choice_label' => 'name'
+                    ])
+                ->add('provider', HiddenType::class, [
+                    'data' => 'abcdef'
+                    ])
+                ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
