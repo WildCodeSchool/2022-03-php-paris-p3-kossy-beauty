@@ -16,8 +16,8 @@
             <div class="container row row-cols-1 row-cols-md-5 g-4 mt-1">
                 {% for service in globalServices.getServiceByCategoryId(category.id)%}
                 <div class="col pb-4">
-                    <div class="card d-flex align-items-center pt-1">
-                        <img src="https://picsum.photos/200" class="card-img-top w-25 rounded-circle" alt="..." />
+                    <div class="card d-flex align-items-center pt-1 h-100">
+                        <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="card-img-top rounded-circle w-25"/>
                         <div class="card-body p-1">
                             <p class="card-text">
                                 <a class="no-decoration" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">{{
