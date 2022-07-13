@@ -1,10 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_navbar.scss";
-<<<<<<< HEAD
 @import "_login.scss";
-=======
 @import "_gallery.scss";
->>>>>>> dev
 @import "_edit.scss";
 @import "_show_one_provider.scss";
 @import "_message.scss";
@@ -26,15 +23,10 @@ html {
 
 body {
   overflow-x: hidden;
-<<<<<<< HEAD
-  flex:1;
-  min-height: 100%;
-=======
   width: 100vw;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
->>>>>>> dev
 }
 
 .bg-primary-kb {
