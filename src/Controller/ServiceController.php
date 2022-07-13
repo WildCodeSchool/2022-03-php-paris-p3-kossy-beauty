@@ -32,7 +32,7 @@ class ServiceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $serviceRepository->add($service, true);
 
-            return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service/new.html.twig', [
@@ -58,7 +58,7 @@ class ServiceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $serviceRepository->add($service, true);
 
-            return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('service/edit.html.twig', [
@@ -74,6 +74,6 @@ class ServiceController extends AbstractController
             $serviceRepository->remove($service, true);
         }
 
-        return $this->redirectToRoute('app_service_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }
 }
