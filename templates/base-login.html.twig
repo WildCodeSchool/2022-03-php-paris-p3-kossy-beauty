@@ -23,7 +23,7 @@
         {% include "navbar/_navbar.html.twig" %}
         {% include "navbar/_categorySearchNavbar.html.twig" %}
         
-        <main class="container my-5 pb-5">
+        <main class="login position-relative">
             {% for category, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="alert alert-{{ category }} text-center">
@@ -35,5 +35,6 @@
         </main>
 
          {% include "footer/footer.html.twig" %}
+
     </body>
 </html>

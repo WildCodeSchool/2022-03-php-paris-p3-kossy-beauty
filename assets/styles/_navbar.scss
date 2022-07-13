@@ -1,0 +1,75 @@
+nav,
+ul.nav,
+footer {
+    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+}
+
+form.search-form {
+    left: 6.1rem;
+    position: relative;
+}
+
+.select-location {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 1px;
+}
+
+.select-districts option {
+    background-color: white;
+    color: green;
+}
+
+.submit-searchbar {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.tab-pane.position-absolute {
+    z-index: 100 !important;
+    background-color: #f2d281;
+}
+
+li.nav-item button.nav-link {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 0;
+    border: none;
+    position: relative;
+}
+
+li.nav-item button.nav-link:hover,
+li.nav-item button.nav-link.active {
+    background: rgb(242, 210, 129);
+    border: rgb(242, 210, 129);
+    color: black;
+}
+
+li.nav-item button.nav-link:hover::before,
+li.nav-item button.nav-link.active::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: #00a19a;
+    border-radius: 50%;
+    border: 1px solid darkgrey;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 0.5rem;
+    margin-top: -5px;
+}
+
+div.tab-pane.smallnav {
+    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    border-top: 4px solid rgb(242, 210, 129);
+}
+
+div.tab-pane.smallnav .card {
+    background: white;
+}
+
+div.tab-pane.smallnav .card:hover {
+    background: rgb(242, 210, 129);
+}
