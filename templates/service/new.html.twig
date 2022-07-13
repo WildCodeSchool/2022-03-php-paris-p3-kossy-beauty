@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Service{% endblock %}
+{% block title %}Créer un nouveau service{% endblock %}
 
 {% block body %}
-    <h1>Create new Service</h1>
+    <h1>Créer un nouveau service</h1>
 
     {{ include('service/_form.html.twig') }}
 
-    <a href="{{ path('app_service_index') }}">back to list</a>
+    <a class="btn p-0 mt-3" href="{{ path('app_admin') }}"><i class="bi bi-arrow-left"></i> Retour</a>
 {% endblock %}
