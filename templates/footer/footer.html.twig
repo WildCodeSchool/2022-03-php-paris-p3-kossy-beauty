@@ -2,13 +2,13 @@
   <div class="container">
     <div class="row py-4">
       <div class="col">
-        <a class="d-block" href="{{ url('home') }}">Page d'accueil</a>
+        <a class="d-block" href="{{ path('home') }}">Page d'accueil</a>
         {% if is_granted("ROLE_USER") %}
-          <a class="d-block" href="{{ url('profile') }}">Profil</a>
+          <a class="d-block" href="{{ path('app_user_show', {id: app.user.id}) }}">Profil</a>
         {% else %}
-          <a class="d-block" href="{{ url('login') }}">Inscription/Connexion</a>
+          <a class="d-block" href="{{ path('login') }}">Inscription/Connexion</a>
         {% endif %}
-        <a class="d-block" href="{{ url('app_register_pro') }}">Professionnels</a>
+        <a class="d-block" href="{{ path('app_register_pro') }}">Professionnels</a>
       </div>
       <div class="col">
         <a class="d-block" href="">A propos de Kossy Beauty</a>
