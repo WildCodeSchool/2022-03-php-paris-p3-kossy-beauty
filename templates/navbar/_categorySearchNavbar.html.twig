@@ -1,6 +1,6 @@
 
-    <ul class="nav nav-tabs nav-categories border-0 d-flex justify-content-center" id="myTab" role="tablist">
-        {% for category in categories.getAll %}
+    <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
+        {% for category in globalCategories.getAll %}
         <li class="nav-item" role="presentation">
             <button class="nav-link color-black px-4 py-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#category{{ category.id }}"
                 type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
@@ -10,14 +10,14 @@
         {% endfor %}
     </ul>
     <div class="tab-content d-flex justify-content-center position-relative smallnav" id="myTabContent">
-        {% for category in categories.getAll %}
-        <div class="tab-pane fade rounded-bottom position-absolute smallnav" id="category{{ category.id }}" role="tabpanel" aria-labelledby="profile-tab"
+        {% for category in globalCategories.getAll %}
+        <div class="tab-pane fade position-absolute smallnav" id="category{{ category.id }}" role="tabpanel" aria-labelledby="profile-tab"
             tabindex="0">
             <div class="container row row-cols-1 row-cols-md-5 g-4 mt-1">
                 {% for service in globalServices.getServiceByCategoryId(category.id)%}
                 <div class="col pb-4">
-                    <div class="card d-flex align-items-center pt-1">
-                        <img src="https://picsum.photos/200" class="card-img-top w-25 rounded-circle" alt="..." />
+                    <div class="card d-flex align-items-center pt-1 h-100">
+                        <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="card-img-top rounded-circle w-25"/>
                         <div class="card-body p-1">
                             <p class="card-text">
                                 <a class="no-decoration color-black" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">{{

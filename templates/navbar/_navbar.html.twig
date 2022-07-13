@@ -5,9 +5,6 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse pt-0 justify-content-end" id="navbarSupportedContent">
-      {% if is_granted("ROLE_SUPER_ADMIN") %}
-        <a class="ms-auto"href="{{ path('app_admin') }}">Super Admin Dashboard</a>
-      {% endif %}
 
       {{ render(controller(
         'App\\Controller\\SearchController::searchBar'
@@ -35,6 +32,11 @@
               Mon compte
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              {% if is_granted("ROLE_SUPER_ADMIN") %}
+                <li>
+                    <a class="dropdown-item"href="{{ path('app_admin') }}">Dashboard</a>
+                </li>
+              {% endif %}
               <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
               <li>
                 <hr class="dropdown-divider">
