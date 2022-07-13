@@ -1,6 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
+@import "_navbar.scss";
+@import "_gallery.scss";
 @import "_edit.scss";
-
 @import "_show_one_provider.scss";
 @import "_message.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
@@ -9,20 +10,37 @@
   font-family: 'Raleway', sans-serif;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
   overflow-x: hidden;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 .bg-primary-kb {
   background-color: #00a19a;
+  background-color: rgb(0, 161, 154);
 }
 
 .bg-secondary-kb {
   background-color: #f2d281;
+  background-color: rgb(242, 210, 129);
 }
 
 .bg-gray-500 {
   background-color: #adb5bd;
+  background-color: rgb(173, 181, 189);
 }
 
 .color-black {
@@ -37,47 +55,71 @@ body {
   color: red;
 }
 
-.select-location {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  padding: 1px;
+.color-gray {
+  color: #adb5bd;
+}
+
+.btn-secondary-kb {
+  background-color:#f2d281;
+  color: black;
+}
+
+.btn-secondary-kb:hover {
+  background-color: #00a19a;
+  color: white;
+}
+
+.smalltext {
+  font-size: 0.8rem;
 }
 
 a.no-decoration {
   text-decoration: none;
 }
 
-.tooltip-geolocation {
-  background: none;
+main {
+  flex: 1;
 }
 
-.tooltip-geolocation, 
-.input-searchbox {
-  border-color: #198754;
+.card.top-provider:hover {
+  border-color: #f2d281;
 }
 
-select.form-select.select-locations {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='white' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='1' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
-  background-position: right 0.3rem center;
+.card.top-provider .card-body {
+  padding-bottom: 0;
 }
 
-.select-districts option {
-  background-color: white;
-  color: green;
+.card.top-provider .description {
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-input.input-searchbox::placeholder,
-input.input-searchbox:focus,
-input.input-searchbox {
-  color: #198754;
+.card.top-provider .price-duration {
+  margin-top: -0.5rem;
 }
 
-.submit-searchbar {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+.card.top-provider .btn-to-service {
+  margin-top: -0.75rem;
+  margin-right: -0.5rem;
 }
 
-.tab-pane.position-absolute {
-  z-index: 100 !important;
-  background-color: #f2d281;
+.card.top-provider small {
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+i.icon-reward {
+  z-index: 90;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 0;
+}
+
+footer a:hover {
+  color: #f2d281;
 }

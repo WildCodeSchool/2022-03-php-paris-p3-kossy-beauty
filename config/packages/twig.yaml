@@ -1,12 +1,15 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals:
-        categories: '@App\Service\CategoryService'
+        globalCategories: '@App\Service\CategoryService'
         globalServices: '@App\Service\ServiceService'
         provider: '@App\Service\ProviderService'
         whatsapp: '@App\Service\WhatsappService'
         geolocation: '@App\Service\GeolocationService'
         notification: '@App\Service\NotificationService'
+    date:
+        format: j F Y
+        timezone: Europe/Paris
 
 when@test:
     twig:

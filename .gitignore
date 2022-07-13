@@ -35,3 +35,4 @@ yarn-error.log
 ###< phpunit/phpunit ###
 
 /migrations
+/public/uploads
