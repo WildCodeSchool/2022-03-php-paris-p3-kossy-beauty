@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Service;
+use App\Repository\UserRepository;
 use App\Repository\ServiceRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ProviderServiceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SearchController extends AbstractController
 {
@@ -47,15 +50,36 @@ class SearchController extends AbstractController
      * @param Request $request
      */
     #[Route('/handleSearch', name: 'handleSearch', methods: ['POST'])]
-    public function handleSearch(Request $request, ServiceRepository $serviceRepository)
+    public function handleSearch(
+        Request $request,
+        ServiceRepository $serviceRepository,
+        ProviderServiceRepository $provServRepository,
+        UserRepository $userRepository,
+    ): Response
     {
+        // Search query
         $query = $request->request->all('form')['query'];
         $searchedServices = '';
         if ($query) {
             $searchedServices = $serviceRepository->findServicesByName($query);
         }
+
+        //var_dump($searchedServices); die;
+
+        // Providers linked to the query results
+        foreach($searchedServices as $service) {
+            $providers = $provServRepository->findByService($service);
+            foreach($providers as $provider) {
+                $provider = $userRepository->find($provider);
+            }
+            var_dump($provider); die;
+        }
+        //$providersInService = $provServRepository->findBy(['service' => $searchedServices]);
+
+
         return $this->render('search/index.html.twig', [
             'searchedServices' => $searchedServices,
+            'providers' => $providers,
         ]);
     }
 }
