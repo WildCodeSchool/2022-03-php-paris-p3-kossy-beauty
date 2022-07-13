@@ -1,5 +1,27 @@
-<footer class="position-relative text-center text-lg-start">
-  <div class="text-center p-3" >
-  Kossy Beauty  © 2022. Tous droits réservés.
+<footer class="text-center text-white">
+  <div class="container">
+    <div class="row py-4">
+      <div class="col">
+        <a class="d-block" href="{{ url('home') }}">Page d'accueil</a>
+        {% if is_granted("ROLE_USER") %}
+          <a class="d-block" href="{{ url('profile') }}">Profil</a>
+        {% else %}
+          <a class="d-block" href="{{ url('login') }}">Inscription/Connexion</a>
+        {% endif %}
+        <a class="d-block" href="{{ url('app_register_pro') }}">Professionnels</a>
+      </div>
+      <div class="col">
+        <a class="d-block" href="">A propos de Kossy Beauty</a>
+        <a class="d-block" href="">Nous contacter</a>
+      </div>
+      <div class="col text-center">
+        <span class="text-success">Kossy Beauty est un site de mise en relation entre les profesionnels de la cosmétique et les particuliers.</span>
+        <span class="text-success">Trouvez en quelques clics les meilleurs professionnels les plus proches de chez vous.</span>
+      </div>
+    </div>
+    <hr />
+    <div class="text-center pb-3" >
+    Kossy Beauty © 2022. Tous droits réservés.
+    </div>
   </div>
 </footer>

@@ -1,8 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_navbar.scss";
+<<<<<<< HEAD
 @import "_login.scss";
+=======
+@import "_gallery.scss";
+>>>>>>> dev
 @import "_edit.scss";
-
 @import "_show_one_provider.scss";
 @import "_message.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
@@ -11,16 +14,27 @@
   font-family: 'Raleway', sans-serif;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 html {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    width: 100vw;
+    height: 100vh;
 }
 
 body {
   overflow-x: hidden;
+<<<<<<< HEAD
   flex:1;
   min-height: 100%;
+=======
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+>>>>>>> dev
 }
 
 .bg-primary-kb {
@@ -50,10 +64,71 @@ body {
   color: red;
 }
 
+.color-gray {
+  color: #adb5bd;
+}
+
+.btn-secondary-kb {
+  background-color:#f2d281;
+  color: black;
+}
+
+.btn-secondary-kb:hover {
+  background-color: #00a19a;
+  color: white;
+}
+
+.smalltext {
+  font-size: 0.8rem;
+}
+
 a.no-decoration {
   text-decoration: none;
 }
 
 main {
-  height: 100vh;
+  flex: 1;
+}
+
+.card.top-provider:hover {
+  border-color: #f2d281;
+}
+
+.card.top-provider .card-body {
+  padding-bottom: 0;
+}
+
+.card.top-provider .description {
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card.top-provider .price-duration {
+  margin-top: -0.5rem;
+}
+
+.card.top-provider .btn-to-service {
+  margin-top: -0.75rem;
+  margin-right: -0.5rem;
+}
+
+.card.top-provider small {
+  overflow-x: clip;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+i.icon-reward {
+  z-index: 90;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 0;
+}
+
+footer a:hover {
+  color: #f2d281;
 }
