@@ -39,6 +39,10 @@
               {% endif %}
               <li><a class="dropdown-item" href="{{ path('app_user_show', {id: app.user.id}) }}">Voir mon profil</a></li>
               <li>
+              {% if is_granted("ROLE_PROVIDER") %}
+              <li><a class="dropdown-item" href="{{ path('app_provider_services_list', {id: app.user.id }) }}">Ma page pro</a></li>
+              <li>
+              {% endif %}
                 <hr class="dropdown-divider">
               </li>
               <li><a class="dropdown-item" href="/logout">Se déconnecter</a></li>

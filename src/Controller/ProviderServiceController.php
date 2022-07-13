@@ -13,6 +13,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/provider/service')]
 class ProviderServiceController extends AbstractController
@@ -20,28 +22,38 @@ class ProviderServiceController extends AbstractController
     #[Route('/', name: 'app_provider_service_index', methods: ['GET'])]
     public function index(ProviderServiceRepository $provServRepository): Response
     {
-        return $this->render('provider_service/index.html.twig', [
-            'provider_services' => $provServRepository->findAll(),
-        ]);
+        if ($this->getUser() === null) {
+            return $this->redirect('../../login');
+        } elseif ($this->getUser() != null && $this->getUser()->getRoles()[0] === 'ROLE_USER') {
+            return $this->redirect('../../');
+        } else {
+            return $this->render('provider_service/index.html.twig', [
+                'provider_services' => $provServRepository->findAll(),
+            ]);
+        }
     }
 
     #[Route('/new', name: 'app_provider_service_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProviderServiceRepository $provServRepository): Response
     {
-        $providerService = new ProviderService();
-        $form = $this->createForm(ProviderServiceType::class, $providerService);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $provServRepository->add($providerService, true);
+        if ($this->getUser() != null && $this->getUser()->getRoles()[0] === 'ROLE_PROVIDER') {
+            $providerService = new ProviderService();
+            $form = $this->createForm(ProviderServiceType::class, $providerService);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
+            if ($form->isSubmitted() && $form->isValid()) {
+                $provServRepository->add($providerService, true);
+
+                return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
+            }
+            return $this->renderForm('provider_service/new.html.twig', [
+                'provider_service' => $providerService,
+                'form' => $form,
+            ]);
+        } else {
+            return $this->redirect('../../');
         }
-
-        return $this->renderForm('provider_service/new.html.twig', [
-            'provider_service' => $providerService,
-            'form' => $form,
-        ]);
     }
 
     #[Route('/{id}', name: 'app_provider_service_show', methods: ['GET'])]

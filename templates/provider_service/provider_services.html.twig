@@ -44,7 +44,7 @@
                 </div>
                 <div class="container px-0">
                     {% for service in services %}
-                        <div class="service_card d-flex border border-dark mb-4 rounded-pill border-2">
+                        <div class="service_card d-flex border border-dark mb-4 rounded-pill border-1">
                             <p class="col-4 mt-3 ms-3 fw-bold">{{ service.service.name }}</p>
                             <div class="d-flex col-4 justify-content-around mt-3">
                                 <p>{{ service.price }} €</p>
@@ -67,7 +67,7 @@
             {% if is_granted("ROLE_PROVIDER") %}
                 <h2 class="" id="headingTwo">
                     <button class="btn-prov btn btn-light bg-white border-dark ms-3" type="button">
-                    <a class="text-dark text-decoration-none" href="{{ path('app_service_new') }}">Ajouter une prestation<i class="bi bi-plus"></i></a>
+                    <a class="text-dark text-decoration-none" href="{{ path('app_provider_service_new') }}">Ajouter une prestation<i class="bi bi-plus"></i></a>
                     </button>
                 </h2>
             {% endif %}
