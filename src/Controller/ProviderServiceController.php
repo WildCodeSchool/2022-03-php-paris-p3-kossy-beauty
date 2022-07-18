@@ -43,13 +43,17 @@ class ProviderServiceController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $providerService->setProvider($this->getUser());
                 $provServRepository->add($providerService, true);
 
-                return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_provider_services_list', [
+                    'id' => $this->getUser()->getId()
+                ], Response::HTTP_SEE_OTHER);
             }
             return $this->renderForm('provider_service/new.html.twig', [
                 'provider_service' => $providerService,
                 'form' => $form,
+                'id' => $this->getUser()->getId()
             ]);
         } else {
             return $this->redirect('../../');

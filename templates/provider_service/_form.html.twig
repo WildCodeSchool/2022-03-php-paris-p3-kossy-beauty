@@ -1,6 +1,7 @@
 {{ form_start(form) }}
-    
-    <input type="hidden" name="provider" value="{{ app.user.id }}">
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <p class="mt-3 mb-0">{{ form_label(form.service, 'Service :')}} {{ form_widget(form.service) }}</p>    
+    <p class="mt-3 mb-0">{{ form_label(form.price, 'Prix du Service :')}} {{ form_widget(form.price) }}</p>
+    <p class="mt-3 mb-0">{{ form_label(form.duration, 'Durée du Service :')}} {{ form_widget(form.duration) }}</p>
+    <button class="btn btn-success p-2 mt-2">{{ button_label|default('Sauvegarder') }}</button>
 {{ form_end(form) }}
+
