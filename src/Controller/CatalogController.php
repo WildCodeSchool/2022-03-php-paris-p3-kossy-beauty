@@ -32,7 +32,11 @@ class CatalogController extends AbstractController
             $catalog->setUser($this->getUser());
             $catalogRepository->add($catalog, true);
 
-            return $this->redirectToRoute('app_provider_services_list', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'app_provider_services_list',
+                ['id' => $this->getUser()->getId()],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->renderForm('catalog/new.html.twig', [
@@ -73,7 +77,10 @@ class CatalogController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $catalog->getId(), $request->request->get('_token'))) {
             $catalogRepository->remove($catalog, true);
         }
-
-        return $this->redirectToRoute('app_catalog_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute(
+            'app_provider_services_list',
+            ['id' => $this->getUser()->getId()],
+            Response::HTTP_SEE_OTHER
+        );
     }
 }
