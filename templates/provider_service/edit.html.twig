@@ -5,9 +5,10 @@
 {% block body %}
     <h1>Edit ProviderService</h1>
 
-    {{ include('provider_service/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_provider_service_index') }}">back to list</a>
+    {{ include('provider_service/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
     {{ include('provider_service/_delete_form.html.twig') }}
+    
+    <a class="btn p-0 mt-3" href="{{ path('app_provider_services_list', {id: app.user.id}) }}"><i class="bi bi-arrow-left"></i> Retour</a>
+
 {% endblock %}
