@@ -4,25 +4,26 @@
 
 {% block body %}
 
-<div class="d-md-flex gap-4 align-items-end mb-4 ps-3">
-    <div><img class="rounded-circle d-block mb-2" src="https://picsum.photos/150" alt="photo presta"></div>
-    <div class="">
-        <h1 class="align-items-end">{{user.companyName}}</h1>
+<div class="d-flex gap-4 align-items-end mb-4 ps-3">
+    <div><img class="rounded-circle" width="150px" src="{{ vich_uploader_asset(user) }}" alt="Profile picture of the provider"></div>
+    <div>
+        <h1>{{user.companyName}}</h1>
         <p class="mb-0">{{user.town}}</p>
-        <p class="mb-0">{{user.district}} Quartier</p>
+        <p class="mb-0">{{user.district}}</p>
     </div>
 </div>
+<div>
+    {{ user.companyDescription }}
+</div>
+{% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
+    <a class="btn btn-outline-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer votre description <i class="bi bi-pen"></i></a>
+{% endif %}
 <div class="accordion" id="accordionExample">
     <div class="">
         <div class="d-md-flex justify-content-center">
             <h2 class="" id="headingOne">
                 <button class="btn-prov d-block mx-auto btn btn-light bg-white border-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Prestations
-                </button>
-            </h2>
-            <h2 class="" id="headingTwo">
-                <button class="btn-prov d-block mx-auto btn btn-light bg-white border-dark collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Description/disponibilités
                 </button>
             </h2>
             <h2 class="" id="headingThree">
@@ -75,47 +76,28 @@
         </div>
     </div>
     <div class="">
-        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body px-3">
-                <div class="container width-100 border border-2 border-dark height-auto rounded ps-2">
-                    <p class="mb-0">{{user.companyDescription}}</p>
-                    <p class="mb-0">Blabla</p>
-                    <p class="mb-0">Blabla</p>
-                </div>
-                    <div class="container px-0">
-                </div>
-            </div>
-            {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
-            <h2 class="" id="headingTwo">
-                <button class="btn-prov btn btn-light bg-white border-dark ms-3" type="button">
-                <a class="text-dark text-decoration-none" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer votre profil   <i class="bi bi-pen"></i></a>
-                </button>
-            </h2>
-            {% endif %}
-        </div>
-    </div>
-    <div class="">
         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
             <div class="accordion-body">
+                {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
+                <a class="btn btn-outline-success" href="{{ path('app_catalog_new') }}">Ajouter une photo</a>
+                {% endif %}
                 <div>
                     <div class="d-flex flex-wrap container justify-content-center ">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
-                        <img class="mx-3 my-3 rounded" src="https://picsum.photos/200" alt="photo_gallerie">
+                        {% for catalog in catalogs %}
+                        {% if catalog.user.id == user.id %}
+                        <img src="{{ vich_uploader_asset(catalog) }}" alt="Photography from the provider catalog" class="card-img-top rounded-circle w-25"/>
+                        {% endif %}
+                        {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
+                        <form method="post" action="{{ path('app_catalog_delete', {'id': catalog.id}) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ catalog.id) }}">
+                            <button class="btn color-red"><i class="bi bi-x-circle"></i></button>
+                        </form>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                 </div>
             </div>
          </div>
     </div>
 </div>
-{# <a href="{{ path('app_provider_service_new') }}">Create new</a> #}
 {% endblock %}

@@ -12,6 +12,10 @@ vich_uploader:
             uri_prefix: '%upload_directory%'
             upload_destination: '%kernel.project_dir%/public%upload_directory%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+       catalog_file:
+            uri_prefix: '%upload_directory%'
+            upload_destination: '%kernel.project_dir%/public%upload_directory%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
 
     metadata:
         type: attribute
