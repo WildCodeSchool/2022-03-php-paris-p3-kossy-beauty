@@ -44,13 +44,17 @@ class ProviderServiceController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $providerService->setProvider($this->getUser());
                 $provServRepository->add($providerService, true);
 
-                return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_provider_services_list', [
+                    'id' => $this->getUser()->getId()
+                ], Response::HTTP_SEE_OTHER);
             }
             return $this->renderForm('provider_service/new.html.twig', [
                 'provider_service' => $providerService,
                 'form' => $form,
+                'id' => $this->getUser()->getId()
             ]);
         } else {
             return $this->redirect('../../');
@@ -86,19 +90,6 @@ class ProviderServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_provider_service_delete', methods: ['POST'])]
-    public function delete(
-        Request $request,
-        ProviderService $providerService,
-        ProviderServiceRepository $provServRepository
-    ): Response {
-        if ($this->isCsrfTokenValid('delete' . $providerService->getId(), $request->request->get('_token'))) {
-            $provServRepository->remove($providerService, true);
-        }
-
-        return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
-    }
-
     #[Route('/list/{id}', name: 'app_provider_service_show_provider_by_service', methods: ['GET'])]
     public function showProviderByService(
         Service $service,
@@ -121,5 +112,22 @@ class ProviderServiceController extends AbstractController
             'user' => $user,
             'catalogs' => $catalogRepository->findBy(['user' => $this->getUser()])
         ]);
+    }
+
+    #[Route('/{id}', name: 'app_provider_service_delete', methods: ['POST'])]
+    public function delete(
+        Request $request,
+        ProviderService $providerService,
+        ProviderServiceRepository $provServRepository,
+    ): Response {
+        if ($this->isCsrfTokenValid('delete' . $providerService->getId(), $request->request->get('_token'))) {
+            $provServRepository->remove($providerService, true);
+        }
+
+        return $this->redirectToRoute(
+            'app_provider_services_list',
+            ['id' => $this->getUser()->getId()],
+            Response::HTTP_SEE_OTHER
+        );
     }
 }
