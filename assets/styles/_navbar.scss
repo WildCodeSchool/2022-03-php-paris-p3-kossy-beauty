@@ -9,8 +9,7 @@ ul.navbar-nav {
 }
 
 form.search-form {
-    left: 6.1rem;
-    position: relative;
+    width: 50%;
 }
 
 .select-location {
@@ -78,17 +77,47 @@ div.tab-pane.smallnav .card:hover {
     background: rgb(242, 210, 129);
 }
 
+ul.navbar-nav li:hover {
+    background: #00a19a;
+    color: white;
+}
+ul.navbar-nav li:hover a.nav-link {
+    color: white !important;
+}
+
+@media (max-width: 767px) {
+    form.search-form {
+        width: 100%;
+    }
+}
+
 @media (max-width: 991px) {
     ul.navbar-nav
     {
         background-color: white;
     }
+
+    form.search-form {
+        width: 75%;
+    }
+
+    ul.navbar-nav li:hover a.dropdown-item {
+        color: #212529;
+    }
+
+    ul.dropdown-menu li a.dropdown-item:hover {
+        background-color: none;
+        color:  #00a19a;
+    }
 }
 
-ul.navbar-nav li:hover {
-    background: #00a19a;
-    color: white;
+@media (min-width: 992px) {
+    
 }
-ul.navbar-nav li:hover a {
-    color: white !important;
+
+.navbar-toggler {
+    border-color: #00a19a !important;
 }
+i.bi.bi-list {
+    color: #00a19a;
+} 
