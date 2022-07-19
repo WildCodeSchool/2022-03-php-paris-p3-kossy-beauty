@@ -1,7 +1,7 @@
 <footer class="text-center text-white">
   <div class="container">
     <div class="row py-4">
-      <div class="col">
+      <div class="col-6 col-lg-4">
         <a class="d-block" href="{{ path('home') }}">Page d'accueil</a>
         {% if is_granted("ROLE_USER") %}
           <a class="d-block" href="{{ path('app_user_show', {id: app.user.id}) }}">Profil</a>
@@ -10,17 +10,18 @@
         {% endif %}
         <a class="d-block" href="{{ path('app_register_pro') }}">Professionnels</a>
       </div>
-      <div class="col">
+      <div class="col-6 col-lg-4">
         <a class="d-block" href="">A propos de Kossy Beauty</a>
         <a class="d-block" href="">Nous contacter</a>
       </div>
-      <div class="col text-center">
+      <hr class="d-block d-lg-none mt-4">
+      <div class="col-auto col-lg-4 mt-4 mt-lg-0 text-center">
         <span class="text-success">Kossy Beauty est un site de mise en relation entre les profesionnels de la cosmétique et les particuliers.</span>
         <span class="text-success">Trouvez en quelques clics les meilleurs professionnels les plus proches de chez vous.</span>
       </div>
     </div>
     <hr />
-    <div class="text-center pb-3" >
+    <div class="text-center p-3 pb-5" >
     Kossy Beauty © 2022. Tous droits réservés.
     </div>
   </div>
