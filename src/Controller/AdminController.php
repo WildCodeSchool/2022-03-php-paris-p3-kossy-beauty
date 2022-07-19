@@ -34,4 +34,19 @@ class AdminController extends AbstractController
             'services' => $serviceRepository->findAll()
         ]);
     }
+
+    #[Route('/is-top/{id}', name: 'app_admin_is_top', methods: ['GET'])]
+    public function toggleIsTop(User $user, UserRepository $userRepository): Response
+    {
+        $status = $user->isIsTop();
+        if ($status) {
+            $user->setIsTop(false);
+            $userRepository->add($user, true);
+        } else {
+            $user->setIsTop(true);
+            $userRepository->add($user, true);
+        }
+
+        return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
+    }
 }

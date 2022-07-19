@@ -23,10 +23,6 @@ class ProviderServiceType extends AbstractType
                     'class' => Service::class,
                     'choice_label' => 'name'
                     ])
-                ->add('provider', EntityType::class, [
-                    'class' => User::class,
-                    'choice_label' => 'companyName',
-                ])
                 ;
     }
 

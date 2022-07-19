@@ -156,6 +156,7 @@ endblock %} {% block body %}
                             <th scope="col">Ville</th>
                             <th scope="col">Quartier</th>
                             <th scope="col">Rôle</th>
+                            <th scope="col">En avant</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -170,6 +171,15 @@ endblock %} {% block body %}
                             <td>{{ user.town }}</td>
                             <td>{{ user.district }}</td>
                             <td>{{ role }}</td>
+                            <td class="text-center">
+                                {% if user.isTop %}
+                                <a class="btn border b-1 color-green"
+                                {% else %}
+                                <a class="btn border b-1 color-red"
+                                {% endif %}
+                                 href="{{ path('app_admin_is_top', {id:user.id}) }}"><i class="bi bi-arrow-up-square"></i>
+                                </a>
+                            </td>
                             <td>
                                 <form
                                     method="post"
