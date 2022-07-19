@@ -4,6 +4,10 @@ footer {
     background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
 }
 
+ul.navbar-nav {
+    z-index:100;
+}
+
 form.search-form {
     left: 6.1rem;
     position: relative;

@@ -1,16 +1,14 @@
 <nav class="navbar navbar-expand-lg navbar-light py-3 pb-1">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><img class="position-absolute ms-2"src="{{ asset('build/images/Kossy-Beauty-logo-3.png') }}" style="width:5.5rem; margin-top:-2.1rem" alt="Logo"></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/"><img class="position-absolute ms-2 d-md-block d-none"src="{{ asset('build/images/Kossy-Beauty-logo-3.png') }}" style="width:5.5rem; margin-top:-2.1rem" alt="Logo"></a>
+    <button class="navbar-toggler position-absolute end-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse pt-0 justify-content-end" id="navbarSupportedContent">
-
-      {{ render(controller(
+    {{ render(controller(
         'App\\Controller\\SearchController::searchBar'
       )) }}
-          
-      <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+    <div class="collapse navbar-collapse pt-0 justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 text-center position-absolute end-0">
         {% if notification.notification is same as false %}
         <li class="nav-item position-relative me-3 color-red">
           <i class="bi bi-exclamation-circle-fill"></i>
@@ -18,16 +16,16 @@
           <li class="nav-item position-relative me-3">
           {% endif %}
           <i class="bi bi-chat-left-text p-0"></i>
-          <a class="nav-link active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
+          <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
         </li>
         <li class="nav-item position-relative me-3">
           <i class="bi bi-heart p-0"></i>
-          <a class="nav-link active stretched-link p-0" aria-current="page" href="#"></i>Favoris</a>
+          <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="#"></i>Favoris</a>
         </li>
         {% if is_granted("ROLE_USER") %}
           <li class="nav-item dropdown">
             <i class="bi bi-person p-0"></i>
-            <a class="nav-link dropdown-toggle active p-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            <a class="nav-link d-inline d-lg-block dropdown-toggle active p-0" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
               aria-expanded="false">
               Mon compte
             </a>
@@ -51,7 +49,7 @@
         {% else %}
         <li class="nav-item position-relative">
           <i class="bi bi-person p-0"></i>
-          <a class="nav-link active stretched-link p-0" aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
+          <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
         </li>
         {% endif %}
       </ul>
