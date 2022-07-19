@@ -12,7 +12,7 @@
         <p class="mb-0">{{user.district}}</p>
     </div>
 </div>
-<div class="ms-3gi">
+<div class="ms-3">
     {{ user.companyDescription }}
 </div>
 {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
