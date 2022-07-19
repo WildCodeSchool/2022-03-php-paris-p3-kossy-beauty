@@ -77,3 +77,18 @@ div.tab-pane.smallnav .card {
 div.tab-pane.smallnav .card:hover {
     background: rgb(242, 210, 129);
 }
+
+@media (max-width: 991px) {
+    ul.navbar-nav
+    {
+        background-color: white;
+    }
+}
+
+ul.navbar-nav li:hover {
+    background: #00a19a;
+    color: white;
+}
+ul.navbar-nav li:hover a {
+    color: white !important;
+}
