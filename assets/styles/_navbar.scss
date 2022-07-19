@@ -85,13 +85,13 @@ ul.navbar-nav li:hover a.nav-link {
     color: white !important;
 }
 
-@media (max-width: 767px) {
+@include media-breakpoint-down(md) {
     form.search-form {
         width: 100%;
     }
 }
 
-@media (max-width: 991px) {
+@include media-breakpoint-down(lg) {
     ul.navbar-nav
     {
         background-color: white;
