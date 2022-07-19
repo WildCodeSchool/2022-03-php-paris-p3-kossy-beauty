@@ -1,9 +1,11 @@
 @import "~bootstrap/scss/bootstrap";
 @import "_navbar.scss";
+@import "_login.scss";
 @import "_gallery.scss";
 @import "_edit.scss";
 @import "_show_one_provider.scss";
 @import "_message.scss";
+@import "_show_prov_by_service.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
 
 * {
