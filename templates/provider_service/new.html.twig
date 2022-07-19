@@ -7,5 +7,5 @@
 
     {{ include('provider_service/_form.html.twig') }}
 
-    <a href="{{ path('app_provider_service_index') }}">back to list</a>
+    <a href="{{ path('app_provider_services_list', {'id' : id }) }}">Retour</a>
 {% endblock %}
