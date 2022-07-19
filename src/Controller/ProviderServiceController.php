@@ -6,6 +6,7 @@ use App\Entity\ProviderService;
 use App\Entity\Service;
 use App\Entity\User;
 use App\Form\ProviderServiceType;
+use App\Repository\CatalogRepository;
 use App\Repository\ProviderServiceRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\UserRepository;
@@ -110,11 +111,15 @@ class ProviderServiceController extends AbstractController
     }
 
     #[Route('/{id}/services', name: 'app_provider_services_list', methods: ['GET'])]
-    public function showServiceByProvider(User $user, ProviderServiceRepository $provServRepository): Response
-    {
+    public function showServiceByProvider(
+        User $user,
+        ProviderServiceRepository $provServRepository,
+        CatalogRepository $catalogRepository
+    ): Response {
         return $this->render('provider_service/provider_services.html.twig', [
             'services' => $provServRepository->findBy(['provider' => $user]),
-            'user' => $user
+            'user' => $user,
+            'catalogs' => $catalogRepository->findBy(['user' => $this->getUser()])
         ]);
     }
 }
