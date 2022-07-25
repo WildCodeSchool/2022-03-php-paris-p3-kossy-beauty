@@ -1,154 +1,156 @@
-{% extends 'base.html.twig' %}
+{% extends 'base-login.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Création d'un compte professionnel{% endblock %}
 
 {% block body %}
-<section class="h-100" style=" background: linear-gradient(#f2d281, #00a19a)">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col">
-                <div class="card card-registration my-4">
-                    <div class="row g-0">
+<section id="register-form" class="position-relative h-100">
+    <div class="row d-flex align-items-center">
+        <div class="col col-xl-10">
+            <div class="card">
+                <div class="row g-0">
 
-                        <div class="col-xl-6 d-none d-xl-block">
-                            <img src="https://i.ibb.co/YhKpqv2/Capture-d-e-cran-2022-07-04-a-15-34-47.png"
-                                alt="Sample photo" class="img-fluid"
-                                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
-                        </div>
+                    <div class="col-md-6 col-lg-5 d-none d-lg-block">
+                        <img src="https://i.ibb.co/YhKpqv2/Capture-d-e-cran-2022-07-04-a-15-34-47.png"
+                            alt="Sample photo" class="img-fluid" style="height:100vh" />
+                    </div>
 
-                        <div class="col-xl-6">
-                            <div class="card-body p-md-5 text-black">
-                                <h3 class="mb-5 text-uppercase">Ajouter votre entreprise</h3>
+                    <div class="col-auto col-md-7 d-md-flex mt-4 mt-lg-0 mx-auto">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                            <div class="mb-3 pb-1 text-center text-md-start">
+                                <span class="h1 fw-bold mb-0">Kossy Beauty</span>
+                            </div>
+                            <h5 class="fw-normal mb-3 pb-3 text-center text-md-start" style="letter-spacing: 1px;">
+                                <i class="bi bi-briefcase-fill"></i> | Compte Pro - Ajouter votre entreprise
+                            </h5>
 
-                                {{ form_start(proRegistrationForm, {attr: {'novalidate': 'novalidate'}}) }}
-                                {{ form_errors(proRegistrationForm) }}
+                            {{ form_start(proRegistrationForm, {attr: {'novalidate': 'novalidate'}}) }}
+                            {{ form_errors(proRegistrationForm) }}
 
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.firstname, {'attr': {'class':
-                                            'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1m">Prénom</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.lastname, {'attr': {'class':
-                                            'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1n">Nom</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.telephone, {'attr': {'class':
-                                            'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1m1">Numéro de téléphone</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.email, {'attr': {'class': 'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1n1">Email</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
-                                            'form-control form-control-lg'}} ) }}
-                                            <label class="form-label" for="form3Example1m1">Mot de passe</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {# {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
-                                            'form-control form-control-lg'}} ) }} #}
-                                            <label class="form-label" for="form3Example1n1">Confirmation du mot de
-                                                passe</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.town, {'attr': {'class': 'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1n1">Ville</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.district, {'attr': {'class':
-                                            'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1n1">Quartier</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.companyName, {'attr': {'class':
-                                            'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1n1">Nom de l'entreprise</label>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <div class="form-outline">
-                                            {{ form_widget(proRegistrationForm.companyDescription, {'attr': {'class':
-                                            'form-control
-                                            form-control-lg'}}) }}
-                                            <label class="form-label" for="form3Example1n1">Description</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {# <div class="row">
-                                    <div class="col-md-6 mb-4">
-                                        <select class="form-control form-control-lg select">
-                                            <option value="1">Ville</option>
-                                            <option value="2">Douala</option>
-                                            <option value="3">Abidjan</option>
-                                            <option value="4">Dakar</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="col-md-6 mb-4">
-                                        <select class="form-control form-control-lg select">
-                                            <option value="1">Quartier</option>
-                                            <option value="2">Banyangui</option>
-                                            <option value="3">Akwa</option>
-                                            <option value="4">Bell</option>
-                                        </select>
-                                    </div>
-                                </div> #}
-
-                                <div class="">
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        {{ form_widget(proRegistrationForm.agreeTerms) }}
-                                        <label class="form-label" for="form3Example1n1">Accepter les conditions
-                                            d'utilisation</label>
+                                        {{ form_widget(proRegistrationForm.firstname, {'attr': {'class':
+                                        'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1m">Prénom</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.lastname, {'attr': {'class':
+                                        'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1n">Nom</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.telephone, {'attr': {'class':
+                                        'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1m1">Numéro de téléphone</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.email, {'attr': {'class': 'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1n1">Email</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
+                                        'form-control form-control-lg'}} ) }}
+                                        <label class="form-label" for="form3Example1m1">Mot de passe</label>
                                     </div>
                                 </div>
 
-                                <div class="d-flex justify-content-end pt-3">
-                                    <button type="submit" class="btn btn-success btn-lg ms-2">Valider</button>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {# {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
+                                        'form-control form-control-lg'}} ) }} #}
+                                        <label class="form-label" for="form3Example1n1">Confirmation du mot de
+                                            passe</label>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.town, {'attr': {'class': 'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1n1">Ville</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.district, {'attr': {'class':
+                                        'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1n1">Quartier</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.companyName, {'attr': {'class':
+                                        'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1n1">Nom de l'entreprise</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-outline">
+                                        {{ form_widget(proRegistrationForm.companyDescription, {'attr': {'class':
+                                        'form-control
+                                        form-control-lg'}}) }}
+                                        <label class="form-label" for="form3Example1n1">Description</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {# <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <select class="form-control form-control-lg select">
+                                        <option value="1">Ville</option>
+                                        <option value="2">Douala</option>
+                                        <option value="3">Abidjan</option>
+                                        <option value="4">Dakar</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <select class="form-control form-control-lg select">
+                                        <option value="1">Quartier</option>
+                                        <option value="2">Banyangui</option>
+                                        <option value="3">Akwa</option>
+                                        <option value="4">Bell</option>
+                                    </select>
+                                </div>
+                            </div> #}
+
+                            <div class="">
+                                <div class="form-outline">
+                                    {{ form_widget(proRegistrationForm.agreeTerms) }}
+                                    <label class="form-label" for="form3Example1n1">Accepter les conditions
+                                        d'utilisation</label>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-center pt-3">
+                                <button type="submit" class="btn btn-success btn-lg ms-2">Valider | <i class="bi bi-person-check-fill"></i></button>
                             </div>
                         </div>
                     </div>
