@@ -29,6 +29,16 @@ img.img-gallery.preview {
     object-fit: cover;
 }
 
+img.img-gallery.full {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+
+div.modal-header.gallery {
+  background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+}
+
 /* medium and up screens */
 @include media-breakpoint-up(md) {
     
@@ -46,6 +56,12 @@ img.img-gallery.preview {
         width: 100px;
         height: 100px;
         object-fit: cover;
+    }
+
+    img.img-gallery.full {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
     }
 }
 
@@ -66,6 +82,12 @@ img.img-gallery.preview {
         height: 150px;
         object-fit: cover;
     }
+
+    img.img-gallery.full {
+      width: 400px;
+      height: 400px;
+      object-fit: cover;
+    }
 }
 
 .carousel-inner .carousel-item-end,
@@ -85,16 +107,6 @@ img.img-gallery.preview {
     margin-top: -2.5rem;
     color: black;
     opacity: 1;
-    left: -1rem;
-    right: -1rem;
-}
-
-img.img-gallery.full {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
-}
-
-div.modal-header.gallery {
-    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    // left: -1rem;
+    // right: -1rem;
 }
