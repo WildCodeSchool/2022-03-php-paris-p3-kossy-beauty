@@ -21,7 +21,7 @@
                 />
             </div>
             <div class="card-body">
-                <a href="{{ path('app_provider_services_list', {id: provider.id }) }}"><h6 class="card-title text-break">{{ provider.companyName }}</h6></a>
+                <a class="provider-link" href="{{ path('app_provider_services_list', {id: provider.id }) }}"><h6 class="card-title text-break stretched-link">{{ provider.companyName }}</h6></a>
                 
                 <p class="fw-bold">
                     <span class="text-primary"
@@ -33,7 +33,6 @@
                 </p>
             </div>
             <div class="card-footer">
-                <a href="{{ path('app_service_show', {'id': service.id}) }}" class="btn btn-dark" role="button">Détails</a>
                 {% if app.user.roles.1 is defined %}
                 {% elseif app.user is defined %}
                     <a href="{{ path('app_create_conversation', {id: provider.id, service: service.name}) }}" class="btn btn-success" role="button">Envoyer un message</a>
