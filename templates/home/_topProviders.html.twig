@@ -1,0 +1,69 @@
+<h2 class="text-center fw-bold pb-3">Sélections du jour <span class="d-none d-md-inline">/ prestataires à l'honneur</span></h2>
+<div class="row m-1">
+    {% for provider in selectedProvider %}
+        <div class="col">
+            <div class="card top-provider mb-2 mb-md-3 border-0 position-relative">
+                <i class="icon-reward bi bi-award-fill color-gray fs-2 position-absolute end-0 me-2"></i>
+                <div class="row g-0">
+                    <div class="col-4">
+                        <img class="img-fluid rounded-start h-100" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" alt="Photo de (( provider ))">
+                    </div>
+                    <div class="col-8 border border-start-0 rounded-end">
+                        <div class="card-body position-relative h-100">
+                            <h6 class="card-title">{{ provider[0].service.name }}</h6>
+                            <p class="card-text">
+                                <span class="d-block smalltext">
+                                    <i class="bi bi-person-fill"></i> {{ provider[0].provider.companyName }}
+                                </span>
+                                <span class="d-block smalltext">
+                                    <i class="bi bi-geo-alt-fill"></i> {{ provider[0].provider.district }}, {{ provider[0].provider.town }}
+                                </span>
+                                <span class="d-block smalltext description">
+                                    <i class="bi bi-card-text"></i> {{ provider[0].provider.companyDescription }} bla bla bla bla
+                                </span>
+                                <div class="price-duration">
+                                    <span class="badge bg-success fw-bold">
+                                        <i class="bi bi-wallet2"></i>
+                                        {{ provider[0].price }} €
+                                    </span>
+                                    <span class="badge bg-secondary fw-bold">
+                                        <i class="bi bi-clock-history"></i>
+                                        {{ provider[0].duration }} minutes
+                                    </span>
+                                </div>
+                            </p>
+                            <div class="row top-provider-bottom w-100">
+                                <div class="col-7">
+                                    <p class="card-text"><small class="text-muted d-none d-md-inline">{{ provider[0].service.category.name }}</small></p>
+                                </div>
+                                <div class="col-5 text-end">
+                                    <a class="btn btn-secondary-kb btn-to-service btn-sm" href="{{ path('app_service_show', {'id': provider[0].service.id}) }}">Découvrir <i class="bi bi-box-arrow-right fw-bolder"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col">
+            <div class="card mx-auto mb-3 w-75 text-center">
+                <div class="row g-0 align-items-center">
+                    <div class="col-md-4">
+                        <img src="{{ asset('build/images/pedicurefail1.jpg') }}" class="img-fluid rounded-start" alt="Aucun prestataire trouvé">
+                    </div>  
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Oh mince !</h5>
+                            <p class="card-text">
+                                <span class="d-block">Il n'y a pas de prestataires en avant pour le moment !</span>
+                                <span class="d-block">Ils seront disponibles très prochainement.</span>
+                            </p>
+                            <p class="card-text"><small class="text-muted">Mise à jour le {{ "now"|date('d-m-Y') }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
