@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\SuperAdmin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\User;
 use App\Repository\CategoryRepository;
 use App\Repository\ServiceRepository;
+use App\Repository\SuperAdminRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Repository\UserRepository;
 
@@ -19,19 +21,23 @@ class AdminController extends AbstractController
     public function index(
         UserRepository $userRepository,
         CategoryRepository $categoryRepository,
-        ServiceRepository $serviceRepository
+        ServiceRepository $serviceRepository,
+        SuperAdminRepository $superAdminRepository,
     ): Response {
         $user = new User();
         $users = $userRepository->findAll();
         $roles = $user->getRoles();
 
+        $superAdmin = $superAdminRepository->findAll();
 
         return $this->render('admin/index.html.twig', [
             'users' => $users,
             'user' => $user,
             'roles' => $roles,
             'categories' => $categoryRepository->findAll(),
-            'services' => $serviceRepository->findAll()
+            'services' => $serviceRepository->findAll(),
+            'contactMail' => $superAdmin[0]->getEmail(),
+            'copyright' => $superAdmin[0]->getCopyright()
         ]);
     }
 

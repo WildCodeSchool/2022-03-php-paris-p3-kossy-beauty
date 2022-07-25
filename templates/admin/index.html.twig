@@ -63,6 +63,18 @@ endblock %} {% block body %}
                 Services
             </button>
         </h2>
+        <h2 class="" id="headingSix">
+            <button
+                class="btn-admin btn btn-success collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseSix"
+                aria-expanded="false"
+                aria-controls="collapseSix"
+            >
+                Mail de contact / Copyright
+            </button>
+        </h2>
     </div>
     <div class="">
         <div
@@ -417,6 +429,36 @@ endblock %} {% block body %}
                 </div>
             </div>
         </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div
+            id="collapseSix"
+            class="accordion-collapse collapse w-50 mt-4"
+            aria-labelledby="headingSix"
+            data-bs-parent="#accordionExample"
+        >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Mail de contact</th>
+                        <th scope="col">Copyright</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            {{ contactMail }}
+                        </td>
+                        <td>
+                            {{ copyright }}
+                        </td>
+                        <td>
+                            <i class="bi bi-gear"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
     </div>
 </div>
 
