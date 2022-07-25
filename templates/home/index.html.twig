@@ -4,22 +4,7 @@
 
 {% block body %}
 
-{% include "home/_topProviders.html.twig" %}
-
-<h2 class="text-center fw-bold mt-5 p-3">Tendances actuelles / Inspirations</h2>
-
-<div class="row mx-auto my-auto justify-content-center">
-  <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner" role="listbox">
-      {% include "home/_carousel.html.twig" %}
-    </div>
-    <a class="carousel-control-prev fw-bolder" href="#recipeCarousel" role="button" data-bs-slide="prev">
-      <i class="bi bi-chevron-double-left fs-1"></i>
-    </a>
-    <a class="carousel-control-next fw-bolder" href="#recipeCarousel" role="button" data-bs-slide="next">
-      <i class="bi bi-chevron-double-right fs-1"></i>
-    </a>
-  </div>
-</div>
-
+  {% include "home/_topProviders.html.twig" %}
+  {% include "home/_carousel.html.twig" %}
+  
 {% endblock %}
