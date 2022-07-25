@@ -93,11 +93,11 @@ class ProviderServiceController extends AbstractController
     #[Route('/list/{id}', name: 'app_provider_service_show_provider_by_service', methods: ['GET'])]
     public function showProviderByService(
         Service $service,
-        ProviderServiceRepository $provServRepository
+        ProviderServiceRepository $provServRepository,
     ): Response {
         return $this->render('provider_service/showProviderByService.html.twig', [
             'service' => $service,
-            'providerServices' => $provServRepository->findBy(['service' => $service]),
+            'providerServices' => $provServRepository->findBy(['service' => $service])
         ]);
     }
 

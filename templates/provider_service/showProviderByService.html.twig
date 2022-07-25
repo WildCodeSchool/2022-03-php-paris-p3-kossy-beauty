@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container-prov text-center">
-<h1>Nom de la prestation / {{ service.name }}</h1>
+<h1>{{ service.name }}</h1>
 
 {% for providerService in providerServices %} 
 <div class="d-inline-flex">
@@ -17,7 +17,7 @@
                 <img
                     class="rounded-circle"
                     width="100px"
-                    src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
+                    src="{{ vich_uploader_asset(provider) }}"
                 />
             </div>
             <div class="card-body">
