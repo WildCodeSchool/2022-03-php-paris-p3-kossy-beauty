@@ -2,12 +2,6 @@
 {% block title %}Login{% endblock %}
 {% block body %}
 
-    {% if error %}
-    <div>
-        {{ error.messageKey|trans(error.messageData, 'security') }}
-    </div>
-    {% endif %}
-
     <section id="login-form" class="position-relative w-100">
         <div class="row d-flex align-items-center">
             <div class="col col-xl-10">

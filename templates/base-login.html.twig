@@ -26,7 +26,7 @@
         <main class="login position-relative">
             {% for category, messages in app.flashes %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ category }} text-center">
+                    <div class="alert alert-{{ category }} text-center mb-0">
                         {{ message }}
                     </div>
                 {% endfor %}
