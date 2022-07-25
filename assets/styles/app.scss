@@ -7,6 +7,7 @@
 @import "_show_one_provider.scss";
 @import "_message.scss";
 @import "_show_prov_by_service.scss";
+@import "_profil.scss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;900&display=swap');
 
 * {
@@ -16,19 +17,18 @@
 html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 html {
     width: 100vw;
-    height: 100vh;
 }
 
 body {
-  overflow-x: hidden;
   width: 100%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  // min-height: 100vh;
 }
 
 .bg-primary-kb {

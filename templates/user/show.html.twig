@@ -5,63 +5,52 @@
 {% block body %}
 
 
-<h1>Profile de {{ user.firstname ~ ' ' ~ user.lastname }}</h1>
+<h1 class="mb-0">Profil de {{ user.firstname ~ ' ' ~ user.lastname }}</h1>
 
 <div class="container rounded bg-white">
     <div class="row">
         <div class="col-md-2 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ vich_uploader_asset(user) }}"><span class="font-weight-bold">{{ user.firstname }} {{ user.lastname }}</span>  
+            <div class="d-flex flex-column align-items-center text-center px-3 pt-md-4 mt-4 mt-md-2"><img class="profile-image rounded-circle mb-4" src="{{ vich_uploader_asset(user) }}" alt="Image de profil">
             {% if is_granted("ROLE_ADMIN") %}
             <span>{{ user.id }}</span>
             {% endif %}
             <span class="text-black-50"></span>
             </div>
         </div>
-        <div class="col-md-5 border-right mt-5">
-            <div class="p-3 py-5">
+        <div class="col-md-10 border-right mt-md-4 d-md-flex">
+            <div class="px-3 pt-0">
                 <div class="row ">
-                    <div class="col-md-6"><label class="labels">Prénom</label><div class="form-control">{{ user.firstname }}</div></div>
-                    <div class="col-md-6"><label class="labels">Nom</label><div class="form-control">{{ user.lastname }}</div></div>
-                    <div class="col-md-6"><label class="labels">Téléphone</label><div class="form-control">{{ user.telephone }}</div></div>
-                    <div class="col-md-6"><label class="labels">Email</label><div class="form-control">{{ user.email ? user.email : 'Non renseigné' }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Prénom</label><div class="form-control">{{ user.firstname }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Nom</label><div class="form-control">{{ user.lastname }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Téléphone</label><div class="form-control">{{ user.telephone }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Email</label><div class="form-control">{{ user.email ? user.email : 'Non renseigné' }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Mot de passe</label><div class="form-control">*********</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Ville</label><div class="form-control">{{ user.town ? user.town : 'Non renseigné' }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Quartier</label><div class="form-control">{{ user.district ? user.district : 'Non renseigné' }}</div></div>
+                    {% if is_granted("ROLE_PROVIDER") %}
+                    <div class="col-md-6 pt-2"><label class="labels">Entreprise</label><div class="form-control">{{ user.companyName ? user.companyName : 'Non renseigné' }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Description</label><div class="form-control">{{ user.companyDescription ? user.companyDescription : 'Non renseigné' }}</div></div>
+                    {% endif %}
+                    {% if is_granted("ROLE_ADMIN") %}
+                    <div class="col-md-6 pt-2"><label class="labels">Facture</label><div class="form-control">{{ user.isTop ? 'Yes' : 'No' }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Archivé</label><div class="form-control">{{ user.isArchived ? 'Yes' : 'No' }}</div></div>
+                    <div class="col-md-6 pt-2"><label class="labels">Role</label><div class="form-control">{{ role }}</div></div>
+                    {% endif %}
+                    <div class="container d-flex justify-content-center pt-3">
+                        <div class="text-center m-3"><a class="btn btn-success profile-button" href="{{ path('app_user_index') }}"><i class="bi bi-arrow-left"> </i><div class="d-none d-md-inline-flex">Retour</div></a></div>
+                        {% if user.id == app.user.id %}
+                        <div class="text-center m-3"><a class="btn btn-success profile-button" href="{{ path('app_user_edit', {'id': user.id}) }}"><div class="d-none d-md-inline-flex me-1">Editer</div><i class="bi bi-pen"></i></a></div>
+                        {% endif %}
+                        <div class="text-center m-3"><a>{{ include('user/_delete_form.html.twig') }}</a></div>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12"><label class="labels">Mot de passe</label><div class="form-control">*********</div></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5 border-right mt-5">
-            <div class="p-3 py-5">
-                <div class="row ">
-                    <div class="col-md-6"><label class="labels">Ville</label><div class="form-control">{{ user.town ? user.town : 'Non renseigné' }}</div></div>
-                    <div class="col-md-6"><label class="labels">Quartier</label><div class="form-control">{{ user.district ? user.district : 'Non renseigné' }}</div></div>
-                </div>
-                <div class="row ">
-            {% if is_granted("ROLE_PROVIDER") %}
-                    <div class="col-md-6"><label class="labels">Entreprise</label><div class="form-control">{{ user.companyName ? user.companyName : 'Non renseigné' }}</div></div>
-                    <div class="col-md-6"><label class="labels">Description</label><div class="form-control">{{ user.companyDescription ? user.companyDescription : 'Non renseigné' }}</div></div>
-            {% endif %}
-                </div>
-                <div class="row ">
-            {% if is_granted("ROLE_ADMIN") %}
-                <div class="col-md-6"><label class="labels">Facture</label><div class="form-control">{{ user.isTop ? 'Yes' : 'No' }}</div></div>
-                <div class="col-md-6"><label class="labels">Archive</label><div class="form-control">{{ user.isArchived ? 'Yes' : 'No' }}</div></div>
-                </div>
-            {% endif %}
-            {% if is_granted("ROLE_ADMIN") %}
-                <div class="col-md-12"><label class="labels">Role</label><div class="form-control">{{ role }}</div></div>
-            {% endif %}
-            </div>
+            </div>  
         </div>
     </div>
 </div>
 </div>
 </div>
-    <div class="container d-flex justify-content-center">
-        <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_index') }}">Retour</a></div>
-        <div class="text-center m-3"><a class="btn btn-primary profile-button" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer</a></div>
-        <div class="text-center m-3"><a>{{ include('user/_delete_form.html.twig') }}</a></div>
-    </div>
+
 
  
 {% endblock %}

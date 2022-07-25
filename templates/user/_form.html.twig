@@ -3,16 +3,16 @@
 <div class="container rounded bg-white">
     <div class="row">
         <div class="col-md-2 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ vich_uploader_asset(user) }}"></span>  
+            <div class="d-flex flex-column align-items-center text-center px-3 pb-0 pt-3 py-md-5"><img class="rounded-circle profile-image" src="{{ vich_uploader_asset(user) }}" alt="Image de profil"></span>  
             </div>
         </div>
-        <div class="col-md-5 border-right mt-5">
-            <div class="p-3 py-5">
+        <div class="col-md-10 border-right mt-4 mt-md-0 d-md-flex">
+            <div class="px-3 pt-0 py-md-5">
                 <div class="row">
                     <div class="col-md-6" id="form-edit"><div>{{ form_row(userForm.firstname, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6"><div>{{ form_row(userForm.lastname, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
-                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.lastname, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% if is_granted("ROLE_PROVIDER") %}
                     <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyName, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% endif %}
@@ -20,28 +20,23 @@
                     <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isTop, {'attr': {'class': 'edit'}}) }}</div></div>
                     <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isArchived, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% endif %}
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.town, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.district, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% if is_granted("ROLE_PROVIDER") %}
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% endif %}
+                    {{ form_end(userForm) }}  
+                    <div class="container d-flex justify-content-center">
+                        <div class="text-center m-3"><button class="btn btn-success profile-button">{{ button_label|default('Save') }}</button></div>
+                    </div>      
+
                 </div>
             </div>
         </div>
-        <div class="col-md-5 border-right mt-5">
-            <div class="p-3 py-5">
-                <div class="row">
-                    <div class="col-md-6"><div>{{ form_row(userForm.town, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6"><div>{{ form_row(userForm.district, {'attr': {'class': 'edit'}}) }}</div></div>
-                    {% if is_granted("ROLE_PROVIDER") %}
-                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
-                    {% endif %}              
-                </div>
-            </div>
-        </div> 
     </div>
 </div>
-</div>
-</div>
-
-<div class="container d-flex justify-content-center">
-    <div class="text-center m-3"><button class="btn btn-primary profile-button">{{ button_label|default('Save') }}</button></div>
-</div>
 
 
-{{ form_end(userForm) }}
+
+
+
