@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %} {% block title %}My conversations{% endblock %}
 {% block body %}
-
+<h1>Mes conversations</h1>
 {% for conversation in conversations|sort((a, b) => b.lastMessage.createdAt|date('Y-m-d H:i:s') <=> a.lastMessage.createdAt|date('Y-m-d H:i:s')) %}
 {% if conversation.lastMessage.author is not same as app.user and conversation.lastMessage.isSeen is same as false %}
 <div class="card mt-3 mb-3 border-2 border-danger">
@@ -41,5 +41,6 @@
         >
     </div>
 </div>
-
-{% endfor %} {% endblock %}
+{% else %}
+<p>Vous n'avez aucune conversation en cours.</p>
+{% endfor %}{% endblock %}
