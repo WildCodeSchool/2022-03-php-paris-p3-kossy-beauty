@@ -28,7 +28,7 @@
                                     </span>
                                     <span class="badge bg-secondary fw-bold">
                                         <i class="bi bi-clock-history"></i>
-                                        {{ provider[0].duration }} minutes
+                                        {{ provider[0].duration }} mins
                                     </span>
                                 </div>
                             </p>
@@ -37,7 +37,7 @@
                                     <p class="card-text"><small class="text-muted d-none d-md-inline">{{ provider[0].service.category.name }}</small></p>
                                 </div>
                                 <div class="col-5 text-end">
-                                    <a class="btn btn-secondary-kb btn-to-service btn-sm" href="{{ path('app_service_show', {'id': provider[0].service.id}) }}">Découvrir <i class="bi bi-box-arrow-right fw-bolder"></i></a>
+                                    <a class="btn btn-secondary-kb btn-to-service btn-sm stretched-link" href="{{ path('app_service_show', {'id': provider[0].service.id}) }}"><span class="d-none d-md-inline">Découvrir</span> <i class="bi bi-chevron-right fw-bolder"></i></a>
                                 </div>
                             </div>
                         </div>
