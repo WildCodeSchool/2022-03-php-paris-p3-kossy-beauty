@@ -1,396 +1,65 @@
-<div class="carousel-item active">
-    <div class="mx-auto">
-        <div class="row mb-4">
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal2"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg">
-                </div>
+<h2 class="text-center fw-bold mt-5 p-3">Tendances actuelles / Inspirations</h2>
+<div class="row mx-auto my-auto justify-content-center">
+  <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="container">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="mx-auto">
+                    <div class="row">
+                        {% for i in 1..12 %}
+                            <div class="col-2 item mb-1">
+                                <img class="img-gallery preview rounded mb-1" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0">
+                                    <div class="modal-header gallery border-0">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body bg-dark text-center">
+                                        <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal3"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="carousel-item">
+                <div class="mx-auto">
+                    <div class="row">
+                        {% for i in 13..24 %}
+                            <div class="col-2 item mb-1">
+                                <img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0">
+                                    <div class="modal-header gallery border-0">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body bg-dark text-center">
+                                        <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal4"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal5"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal6"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal7"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal7" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal8"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal8" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal9"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal9" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal10"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal10" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal11"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal11" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal12"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal12" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg">
-                </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-    </div>
-    <div class="carousel-item">
-    <div class="mx-auto">
-        <div class="row mb-4">
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal19"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal19" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal20"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal20" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal30"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal30" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal40"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal40" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal50"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal50" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal60"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal60" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal13"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal13" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal14"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal14" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://cindyfashion-coiffure-afro.fr/wp-content/uploads/2021/09/Coupe-Garconniere1-1-e1632305053424.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal15"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal15" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i0.wp.com/movingtahiti.com/wp-content/uploads/2021/06/manucure-nude-chic-et-minimaliste-4.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal16"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal16" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://resize-elle.ladmedia.fr/rcrop/638,,forcex/img/var/plain_site/storage/images/beaute/maquillage-des-yeux/halo-eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree/93725367-1-fre-FR/Halo-Eyes-cette-tendance-make-up-qu-on-adopte-pour-la-rentree.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal17"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal17" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://i.pinimg.com/550x/44/b9/fa/44b9fa0bfaabbe7fd296d957e74b015a.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-            
-            <div class="col-sm-6 col-md-4 col-lg-2 item"><img class="img-gallery preview rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal18"></div>
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal18" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0">
-                <div class="modal-header gallery border-0">
-                    <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body bg-dark text-center">
-                    <img class="img-gallery full rounded" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg">
-                </div>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
+    <a class="carousel-control-prev fw-bolder" href="#recipeCarousel" role="button" data-bs-slide="prev">
+      <i class="bi bi-chevron-double-left fs-1"></i>
+    </a>
+    <a class="carousel-control-next fw-bolder" href="#recipeCarousel" role="button" data-bs-slide="next">
+      <i class="bi bi-chevron-double-right fs-1"></i>
+    </a>
+  </div>
 </div>

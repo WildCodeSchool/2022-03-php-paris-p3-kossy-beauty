@@ -4,9 +4,12 @@ footer {
     background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
 }
 
+ul.navbar-nav {
+    z-index:100;
+}
+
 form.search-form {
-    left: 6.1rem;
-    position: relative;
+    width: 50%;
 }
 
 .select-location {
@@ -73,3 +76,48 @@ div.tab-pane.smallnav .card {
 div.tab-pane.smallnav .card:hover {
     background: rgb(242, 210, 129);
 }
+
+ul.navbar-nav li:hover {
+    background: #00a19a;
+    color: white;
+}
+ul.navbar-nav li:hover a.nav-link {
+    color: white !important;
+}
+
+@include media-breakpoint-down(md) {
+    form.search-form {
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    ul.navbar-nav
+    {
+        background-color: white;
+    }
+
+    form.search-form {
+        width: 75%;
+    }
+
+    ul.navbar-nav li:hover a.dropdown-item {
+        color: #212529;
+    }
+
+    ul.dropdown-menu li a.dropdown-item:hover {
+        background-color: none;
+        color:  #00a19a;
+    }
+}
+
+@media (min-width: 992px) {
+    
+}
+
+.navbar-toggler {
+    border-color: #00a19a !important;
+}
+i.bi.bi-list {
+    color: #00a19a;
+} 

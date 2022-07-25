@@ -31,7 +31,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
  * SMALLNAV
  * Events for click and mouseleave for the small nav
  */
-const triggerTabList = document.querySelectorAll('#myTab li button')
+const triggerTabList = document.querySelectorAll('#categories-services li button')
 
 triggerTabList.forEach(triggerEl => {
     const tabTrigger = new bootstrap.Tab(triggerEl)
