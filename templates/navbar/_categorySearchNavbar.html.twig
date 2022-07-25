@@ -23,14 +23,14 @@
     {% for category in globalCategories.getAll %}
     <div class="tab-pane fade position-absolute smallnav shadow bg-body rounded-bottom w-75" id="category{{ category.id }}" role="tabpanel" aria-labelledby="profile-tab"
         tabindex="0">
-        <div class="container row row-cols-4 row-cols-md-5 g-2 g-md-4 mt-1 mx-auto">
+        <div class="container row row-cols-4 row-cols-md-5 g-2 g-md-4 mt-1 mb-4 mx-auto">
             {% for service in globalServices.getServiceByCategoryId(category.id)%}
-            <div class="col pb-4">
+            <div class="col">
                 <div class="card d-flex border-0 w-100 position-relative">
                     <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="rounded object-fit-cover w-100 h-100"/>
                     <div class="card-body p-1 position-absolute d-flex align-items-end rounded text-service w-100 h-100">
                         <p class="card-text mx-auto">
-                            <a class="no-decoration text-white stretched-link fw-bolder" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">
+                            <a class="no-decoration text-white shadow-sm stretched-link fw-bolder" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">
                                 {{ service.name }}
                             </a>
                         </p>
