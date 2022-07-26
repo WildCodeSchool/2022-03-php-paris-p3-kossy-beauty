@@ -109,8 +109,8 @@ class ProviderServiceController extends AbstractController
     ): Response {
         return $this->render('provider_service/provider_services.html.twig', [
             'services' => $provServRepository->findBy(['provider' => $user]),
+            'catalog' => $catalogRepository->findBy(['user' => $user]),
             'user' => $user,
-            'catalogs' => $catalogRepository->findBy(['user' => $this->getUser()])
         ]);
     }
 
