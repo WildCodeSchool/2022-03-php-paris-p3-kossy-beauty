@@ -14,10 +14,10 @@ class ContactMailCopyright
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $email = 'test@test.com';
+    private $email = 'Vous pouvez nous contacter à l\'adresse : test@test.com';
 
     #[ORM\Column(type: 'string', length: 255, nullable: false)]
-    private $copyright = '2022';
+    private $copyright = 'Kossy Beauty © 2022. Tous droits réservés.';
 
     public function getId(): ?int
     {

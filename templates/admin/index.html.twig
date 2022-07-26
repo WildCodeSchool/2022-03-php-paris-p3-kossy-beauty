@@ -72,7 +72,7 @@ endblock %} {% block body %}
                 aria-expanded="false"
                 aria-controls="collapseSix"
             >
-                Mail de contact / Copyright
+                Nous contacter & Copyright
             </button>
         </h2>
     </div>
@@ -130,7 +130,7 @@ endblock %} {% block body %}
                                         name="_token"
                                         value="{{ csrf_token('delete' ~ user.id) }}"
                                     />
-                                    <button class="btn btn-light border b-1">
+                                    <button class="btn btn-danger border b-1">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -205,7 +205,7 @@ endblock %} {% block body %}
                                         name="_token"
                                         value="{{ csrf_token('delete' ~ user.id) }}"
                                     />
-                                    <button class="btn btn-light border b-1">
+                                    <button class="btn btn-danger border b-1">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -270,7 +270,7 @@ endblock %} {% block body %}
                                         name="_token"
                                         value="{{ csrf_token('delete' ~ user.id) }}"
                                     />
-                                    <button class="btn btn-light border b-1">
+                                    <button class="btn btn-danger border b-1">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -317,8 +317,8 @@ endblock %} {% block body %}
                                         })
                                     }}"
                                 >
-                                    <button class="btn btn-light border b-1">
-                                        <i class="bi bi-gear"></i>
+                                    <button class="btn btn-success border b-1">
+                                        <i class="bi bi-pen"></i>
                                     </button>
                                 </form>
                             </td>
@@ -337,7 +337,7 @@ endblock %} {% block body %}
                                         name="_token"
                                         value="{{ csrf_token('delete' ~ category.id) }}"
                                     />
-                                    <button class="btn btn-light border b-1">
+                                    <button class="btn btn-danger border b-1">
                                         <i class="bi bi-trash"></i>
                                     </button>
                                 </form>
@@ -392,11 +392,11 @@ endblock %} {% block body %}
                                             <td><img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="rounded-circle" width="40"></td>
                                             <td>{{ service.name }}</td>
                                             <td>
-                                                <a class="btn btn-light border b-1" href="{{
+                                                <a class="btn btn-success border b-1" href="{{
                                                     path('app_service_edit', {
                                                         id: service.id
                                                     })
-                                                }}"><i class="bi bi-gear"></i></a>
+                                                }}"><i class="bi bi-pen"></i></a>
                                             </td>
                                             <td>
                                                 <form
@@ -413,7 +413,7 @@ endblock %} {% block body %}
                                                         name="_token"
                                                         value="{{ csrf_token('delete' ~ service.id) }}"
                                                     />
-                                                    <button class="btn btn-light border b-1">
+                                                    <button class="btn btn-danger border b-1">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </form>
@@ -440,7 +440,7 @@ endblock %} {% block body %}
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">Mail de contact</th>
+                        <th scope="col">Nous contacter</th>
                         <th scope="col">Copyright</th>
                         <th></th>
                     </tr>
@@ -454,7 +454,7 @@ endblock %} {% block body %}
                             {{ copyright }}
                         </td>
                         <td>
-                            <a href="{{ path('app_contact_mail_and_copyright_edit', {id: contactMailCopyright.id }) }}"><i class="bi bi-gear"></i></a>
+                            <a class="btn btn-success" href="{{ path('app_contact_mail_and_copyright_edit', {id: contactMailCopyright.id }) }}"><i class="bi bi-pen"></i></a>
                         </td>
                     </tr>
                 </tbody>
