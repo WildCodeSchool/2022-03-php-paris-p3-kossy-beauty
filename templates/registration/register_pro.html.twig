@@ -66,20 +66,26 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
-                                        'form-control form-control-lg'}} ) }}
+                                        <div class="d-flex">
+                                            {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
+                                            'form-control form-control-lg'}} ) }}
+                                            <span class="input-group-text" onclick="password_show_hide();">
+                                                <i class="bi bi-eye" id="show_eye"></i>
+                                                <i class="bi bi-eye-slash d-none" id="hide_eye"></i>
+                                            </span>
+                                        </div>
                                         <label class="form-label" for="form3Example1m1">Mot de passe</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mb-4">
+                                {# <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        {# {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
-                                        'form-control form-control-lg'}} ) }} #}
+                                        {{ form_widget(proRegistrationForm.plainPassword, {'attr': {'class':
+                                        'form-control form-control-lg'}} ) }}
                                         <label class="form-label" for="form3Example1n1">Confirmation du mot de
                                             passe</label>
                                     </div>
-                                </div>
+                                </div> #}
                             </div>
 
                             <div class="row">
