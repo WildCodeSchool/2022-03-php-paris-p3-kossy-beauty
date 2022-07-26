@@ -32,6 +32,7 @@
                                         {{ form_widget(registrationForm.firstname, {'attr': {'class': 'form-control
                                         form-control-lg'}}) }}
                                         <label class="form-label" for="form3Example1m">Prénom</label>
+                                        {{ form_errors(registrationForm.firstname) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
@@ -39,6 +40,7 @@
                                         {{ form_widget(registrationForm.lastname, {'attr': {'class': 'form-control
                                         form-control-lg'}}) }}
                                         <label class="form-label" for="form3Example1n">Nom</label>
+                                        {{ form_errors(registrationForm.lastname) }}
                                     </div>
                                 </div>
                             </div>
@@ -49,6 +51,7 @@
                                         {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control
                                         form-control-lg'}}) }}
                                         <label class="form-label" for="form3Example1m1">Numéro de téléphone</label>
+                                        {{ form_errors(registrationForm.telephone) }}
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-4">
@@ -56,6 +59,7 @@
                                         {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control
                                         form-control-lg'}}) }}
                                         <label class="form-label" for="form3Example1n1">Email</label>
+                                        {{ form_errors(registrationForm.email) }}
                                     </div>
                                 </div>
                             </div>
@@ -63,18 +67,19 @@
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        {{ form_widget(registrationForm.plainPassword, {'attr': {'class':
+                                        {{ form_widget(registrationForm.plainPassword.first, {'attr': {'class':
                                         'form-control form-control-lg'}} ) }}
                                         <label class="form-label" for="form3Example1m1">Mot de passe</label>
+                                        {{ form_errors(registrationForm.plainPassword.first) }}
                                     </div>
                                 </div>
 
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
-                                        {# {{ form_widget(registrationForm.plainPassword, {'attr': {'class':
-                                        'form-control form-control-lg'}} ) }} #}
-                                        <label class="form-label" for="form3Example1n1">Confirmation du mot de
-                                            passe</label>
+                                        {{ form_widget(registrationForm.plainPassword.second, {'attr': {'class':
+                                        'form-control form-control-lg'}} ) }}
+                                        <label class="form-label" for="form3Example1n1">Confirmation du mot de passe</label>
+                                        {{ form_errors(registrationForm.plainPassword.second) }}
                                     </div>
                                 </div>
                             </div>
@@ -85,6 +90,7 @@
                                         {{ form_widget(registrationForm.town, {'attr': {'class': 'form-control
                                         form-control-lg'}}) }}
                                         <label class="form-label" for="form3Example1n1">Ville</label>
+                                        {{ form_errors(registrationForm.town) }}
                                     </div>
                                 </div>
 
@@ -97,31 +103,12 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <select class="form-control form-control-lg select">
-                                        <option value="1">Ville</option>
-                                        <option value="2">Douala</option>
-                                        <option value="3">Abidjan</option>
-                                        <option value="4">Dakar</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-6 mb-4">
-                                    <select class="form-control form-control-lg select">
-                                        <option value="1">Quartier</option>
-                                        <option value="2">Banyangui</option>
-                                        <option value="3">Akwa</option>
-                                        <option value="4">Bell</option>
-                                    </select>
-                                </div>
-                            </div>
-
                             <div class="">
                                 <div class="form-outline">
                                     {{ form_widget(registrationForm.agreeTerms) }}
                                     <label class="form-label" for="form3Example1n1">Accepter les conditions
                                         d'utilisation</label>
+                                    {{ form_errors(registrationForm.agreeTerms) }}
                                 </div>
                             </div>
 
