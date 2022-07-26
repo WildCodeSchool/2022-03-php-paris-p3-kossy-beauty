@@ -1,6 +1,6 @@
 main.login {
     height: 100%;
-    width: 100%;;
+    width: 100%;
 }
 
 .form-content-login {
@@ -9,7 +9,8 @@ main.login {
     overflow: hidden;
 }
 
-section#login-form {
+section#login-form,
+section#register-form {
     top: 0;
     left: 0;
     padding: 0;
@@ -20,7 +21,8 @@ section#login-form .row > * {
 }
 
 .nav-tabs,
-section#login-form .card {
+section#login-form .card,
+section#register-form .card {
     border: 0;
     border-radius: 0;
 }
