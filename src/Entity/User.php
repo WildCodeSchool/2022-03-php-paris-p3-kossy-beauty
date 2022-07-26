@@ -43,10 +43,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, \Serial
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
-    // #[Assert\NotBlank(message: 'Veuillez remplir ce champs. password')]
-    // #[Assert\Length(
-    //     min: 8,
-    // )]
     #[Assert\Type(
         type: 'string',
         message: 'Le format du mot de passe est incorrect',

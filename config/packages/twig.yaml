@@ -7,6 +7,7 @@ twig:
         whatsapp: '@App\Service\WhatsappService'
         geolocation: '@App\Service\GeolocationService'
         notification: '@App\Service\NotificationService'
+        globalContactMailCopyright: '@App\Service\ContactMailCopyrightService'
     date:
         format: j F Y
         timezone: Europe/Paris

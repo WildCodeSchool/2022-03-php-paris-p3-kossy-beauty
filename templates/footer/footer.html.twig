@@ -1,3 +1,19 @@
+<!-- Modal -->
+<div class="modal fade" id="nousContacterModal" tabindex="-1" aria-labelledby="nousContacterModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nousContacterModalLabel">Nous contacter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% for item in globalContactMailCopyright.getAll %}
+        <p>{{ item.email }}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
 <footer class="text-center text-white">
   <div class="container">
     <div class="row py-4">
@@ -12,7 +28,9 @@
       </div>
       <div class="col-6 col-lg-4">
         <a class="d-block" href="">A propos de Kossy Beauty</a>
-        <a class="d-block" href="">Nous contacter</a>
+        <!-- Button trigger modal -->
+        <a class="d-block" data-bs-toggle="modal" data-bs-target="#nousContacterModal" href="">Nous contacter</a>
+    
       </div>
       <hr class="d-block d-lg-none mt-4">
       <div class="col-auto col-lg-4 mt-4 mt-lg-0 text-center">
@@ -22,7 +40,9 @@
     </div>
     <hr />
     <div class="text-center p-3 pb-5" >
-    Kossy Beauty © 2022. Tous droits réservés.
+    {% for item in globalContactMailCopyright.getAll %}
+    <p>{{ item.copyright }}</p>
+      {% endfor %}
     </div>
   </div>
 </footer>
