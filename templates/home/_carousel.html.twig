@@ -1,0 +1,65 @@
+<h2 class="text-center fw-bold mt-5 p-3">Tendances actuelles / Inspirations</h2>
+<div class="row mx-auto my-auto justify-content-center">
+  <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="container">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <div class="mx-auto">
+                    <div class="row">
+                        {% for i in 1..12 %}
+                            <div class="col-2 item mb-1">
+                                <img class="img-gallery preview rounded mb-1" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0">
+                                    <div class="modal-header gallery border-0">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body bg-dark text-center">
+                                        <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="mx-auto">
+                    <div class="row">
+                        {% for i in 13..24 %}
+                            <div class="col-2 item mb-1">
+                                <img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{ i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content border-0">
+                                    <div class="modal-header gallery border-0">
+                                        <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body bg-dark text-center">
+                                        <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev fw-bolder" href="#recipeCarousel" role="button" data-bs-slide="prev">
+      <i class="bi bi-chevron-double-left fs-1"></i>
+    </a>
+    <a class="carousel-control-next fw-bolder" href="#recipeCarousel" role="button" data-bs-slide="next">
+      <i class="bi bi-chevron-double-right fs-1"></i>
+    </a>
+  </div>
+</div>

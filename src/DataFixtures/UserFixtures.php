@@ -41,6 +41,7 @@ class UserFixtures extends Fixture
             $provider->setLastname('Plopinette' . $i);
             $provider->setTown('PlopCity');
             $provider->setIsTop(false);
+            $provider->setEmail('provider' . $i . '@gmail.com');
             $provider->setIsArchived(false);
             if ($i > 9) {
                 $provider->setTelephone('01000000' . $i);
@@ -68,6 +69,7 @@ class UserFixtures extends Fixture
         $superAdmin->setIsArchived(false);
         $superAdmin->setTelephone('0975318642');
         $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+        $superAdmin->setIsVerified(true);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $superAdmin,
             'superadmin'

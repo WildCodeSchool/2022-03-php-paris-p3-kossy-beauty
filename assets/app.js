@@ -11,21 +11,27 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-//require('bootstrap');
-
+/**
+ * A proper to call the js bootstrap file
+ * instead of require('bootstrap')
+ */
 import * as bootstrap from 'bootstrap';
 window.bootstrap = bootstrap;
 
-
+/**
+ * TOOTLIP FOR GEOLOCATION
+ * DIsplay a small popover when the geolocation icon in the navbar is hovered
+ */
 var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
     return new bootstrap.Tooltip(tooltipTriggerEl)
 })
 
 /**
+ * SMALLNAV
  * Events for click and mouseleave for the small nav
  */
-const triggerTabList = document.querySelectorAll('#myTab li button')
+const triggerTabList = document.querySelectorAll('#categories-services li button')
 
 triggerTabList.forEach(triggerEl => {
     const tabTrigger = new bootstrap.Tab(triggerEl)
@@ -52,4 +58,23 @@ triggerTabList.forEach(triggerEl => {
             }
         })
     })
+})
+
+/**
+ * CAROUSEL
+ */
+let items = document.querySelectorAll('.carousel .carousel-item')
+
+items.forEach((el) => {
+    const minPerSlide = 1
+    let next = el.nextElementSibling
+    for (var i=1; i<minPerSlide; i++) {
+        if (!next) {
+            // wrap carousel by using first child
+            next = items[0]
+        }
+        let cloneChild = next.cloneNode(true)
+        el.appendChild(cloneChild.children[0])
+        next = next.nextElementSibling
+    }
 })

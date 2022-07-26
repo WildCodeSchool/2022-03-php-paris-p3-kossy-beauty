@@ -34,6 +34,7 @@ class UserType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'label' => 'Choisir une image',
                 ])
         ;
 
@@ -45,7 +46,7 @@ class UserType extends AbstractType
                 ->add('companyName', TextType::class, ['label' => 'Entreprise'])
                 ->add('companyDescription', TextareaType::class, [
                     'label' => 'Description',
-                    'attr' => ['cols' => '46', 'rows' => '5']
+                    'attr' => ['cols' => '46', 'rows' => '1']
                 ]);
             ;
         }
@@ -54,7 +55,7 @@ class UserType extends AbstractType
                 ->add('companyName', TextType::class, ['label' => 'Entreprise'])
                 ->add('companyDescription', TextareaType::class, [
                     'label' => 'Description',
-                    'attr' => ['cols' => '46', 'rows' => '5']
+                    'attr' => ['cols' => '46', 'rows' => '1']
                 ]);
         }
     }

@@ -1,0 +1,139 @@
+nav,
+ul.nav,
+footer {
+    background-color: #00a19a;
+}
+
+ul.navbar-nav {
+    z-index:99;
+}
+
+div.chevron.position-absolute {
+    z-index: 98;
+}
+
+form.search-form {
+    width: 50%;
+}
+
+.select-location {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 1px;
+}
+
+.select-districts option {
+    background-color: white;
+    color: green;
+}
+
+.submit-searchbar {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.tab-pane.position-absolute {
+    z-index: 100 !important;
+    background: rgb(0,0,0, 0.8);
+}
+
+li.nav-item button.nav-link {
+    font-weight: bold;
+    border: none;
+    position: relative;
+}
+
+li.nav-item button.nav-link:hover,
+li.nav-item button.nav-link.active {
+    background: rgb(242, 210, 129);
+    border: rgb(242, 210, 129);
+    color: black;
+}
+
+li.nav-item button.nav-link:hover::before,
+li.nav-item button.nav-link.active::before {
+    content: "";
+    height: 10px;
+    width: 10px;
+    background-color: #00a19a;
+    border-radius: 50%;
+    border: 1px solid darkgrey;
+    position: absolute;
+    top: 50%;
+    bottom: 50%;
+    left: 0.5rem;
+    margin-top: -5px;
+}
+
+div.tab-pane.smallnav {
+    // background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    // background: rgb(242, 210, 129);
+    border-top: 4px solid rgb(242, 210, 129);
+}
+
+// div.tab-pane.smallnav .card {
+//     background: white;
+// }
+
+div.tab-pane.smallnav .card {
+    height: 7rem;
+}
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+div.tab-pane.smallnav .card:hover {
+    background: rgb(242, 210, 129);
+}
+
+ul.navbar-nav li:hover {
+    background: #00a19a;
+    color: white;
+}
+
+ul.navbar-nav li:hover a.nav-link {
+    color: white !important;
+}
+
+@include media-breakpoint-down(md) {
+    form.search-form {
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    ul.navbar-nav
+    {
+        background-color: white;
+    }
+
+    form.search-form {
+        width: 75%;
+    }
+
+    ul.navbar-nav li:hover a.dropdown-item {
+        color: #212529;
+    }
+
+    ul.dropdown-menu li a.dropdown-item:hover {
+        background-color: none;
+        color:  #00a19a;
+    }
+}
+
+@media (min-width: 992px) {
+    
+}
+
+.navbar-toggler {
+    border-color: white !important;
+}
+
+.text-service {
+    background-color: rgb(0,0,0, 0.4);
+}
+
+.text-service:hover {
+    background-color: transparent;
+}
