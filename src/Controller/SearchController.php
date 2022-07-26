@@ -66,14 +66,16 @@ class SearchController extends AbstractController
         //var_dump($searchedServices); die;
 
         // Providers linked to the query results
-        $provider = $providers = '';
+        $provider = $prov = '';
 
         foreach ($searchedServices as $service) {
             $providers = $provServRepository->findByService($service);
+            var_dump($providers);
+            die;
             foreach ($providers as $provider) {
-                $provider = $userRepository->find($provider);
+                $prov = $userRepository->find($provider);
             }
-            var_dump($provider);
+            var_dump($prov);
             die;
         }
         //$providersInService = $provServRepository->findByService($searchedServices);
