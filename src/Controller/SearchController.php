@@ -55,8 +55,7 @@ class SearchController extends AbstractController
         ServiceRepository $serviceRepository,
         ProviderServiceRepository $provServRepository,
         UserRepository $userRepository,
-    ): Response
-    {
+    ): Response {
         // Search query
         $query = $request->request->all('form')['query'];
         $searchedServices = '';
@@ -67,14 +66,17 @@ class SearchController extends AbstractController
         //var_dump($searchedServices); die;
 
         // Providers linked to the query results
-        foreach($searchedServices as $service) {
+        $provider = $providers = '';
+
+        foreach ($searchedServices as $service) {
             $providers = $provServRepository->findByService($service);
-            foreach($providers as $provider) {
+            foreach ($providers as $provider) {
                 $provider = $userRepository->find($provider);
             }
-            var_dump($provider); die;
+            var_dump($provider);
+            die;
         }
-        //$providersInService = $provServRepository->findBy(['service' => $searchedServices]);
+        //$providersInService = $provServRepository->findByService($searchedServices);
 
 
         return $this->render('search/index.html.twig', [

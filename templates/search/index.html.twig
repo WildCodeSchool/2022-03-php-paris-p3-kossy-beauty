@@ -12,12 +12,12 @@
             <h3 class="mt-3">Vos résulats de recherche pour :</h3>
 
             {% for provider in providers %}
-                {{ dump(provider)}}
+                {# {{ dump(provider)}} #}
                 {% for services in provider %}
-                    {{ dump(services)}}
-                    {# {{ services.provider.name}} #}
+                    {# {{ dump(services)}} #}
+                    {{ services.provider.name}}
                 {% endfor %}
-                {# {{ provider[0].id }} #}
+                {{ provider[0].id }}
             {% else %}
                 <p>No providers</p>
             {% endfor %}
