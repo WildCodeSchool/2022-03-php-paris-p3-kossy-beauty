@@ -63,6 +63,7 @@ class SearchController extends AbstractController
             $searchedServices = $serviceRepository->findServicesByName($query);
         }
 
+        // Retourne les services qui correspondent à la recherche
         //var_dump($searchedServices); die;
 
         // Providers linked to the query results
