@@ -66,6 +66,7 @@ class SearchController extends AbstractController
         //var_dump($searchedServices); die;
 
         // Providers linked to the query results
+        // Return la liste des providers associés aux services trouvés
         $provider = $prov = '';
 
         foreach ($searchedServices as $service) {
