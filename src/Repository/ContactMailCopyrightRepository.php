@@ -2,7 +2,7 @@
 
 namespace App\Repository;
 
-use App\Entity\SuperAdmin;
+use App\Entity\ContactMailCopyright;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -14,14 +14,14 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method SuperAdmin[]    findAll()
  * @method SuperAdmin[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SuperAdminRepository extends ServiceEntityRepository
+class ContactMailCopyrightRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, SuperAdmin::class);
+        parent::__construct($registry, ContactMailCopyright::class);
     }
 
-    public function add(SuperAdmin $entity, bool $flush = false): void
+    public function add(ContactMailCopyright $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class SuperAdminRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(SuperAdmin $entity, bool $flush = false): void
+    public function remove(ContactMailCopyright $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,7 +40,7 @@ class SuperAdminRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return SuperAdmin[] Returns an array of SuperAdmin objects
+//     * @return ContactMailCopyright[] Returns an array of ContactMailCopyright objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class SuperAdminRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?SuperAdmin
+//    public function findOneBySomeField($value): ?ContactMailCopyright
 //    {
 //        return $this->createQueryBuilder('s')
 //            ->andWhere('s.exampleField = :val')

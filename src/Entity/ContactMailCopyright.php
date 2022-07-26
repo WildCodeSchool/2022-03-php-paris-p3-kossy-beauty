@@ -2,22 +2,22 @@
 
 namespace App\Entity;
 
-use App\Repository\SuperAdminRepository;
+use App\Repository\ContactMailCopyrightRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: SuperAdminRepository::class)]
-class SuperAdmin
+#[ORM\Entity(repositoryClass: ContactMailCopyrightRepository::class)]
+class ContactMailCopyright
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $email;
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private $email = 'test@test.com';
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $copyright;
+    #[ORM\Column(type: 'string', length: 255, nullable: false)]
+    private $copyright = '2022';
 
     public function getId(): ?int
     {

@@ -8,11 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Entity\User;
+use App\Form\SuperAdminType;
 use App\Repository\CategoryRepository;
+use App\Repository\ContactMailCopyrightRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\SuperAdminRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use App\Repository\UserRepository;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends AbstractController
 {
@@ -22,13 +25,13 @@ class AdminController extends AbstractController
         UserRepository $userRepository,
         CategoryRepository $categoryRepository,
         ServiceRepository $serviceRepository,
-        SuperAdminRepository $superAdminRepository,
+        ContactMailCopyrightRepository $contactMailCopyRepo,
     ): Response {
         $user = new User();
         $users = $userRepository->findAll();
         $roles = $user->getRoles();
 
-        $superAdmin = $superAdminRepository->findAll();
+        $contactMailCopyright = $contactMailCopyRepo->findAll();
 
         return $this->render('admin/index.html.twig', [
             'users' => $users,
@@ -36,8 +39,9 @@ class AdminController extends AbstractController
             'roles' => $roles,
             'categories' => $categoryRepository->findAll(),
             'services' => $serviceRepository->findAll(),
-            'contactMail' => $superAdmin[0]->getEmail(),
-            'copyright' => $superAdmin[0]->getCopyright()
+            'contactMailCopyright' => $contactMailCopyright[0],
+            'contactMail' => $contactMailCopyright[0]->getEmail(),
+            'copyright' => $contactMailCopyright[0]->getCopyright()
         ]);
     }
 

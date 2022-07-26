@@ -22,7 +22,11 @@
     </div>
     <hr />
     <div class="text-center p-3 pb-5" >
-    Kossy Beauty © 2022. Tous droits réservés.
+    Kossy Beauty © 
+    {% for item in globalContactMailCopyright.getAll %}
+      {{ item.copyright }}
+      {% endfor %}
+      . Tous droits réservés.
     </div>
   </div>
 </footer>
