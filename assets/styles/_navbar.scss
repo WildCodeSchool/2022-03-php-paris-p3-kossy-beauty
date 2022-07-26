@@ -1,11 +1,15 @@
 nav,
 ul.nav,
 footer {
-    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    background-color: #00a19a;
 }
 
 ul.navbar-nav {
-    z-index:100;
+    z-index:99;
+}
+
+div.chevron.position-absolute {
+    z-index: 98;
 }
 
 form.search-form {
@@ -30,14 +34,11 @@ form.search-form {
 
 .tab-pane.position-absolute {
     z-index: 100 !important;
-    background-color: #f2d281;
+    background: rgb(0,0,0, 0.8);
 }
 
 li.nav-item button.nav-link {
     font-weight: bold;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 0;
     border: none;
     position: relative;
 }
@@ -65,12 +66,21 @@ li.nav-item button.nav-link.active::before {
 }
 
 div.tab-pane.smallnav {
-    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    // background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    // background: rgb(242, 210, 129);
     border-top: 4px solid rgb(242, 210, 129);
 }
 
+// div.tab-pane.smallnav .card {
+//     background: white;
+// }
+
 div.tab-pane.smallnav .card {
-    background: white;
+    height: 7rem;
+}
+
+.object-fit-cover {
+    object-fit: cover;
 }
 
 div.tab-pane.smallnav .card:hover {
@@ -81,6 +91,7 @@ ul.navbar-nav li:hover {
     background: #00a19a;
     color: white;
 }
+
 ul.navbar-nav li:hover a.nav-link {
     color: white !important;
 }
@@ -116,8 +127,13 @@ ul.navbar-nav li:hover a.nav-link {
 }
 
 .navbar-toggler {
-    border-color: #00a19a !important;
+    border-color: white !important;
 }
-i.bi.bi-list {
-    color: #00a19a;
-} 
+
+.text-service {
+    background-color: rgb(0,0,0, 0.4);
+}
+
+.text-service:hover {
+    background-color: transparent;
+}
