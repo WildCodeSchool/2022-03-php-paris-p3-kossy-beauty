@@ -114,7 +114,7 @@
                                     {% elseif app.user is defined %}
                                         <a href="{{ path('app_create_conversation', {id: user.id, service: service.service.name}) }}" class="btn btn-success" style="width:190px;" role="button">Envoyer un message</a>
                                     {% elseif not app.user %}
-                                        <a href="{{ path('login') }}" class="btn btn-success" role="button">Envoyer un message</a>
+                                        <a href="{{ path('login') }}" class="btn btn-success" role="button"><i class="bi bi-envelope-plus"></i> Envoyer un message</a>
                                     {% endif %} 
                                 </div>
                             </div>
