@@ -68,24 +68,19 @@ class SearchController extends AbstractController
 
         // Providers linked to the query results
         // Return la liste des providers associés aux services trouvés
-        $provider = $prov = '';
+        $pro = $serviceDetails = [];
 
         foreach ($searchedServices as $service) {
-            $providers = $provServRepository->findByService($service);
-            var_dump($providers);
-            die;
-            foreach ($providers as $provider) {
-                $prov = $userRepository->find($provider);
+            $providerServices = $provServRepository->findByService($service);
+            foreach ($providerServices as $key => $provider) {
+                $pro[$key] = $userRepository->findOneBy(['id' => $provider->getProvider()]);
+                //$pro[$key][] = $provServRepository->findByService($searchedServices);
             }
-            var_dump($prov);
-            die;
         }
-        //$providersInService = $provServRepository->findByService($searchedServices);
-
 
         return $this->render('search/index.html.twig', [
             'searchedServices' => $searchedServices,
-            'providers' => $providers,
+            'providers' => $pro,
         ]);
     }
 }
