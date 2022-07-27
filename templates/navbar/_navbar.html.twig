@@ -16,11 +16,6 @@
             <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
           </li>
           <li><hr class="dropdown-divider"></li>
-          {# <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100">
-            <i class="bi bi-star-fill me-1 fs-5"></i>
-            <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="#"></i>Favoris</a>
-          </li> 
-          <li><hr class="dropdown-divider"></li> #}
           {% if is_granted("ROLE_USER") %}
             {% include "navbar/_navLoggedUser.html.twig" %}
           {% else %}
