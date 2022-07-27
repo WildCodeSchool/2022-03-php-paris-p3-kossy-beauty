@@ -5,19 +5,14 @@
             }}) }}
                 {{ form_errors(searchForm) }}
                 <div class="input-group flex-nowrap">
-                    <span id="tooltip-geolocation" class="input-group-text tooltip-geolocation px-2"
+                    <span id="tooltip-geolocation" class="input-group-text tooltip-geolocation d-done d-md-block px-2"
                         data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
                         title="Vous avez été automatiquement géolocalisé à <b><u>{{ geolocation.getDistrict }}</u></b>.
                         <br />Vous pouvez changer ce choix avant d'effectuer une recherche">
                         <i class="bi bi-geo-alt-fill text-success fw-bolder"></i>
                     </span>
                     <div class="input-group-prepend">
-                        <select name="district" class="form-select btn btn-success text-nowrap text-white rounded-0 select-locations">
-                            <option value="{{ geolocation.district }}">{{ geolocation.district }}</option>
-                            {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
-                                <option value="{{ district }}">{{ district }}</option>
-                            {% endfor %}
-                        </select>
+                        {{ form_widget(searchForm.district) }}
                     </div>
                     <div class="input-group-append">
                         {{ form_widget(searchForm.query) }} 

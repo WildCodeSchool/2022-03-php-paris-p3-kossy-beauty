@@ -4,10 +4,17 @@
 
 {% block body %}
 
-    {% if searchedServices | length == 0 %}
-        <h4 class="text-center fw-bold mb-5"><i class="bi bi-search"></i> | Aucun services nommé {{ app.request.get('search') }} a été trouvé</h4>
+    {% if searchedServices | length == 0 or providers | length == 0 %}
+        <h4 class="text-center fw-bold mb-5">
+            <i class="bi bi-search"></i> | Aucun service nommé <span class="text-muted fst-italic">{{ keyword }}</span> à <span class="text-muted fst-italic">{{ location }}</span> n'a été trouvé !
+        </h4>
+        <div class="text-center">
+            <a href="{{ path('home') }}" class="btn btn-primary"><i class="bi bi-arrow-left-square pe-1 align-middle"></i> Retour à la page d'accueil</a>
+        </div>
     {% else %}
-        <h4 class="text-center fw-bold mb-5"><i class="bi bi-search"></i> | Vos résulats de recherche pour {{ app.request.get('searchedServices') }} : </h4>
+        <h4 class="text-center fw-bold mb-5">
+            <i class="bi bi-search"></i> | Vos résulats de recherche pour <span class="text-muted fst-italic">{{ keyword }}</span>  à <span class="text-muted fst-italic">{{ location }}</span> 
+        </h4>
         
         <div class="d-flex">
             <div class="row">
@@ -35,11 +42,13 @@
                                             <a class="text-secondary" href="#"><i class="bi bi-star fs-4"></i></a>
                                         </div>
                                         <div class="d-flex flex-column align-items-center text-center">
+                                            {% if provider.0.image is not null%}
                                             <img
                                                 class="rounded-circle"
                                                 width="100px"
                                                 src="{{ vich_uploader_asset(provider.0) }}"
                                             />
+                                            {% endif %}
                                         </div>
                                         <div class="card-body">
                                             <a href="{{ path('app_provider_services_list', {id: provider.0.id }) }}">
