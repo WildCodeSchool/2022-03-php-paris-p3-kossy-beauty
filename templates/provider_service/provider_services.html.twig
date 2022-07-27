@@ -5,7 +5,16 @@
 {% block body %}
 
 <div class="d-flex gap-4 align-items-center mb-4 ps-3">
-    <div><img class="profile-image rounded-circle" src="{{ vich_uploader_asset(user) }}" alt="Profile picture of the provider"></div>
+    <div>
+        {% if user.image %}
+        <img class="profile-image rounded-circle" src="{{ vich_uploader_asset(user) }}" alt="Profile picture of the provider">
+        {% else %}
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>
+        {% endif %}
+    </div>
     <div>
         <p style="font-size:1.5rem;">{{user.companyName}}</p>
         <p class="mb-0">{{user.town}}</p>
@@ -124,7 +133,7 @@
                 <div>
                     <div class="d-flex flex-wrap container justify-content-center ">
                         {% for photo in catalog %}
-                        <img src="{{ vich_uploader_asset(photo) }}" alt="Photography from the provider catalog" class="card-img-top w-25 rounded img-fluid"/>
+                        <img src="{{ vich_uploader_asset(photo) }}" alt="Photography from the provider catalog" class="card-img-top profile-image rounded img-fluid"/>
                         {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
                         <form method="post" action="{{ path('app_catalog_delete', {'id': photo.id}) }}">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.id) }}">
