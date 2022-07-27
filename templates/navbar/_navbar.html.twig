@@ -10,10 +10,10 @@
           <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center color-red">
             <i class="bi bi-envelope-exclamation-fill me-1 fs-5"></i>
         {% else %}
-          <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100">
+          <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center text-light w-100">
             <i class="bi bi-envelope-fill me-1 fs-5"></i>
         {% endif %}
-            <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
+            <a class="nav-link d-inline d-lg-block active stretched-link p-0 text-light" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
           </li>
           <li><hr class="dropdown-divider"></li>
           {# <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100">
@@ -24,9 +24,9 @@
           {% if is_granted("ROLE_USER") %}
             {% include "navbar/_navLoggedUser.html.twig" %}
           {% else %}
-            <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100">
+            <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100 text-light">
               <i class="bi bi-person-bounding-box me-1 fs-5"></i>
-              <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
+              <a class="nav-link d-inline d-lg-block active stretched-link p-0 text-light" aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
             </li>
           {% endif %}
       </ul>
