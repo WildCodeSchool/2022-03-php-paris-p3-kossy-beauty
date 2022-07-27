@@ -26,3 +26,9 @@ section#register-form .card {
     border: 0;
     border-radius: 0;
 }
+
+.image-register {
+    object-fit:cover !important;
+    width : 50rem;
+    margin-left : 1rem;
+}
