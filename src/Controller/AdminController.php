@@ -51,11 +51,27 @@ class AdminController extends AbstractController
         $status = $user->isIsTop();
         if ($status) {
             $user->setIsTop(false);
-            $userRepository->add($user, true);
         } else {
             $user->setIsTop(true);
-            $userRepository->add($user, true);
         }
+
+        $userRepository->add($user, true);
+
+        return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/is-admin/{id}', name: 'app_admin_is_admin', methods: ['GET'])]
+    public function toggleIsAdmin(User $user, UserRepository $userRepository): Response
+    {
+        $status = $user->getRoles();
+        if (!in_array('ROLE_ADMIN', $status)) {
+            $user->setRoles(['ROLE_ADMIN']);
+        } else {
+            unset($status[0]);
+            $user->setRoles($status);
+        }
+
+        $userRepository->add($user, true);
 
         return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }

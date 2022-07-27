@@ -16,6 +16,6 @@ class ServiceService
     public function getServiceByCategoryId(string $categoryId)
     {
         $categoryId = intval($categoryId);
-        return $this->serviceRepository->findBy(['category' => $categoryId]);
+        return $this->serviceRepository->findBy(['category' => $categoryId], ['name' => 'ASC']);
     }
 }
