@@ -1,15 +1,22 @@
-<h2 class="text-center fw-bold pb-3">Sélections du jour <span class="d-none d-md-inline">/ prestataires à l'honneur</span></h2>
+<h2 class="text-center fw-bold pb-3"><span class="d-none d-md-inline">Sélections du jour</span></h2>
 <div class="row m-1">
     {% for provider in selectedProvider %}
         <div class="col">
             <div class="card top-provider mb-2 mb-md-3 border-0 position-relative">
                 <i class="icon-reward bi bi-award-fill color-gray fs-2 position-absolute end-0 me-2"></i>
                 <div class="row g-0">
-                    <div class="col-4">
-                        <img class="img-fluid rounded-start object-fit-cover h-100" src="https://www.superprof.lu/images/annonces/professeur-home-passionne-maquillage-donne-cours-make-marseille.jpg" alt="Photo de (( provider ))">
+                    <div class="col-4 d-flex justify-content-center align-items-center border b-1">
+                        {% if provider[0].provider.image %}
+                            <img src="{{ vich_uploader_asset(provider[0].provider) }}" alt="" class="img-fluid object-fit-cover h-100"/>
+                        {% else %}
+                            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg> 
+                        {% endif %}
                     </div>
                     <div class="col-8 border border-start-0 rounded-end">
-                        <div class="card-body position-relative h-100">
+                        <div class="card-body h-100">
                             <h6 class="card-title">{{ provider[0].service.name }}</h6>
                             <p class="card-text">
                                 <span class="d-block smalltext">
@@ -37,7 +44,7 @@
                                     <p class="card-text"><small class="text-muted d-none d-md-inline">{{ provider[0].service.category.name }}</small></p>
                                 </div>
                                 <div class="col-5 text-end">
-                                    <a class="btn btn-secondary-kb btn-to-service btn-sm stretched-link" href="{{ path('app_service_show', {'id': provider[0].service.id}) }}"><span class="d-none d-md-inline">Découvrir</span> <i class="bi bi-chevron-right fw-bolder"></i></a>
+                                    <a class="btn btn-secondary-kb btn-to-service btn-sm stretched-link" href="{{ path('app_provider_services_list', {'id': provider[0].provider.id}) }}"><span class="d-none d-md-inline">Découvrir</span> <i class="bi bi-chevron-right fw-bolder"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +61,6 @@
                     </div>  
                     <div class="col-md-8">
                         <div class="card-body">
-                            <h5 class="card-title">Oh mince !</h5>
                             <p class="card-text">
                                 <span class="d-block">Il n'y a pas de prestataires en avant pour le moment !</span>
                                 <span class="d-block">Ils seront disponibles très prochainement.</span>
