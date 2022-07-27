@@ -16,7 +16,7 @@
           </svg>
         {% endif %}
     </div>
-    <div class="col-2">
+    <div class="col-2 text-capitalize">
         <p style="font-size:1.5rem;">{{user.companyName}}</p>
         <p class="mb-0">{{user.town}}</p>
         <p class="mb-0">{{user.district}}</p>
@@ -66,7 +66,7 @@
                     <div class="container px-0">
                     {% for service in services %}
                         <div class="service_card d-block d-md-flex border border-dark mb-4 rounded border-1 bg-primary">
-                            <p class="col-12 col-md-3 mt-3 ms-md-3 my-md-3 mb-0 fw-bold text-center">{{ service.service.name }}</p>
+                            <p class="col-12 col-md-3 mt-3 ms-md-3 my-md-3 mb-0 fw-bold text-center text-capitalize">{{ service.service.name }}</p>
                             <div class="d-flex col-12 col-md-4 col-md-4 justify-content-around mt-md-3 mt-1 text-center mb-2">
                                 <p class="mb-md-3 mb-0"><i class="bi bi-wallet2"></i> {{ service.price }} €</p>
                                 <p class="mb-md-3 mb-0"><i class="bi bi-clock-history"></i> {{ service.duration }} minutes</p>
