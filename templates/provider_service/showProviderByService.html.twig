@@ -24,7 +24,7 @@
                 {% endif %}
             </div>
             <div class="card-body">
-                <a href="{{ path('app_provider_services_list', {id: provider.id }) }}"><h6 class="card-title text-break">{{ provider.companyName }}</h6></a>
+                <a class="provider-link" href="{{ path('app_provider_services_list', {id: provider.id }) }}"><h6 class="card-title text-break stretched-link">{{ provider.companyName }}</h6></a>
                 
                 <p class="fw-bold">
                     <span class="text-primary"
