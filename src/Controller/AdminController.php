@@ -67,7 +67,7 @@ class AdminController extends AbstractController
         if (!in_array('ROLE_ADMIN', $status)) {
             $user->setRoles(['ROLE_ADMIN']);
         } else {
-            unset($status[0]);
+            $status = ['ROLE_USER'];
             $user->setRoles($status);
         }
 
