@@ -26,7 +26,7 @@ class SearchController extends AbstractController
     public function searchBar()
     {
         $form = $this->createFormBuilder()
-            ->setAction($this->generateUrl('handleSearch'))
+            ->setAction($this->generateUrl('querySearch'))
             ->add('query', TextType::class, [
                 'label' => false,
                 'attr' => [
@@ -49,32 +49,39 @@ class SearchController extends AbstractController
     /**
      * @param Request $request
      */
-    #[Route('/handleSearch', name: 'handleSearch', methods: ['POST'])]
-    public function handleSearch(
+    #[Route('/querySearch/{keyword?}', name: 'querySearch')]
+    public function querySearch(
         Request $request,
         ServiceRepository $serviceRepository,
         ProviderServiceRepository $provServRepository,
         UserRepository $userRepository,
+        ?string $keyword
     ): Response {
-        // Search query
-        $query = $request->request->all('form')['query'];
-        $searchedServices = '';
-        if ($query) {
-            $searchedServices = $serviceRepository->findServicesByName($query);
+
+        if (isset($request->request->all('form')['query'])) {
+            $query = $request->request->all('form')['query'];
+        } elseif ($keyword && $keyword !== null) {
+            $query = $keyword;
+        } else {
+            return $this->redirectToRoute('home');
         }
 
-        // Retourne les services qui correspondent à la recherche
-        //var_dump($searchedServices); die;
+        // Search query
+        $searchedServices = '';
 
-        // Providers linked to the query results
-        // Return la liste des providers associés aux services trouvés
-        $pro = $serviceDetails = [];
+        // Return services corresponding to the query
+        $searchedServices = $serviceRepository->findServicesByName($query);
+
+        // Providers linked to the services found
+        $pro = [];
 
         foreach ($searchedServices as $service) {
             $providerServices = $provServRepository->findByService($service);
-            foreach ($providerServices as $key => $provider) {
-                $pro[$key] = $userRepository->findOneBy(['id' => $provider->getProvider()]);
-                //$pro[$key][] = $provServRepository->findByService($searchedServices);
+            foreach ($providerServices as $provider) {
+                $pro[] = [
+                    $userRepository->findOneBy(['id' => $provider->getProvider()]),
+                    $provider,
+                ];
             }
         }
 
