@@ -12,12 +12,6 @@
                         <i class="bi bi-geo-alt-fill text-dark fw-bolder"></i>
                     </span>
                     <div class="input-group-prepend">
-                        <select name="district" class="form-select btn btn-light border border-1 text-nowrap text-dark rounded-0 select-locations">
-                            <option value="{{ geolocation.district }}">{{ geolocation.district }}</option>
-                            {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
-                                <option value="{{ district }}">{{ district }}</option>
-                            {% endfor %}
-                        </select>
                         {{ form_widget(searchForm.district) }}
                     </div>
                     <div class="input-group-append">
