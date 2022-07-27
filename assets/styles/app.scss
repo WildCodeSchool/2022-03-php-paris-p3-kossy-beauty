@@ -80,6 +80,16 @@ body {
   font-size: 0.8rem;
 }
 
+.provider-link {
+  text-decoration: none;
+  color: black;
+}
+
+.provider-link:hover {
+  color: #00a19a;
+  // primary color
+}
+
 a.no-decoration {
   text-decoration: none;
 }

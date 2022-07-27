@@ -84,13 +84,13 @@ endblock %} {% block body %}
             data-bs-parent="#accordionExample"
         >
             <div class="accordion-body">
-                <button class="btn btn-outline-success">
+                {# <button class="btn btn-outline-success">
                     <a
                         class="text-dark text-decoration-none"
                         href="{{ path('app_register') }}"
                         >Ajouter utilisateur <i class="bi bi-plus"></i
                     ></a>
-                </button>
+                </button> #}
                 <table class="table">
                     <thead>
                         <tr>
@@ -105,7 +105,7 @@ endblock %} {% block body %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for user in users %} {% for role in user.roles %} {%
+                        {% for user in users|sort((a, b) => a.lastname <=> b.lastname) %} {% for role in user.roles %} {%
                         if 'ROLE_USER' in user.roles and user.roles|length < 2
                         %}
                         <tr>
@@ -154,13 +154,6 @@ endblock %} {% block body %}
             data-bs-parent="#accordionExample"
         >
             <div class="accordion-body">
-                <button class="btn btn-outline-success">
-                    <a
-                        class="text-dark text-decoration-none"
-                        href="{{ path('app_register') }}"
-                        >Ajouter utilisateur <i class="bi bi-plus"></i
-                    ></a>
-                </button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -175,7 +168,7 @@ endblock %} {% block body %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for user in users %} {% for role in user.roles %} {%
+                        {% for user in users|sort((a, b) => a.lastname <=> b.lastname) %} {% for role in user.roles %} {%
                         if role == 'ROLE_PROVIDER' %}
                         <tr>
                             <th scope="row">{{ user.id }}</th>
@@ -227,13 +220,6 @@ endblock %} {% block body %}
             data-bs-parent="#accordionExample"
         >
             <div class="accordion-body">
-                <button class="btn btn-outline-success">
-                    <a
-                        class="text-dark text-decoration-none"
-                        href="{{ path('app_register') }}"
-                        >Ajouter utilisateur <i class="bi bi-plus"></i
-                    ></a>
-                </button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -248,7 +234,7 @@ endblock %} {% block body %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for user in users %} {% for role in user.roles %} {%
+                        {% for user in users|sort((a, b) => a.lastname <=> b.lastname) %} {% for role in user.roles %} {%
                         if role == 'ROLE_ADMIN' %}
                         <tr>
                             <th scope="row">{{ user.id }}</th>
@@ -311,7 +297,7 @@ endblock %} {% block body %}
                         </tr>
                     </thead>
                     <tbody>
-                        {% for category in categories %}
+                        {% for category in categories|sort((a, b) => a.name <=> b.name) %}
                         <tr>
                             <td>{{ category.name }}</td>
                             <td>
@@ -375,7 +361,7 @@ endblock %} {% block body %}
                 <div class="accordion mt-2" id="accordionServices">
                     <div class="accordion-item">
                         <div class="d-flex justify-content-center">
-                    {% for category in categories %}
+                    {% for category in categories|sort((a, b) => a.name <=> b.name) %}
                         <h2 class="accordion-header" id="heading{{ category.id }}">
                             <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ category.id }}" aria-expanded="true" aria-controls="collapse{{ category.id }}">
                                 {{ category.name }} <i class="bi bi-caret-down"></i>
@@ -393,7 +379,7 @@ endblock %} {% block body %}
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for service in category.services %}
+                                        {% for service in category.services|sort((a, b) => a.name <=> b.name) %}
                                         <tr>
                                             <td><img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="rounded-circle" width="40"></td>
                                             <td>{{ service.name }}</td>
