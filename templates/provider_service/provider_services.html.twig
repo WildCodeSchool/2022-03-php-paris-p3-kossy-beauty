@@ -4,8 +4,9 @@
 
 {% block body %}
 
+<div class="shadow p-5">
 <div class="d-flex gap-4 align-items-center mb-4 ps-3">
-    <div>
+    <div class="col-1 me-3">
         {% if user.image %}
         <img class="profile-image rounded-circle" src="{{ vich_uploader_asset(user) }}" alt="Profile picture of the provider">
         {% else %}
@@ -15,30 +16,37 @@
           </svg>
         {% endif %}
     </div>
-    <div>
+    <div class="col-2">
         <p style="font-size:1.5rem;">{{user.companyName}}</p>
         <p class="mb-0">{{user.town}}</p>
         <p class="mb-0">{{user.district}}</p>
     </div>
+    <div class="col position-relative end-0 text-end me-5">
+        <button type="button" class="btn btn-dark text-monospace">
+            Statut <span class="badge bg-warning text-black ms-2">PRO</span>
+        </button>
+    </div>
 </div>
-<div class="ms-3">
-    {{ user.companyDescription }}
+<hr class="border-muted border border-light">
+<div class="d-flex alert alert-primary shadow align-items-center align-middle">
+    <i class="bi bi-justify me-2"></i> {{ user.companyDescription }}
 </div>
+<hr class="border-muted border border-light">
 {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
 <div class="d-flex d-md-block justify-content-center">
     <a class="ms-3 btn btn-outline-secondary" href="{{ path('app_user_edit', {'id': user.id}) }}">Editer votre description <i class="bi bi-pen"></i></a>
 </div>
 {% endif %}
 <div class="accordion" id="accordionExample">
-    <div class="">
+    <div class="shadow">
         <div class="d-flex justify-content-center gap-2">
             <h2 class="" id="headingOne">
-                <button class="btn-prov d-block mx-auto btn btn-light bg-white border-dark mt-2 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn-prov d-block mx-auto btn btn-light bg-secondary text-white mt-2 me-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Prestations
                 </button>
             </h2>
             <h2 class="" id="headingThree">
-                <button class="btn-prov d-block mx-auto btn btn-light bg-white border-dark collapsed mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <button class="btn-prov d-block mx-auto btn btn-light bg-secondary text-white collapsed mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                 Galerie
                   </button>
             </h2>
@@ -57,7 +65,7 @@
                     </div>
                     <div class="container px-0">
                     {% for service in services %}
-                        <div class="service_card d-block d-md-flex border border-dark mb-4 rounded border-1">
+                        <div class="service_card d-block d-md-flex border border-dark mb-4 rounded border-1 bg-primary">
                             <p class="col-12 col-md-3 mt-3 ms-md-3 my-md-3 mb-0 fw-bold text-center">{{ service.service.name }}</p>
                             <div class="d-flex col-12 col-md-4 col-md-4 justify-content-around mt-md-3 mt-1 text-center mb-2">
                                 <p class="mb-md-3 mb-0"><i class="bi bi-wallet2"></i> {{ service.price }} €</p>
@@ -150,5 +158,6 @@
             </div>
          </div>
     </div>
+</div>
 </div>
 {% endblock %}  
