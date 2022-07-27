@@ -8,18 +8,18 @@
                     <div class="row">
                         {% for i in 1..12 %}
                             <div class="col-2 item mb-1">
-                                <img class="img-gallery preview rounded mb-1" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
+                                <img class="img-gallery preview rounded mb-1" src="{{ asset('build/images/woman-nails.jpg') }}" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal{{ i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content border-0">
                                     <div class="modal-header gallery border-0">
-                                        <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
+                                        <h5 class="modal-title text-center" id="exampleModalLabel"></h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body bg-dark text-center">
-                                        <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
+                                        <img class="img-gallery full rounded" src="{{ asset('build/images/woman-nails.jpg') }}">
                                     </div>
                                     </div>
                                 </div>
@@ -33,18 +33,18 @@
                     <div class="row">
                         {% for i in 13..24 %}
                             <div class="col-2 item mb-1">
-                                <img class="img-gallery preview rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
+                                <img class="img-gallery preview rounded" src="{{ asset('build/images/woman-yellow.jpg') }}" data-bs-toggle="modal" data-bs-target="#exampleModal{{ i }}">
                             </div>
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal{{ i }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content border-0">
                                     <div class="modal-header gallery border-0">
-                                        <h5 class="modal-title text-center" id="exampleModalLabel">Photo de (( provider ))</h5>
+                                        <h5 class="modal-title text-center" id="exampleModalLabel"></h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body bg-dark text-center">
-                                        <img class="img-gallery full rounded" src="https://resize.prod.femina.ladmedia.fr/r/,550/img/var/2022-04/dessange-coupe-courte-femme-tendance-coiffure-2022.jpg">
+                                        <img class="img-gallery full rounded" src="{{ asset('build/images/woman-yellow.jpg') }}">
                                     </div>
                                     </div>
                                 </div>
