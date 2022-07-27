@@ -93,7 +93,7 @@ ul.navbar-nav li:hover {
 }
 
 ul.navbar-nav li:hover a.nav-link {
-    color: white !important;
+    color: #f2d281 !important;
 }
 
 @include media-breakpoint-down(md) {
@@ -122,8 +122,19 @@ ul.navbar-nav li:hover a.nav-link {
     }
 }
 
-@media (min-width: 992px) {
-    
+@media (min-width: 830px) {
+    .logo-navbar {
+        width : 5.5rem;
+        margin-top:-2.1rem;
+    }
+}
+
+@media (max-width: 830px) {
+    .logo-navbar {
+        width : 3.5rem;
+        margin-top:-1.8rem;
+        margin-left: -0.7rem !important;
+    }
 }
 
 .navbar-toggler {
@@ -137,3 +148,25 @@ ul.navbar-nav li:hover a.nav-link {
 .text-service:hover {
     background-color: transparent;
 }
+
+.nav-link-home:hover {
+    color : #f2d281;
+} 
+
+@media (min-width: 994px) {
+    .nav-link {
+        color:white !important;
+    }
+}
+
+@media (min-width: 994px) {
+    .nav-item-right  {
+        color:white !important;
+    }
+    .nav-item-right:hover  {
+        color:#f2d281 !important;
+    }
+
+}
+
+

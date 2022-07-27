@@ -74,12 +74,13 @@ class SearchController extends AbstractController
                     "Nouvelle zone de New-Deido" => "Nouvelle zone de New-Deido"
                 ],
                 'attr' => [
-                    'class' => 'form-select btn btn-success text-nowrap text-white rounded-0 select-locations'
+                    'class' => 'form-select btn btn-light border 
+                    border-1 text-nowrap text-dark rounded-0 select-locations'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-success text-nowrap submit-searchbar'
+                    'class' => 'btn btn-light border border-1 text-nowrap text-dark submit-searchbar'
                 ]
             ])
             ->getForm();
