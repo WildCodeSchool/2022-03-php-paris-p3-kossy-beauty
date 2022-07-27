@@ -9,10 +9,10 @@
                         data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-html="true"
                         title="Vous avez été automatiquement géolocalisé à <b><u>{{ geolocation.getDistrict }}</u></b>.
                         <br />Vous pouvez changer ce choix avant d'effectuer une recherche">
-                        <i class="bi bi-geo-alt-fill text-success fw-bolder"></i>
+                        <i class="bi bi-geo-alt-fill text-dark fw-bolder"></i>
                     </span>
                     <div class="input-group-prepend">
-                        <select name="district" class="form-select btn btn-success text-nowrap text-white rounded-0 select-locations">
+                        <select name="district" class="form-select btn btn-light border border-1 text-nowrap text-dark rounded-0 select-locations">
                             <option value="{{ geolocation.district }}">{{ geolocation.district }}</option>
                             {% for district in geolocation.getDistricts('Cameroon', 'Douala') %}
                                 <option value="{{ district }}">{{ district }}</option>

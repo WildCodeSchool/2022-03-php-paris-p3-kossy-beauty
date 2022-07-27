@@ -34,7 +34,7 @@ class SearchController extends AbstractController
             ])
             ->add('recherche', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-success text-nowrap submit-searchbar'
+                    'class' => 'btn btn-light border border-1 text-nowrap text-dark submit-searchbar'
                 ]
             ])
             ->getForm();
