@@ -93,7 +93,7 @@ ul.navbar-nav li:hover {
 }
 
 ul.navbar-nav li:hover a.nav-link {
-    color: white !important;
+    color: #f2d281 !important;
 }
 
 @include media-breakpoint-down(md) {
@@ -147,3 +147,7 @@ ul.navbar-nav li:hover a.nav-link {
 .text-service:hover {
     background-color: transparent;
 }
+
+.nav-link-home:hover {
+    color : #f2d281;
+} 
