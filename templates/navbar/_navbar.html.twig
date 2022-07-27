@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light py-3 pb-1">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><img class="position-absolute ms-2 d-md-block d-none"src="{{ asset('build/images/Kossy-Beauty-logo-3.png') }}" style="width:5.5rem; margin-top:-2.1rem" alt="Logo"></a>
-    {# {{ render(controller(
+    {{ render(controller(
         'App\\Controller\\SearchController::searchBar'
-      )) }} #}
+      )) }}
     <div class="collapse navbar-collapse pt-0 justify-content-end align-items-center" id="navbarSupportedContent">
       <ul class="navbar-nav rounded text-center position-absolute end-0 mt-2 mt-md-1 me-2 p-3 ps-4 p-md-0">
         {% if notification.notification is same as false %}
@@ -16,11 +16,6 @@
             <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
           </li>
           <li><hr class="dropdown-divider"></li>
-          {# <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100">
-            <i class="bi bi-star-fill me-1 fs-5"></i>
-            <a class="nav-link d-inline d-lg-block active stretched-link p-0" aria-current="page" href="#"></i>Favoris</a>
-          </li> 
-          <li><hr class="dropdown-divider"></li> #}
           {% if is_granted("ROLE_USER") %}
             {% include "navbar/_navLoggedUser.html.twig" %}
           {% else %}

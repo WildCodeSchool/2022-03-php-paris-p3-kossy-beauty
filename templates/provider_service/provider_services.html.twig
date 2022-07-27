@@ -124,10 +124,10 @@
                 <div>
                     <div class="d-flex flex-wrap container justify-content-center ">
                         {% for photo in catalog %}
-                        <img src="{{ vich_uploader_asset(photo) }}" alt="Photography from the provider catalog" class="card-img-top rounded-circle w-25"/>
+                        <img src="{{ vich_uploader_asset(photo) }}" alt="Photography from the provider catalog" class="card-img-top w-25 rounded img-fluid"/>
                         {% if is_granted("ROLE_PROVIDER") and user.id == app.user.id %}
-                        <form method="post" action="{{ path('app_catalog_delete', {'id': catalog.id}) }}">
-                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ catalog.id) }}">
+                        <form method="post" action="{{ path('app_catalog_delete', {'id': photo.id}) }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ photo.id) }}">
                             <button class="btn color-red"><i class="bi bi-x-circle"></i></button>
                         </form>
                         {% endif %}
