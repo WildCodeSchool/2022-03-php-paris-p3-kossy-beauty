@@ -27,7 +27,11 @@
             {% for service in globalServices.getServiceByCategoryId(category.id)%}
             <div class="col">
                 <div class="card d-flex border-0 w-100 position-relative">
-                    <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="rounded object-fit-cover w-100 h-100"/>
+                    {% if service.image %}
+                        <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="rounded object-fit-cover w-100 h-100"/>
+                    {% else %}
+                        <img src="{{ asset('build/images/comb-and-scissors.jpeg') }}" alt="Default image for service" class="rounded object-fit-cover w-100 h-100">
+                    {% endif %}
                     <div class="card-body p-1 position-absolute d-flex align-items-end rounded text-service w-100 h-100">
                         <p class="card-text mx-auto">
                             <a class="no-decoration text-white shadow-sm stretched-link fw-bolder" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">
