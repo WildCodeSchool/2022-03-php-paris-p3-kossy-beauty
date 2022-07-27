@@ -122,8 +122,18 @@ ul.navbar-nav li:hover a.nav-link {
     }
 }
 
-@media (min-width: 992px) {
-    
+@media (min-width: 830px) {
+    .logo-navbar {
+        width : 5.5rem;
+        margin-top:-2.1rem;
+    }
+}
+
+@media (max-width: 830px) {
+    .logo-navbar {
+        width : 3.2rem;
+        margin-top:-1.5rem;
+    }
 }
 
 .navbar-toggler {
