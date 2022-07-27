@@ -116,7 +116,11 @@ endblock %} {% block body %}
                             <td>{{ user.email }}</td>
                             <td>{{ user.town }}</td>
                             <td>{{ user.district }}</td>
-                            <td>{{ role }}</td>
+                            <td>
+                                <a class="btn border b-1 color-green"
+                                 href="{{ path('app_admin_is_admin', {id:user.id}) }}">Utilisateur
+                                </a>
+                            </td>
                             <td>
                                 <form
                                     method="post"
@@ -167,7 +171,6 @@ endblock %} {% block body %}
                             <th scope="col">Email</th>
                             <th scope="col">Ville</th>
                             <th scope="col">Quartier</th>
-                            <th scope="col">Rôle</th>
                             <th scope="col">En avant</th>
                         </tr>
                     </thead>
@@ -182,7 +185,6 @@ endblock %} {% block body %}
                             <td>{{ user.email }}</td>
                             <td>{{ user.town }}</td>
                             <td>{{ user.district }}</td>
-                            <td>{{ role }}</td>
                             <td class="text-center">
                                 {% if user.isTop %}
                                 <a class="btn border b-1 color-green"
@@ -256,7 +258,11 @@ endblock %} {% block body %}
                             <td>{{ user.email }}</td>
                             <td>{{ user.town }}</td>
                             <td>{{ user.district }}</td>
-                            <td>{{ role }}</td>
+                            <td>
+                                <a class="btn border b-1 color-green"
+                                 href="{{ path('app_admin_is_admin', {id:user.id}) }}">Admin</i>
+                                </a>
+                            </td>
                             <td>
                                 <form
                                     method="post"
