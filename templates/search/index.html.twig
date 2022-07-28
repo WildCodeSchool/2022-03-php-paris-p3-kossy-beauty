@@ -38,6 +38,7 @@
                             {% for key, provider in providers %}
                                 <div class="">
                                     <div class="card text-center mx-2 p-0 mb-3" style="width:18rem">
+                                        <div class="position-relative">
                                         <div class="favorite text-secondary text-end pe-2 pt-1">
                                             <a class="text-secondary" href="#"><i class="bi bi-star fs-4"></i></a>
                                         </div>
@@ -72,6 +73,7 @@
                                                 {{ provider.1.duration }} minutes
                                             </p>
                                         </div>
+                                    </div>
                                         <div class="card-footer">
                                             {% if app.user.roles.1 is defined %}
                                             {% elseif app.user is defined %}
