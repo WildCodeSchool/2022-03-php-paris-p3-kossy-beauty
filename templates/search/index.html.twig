@@ -55,8 +55,8 @@
                                             {% endif %}
                                         </div>
                                         <div class="card-body">
-                                            <a href="{{ path('app_provider_services_list', {id: provider.0.id }) }}">
-                                                <h6 class="card-title text-break">
+                                            <a class="provider-link" href="{{ path('app_provider_services_list', {id: provider.0.id }) }}">
+                                                <h6 class="card-title text-break stretched-link"">
                                                     {% if provider.0.companyName is null %}
                                                         {{ provider.0.firstName }} {{ provider.0.lastName }}
                                                     {% else %}
