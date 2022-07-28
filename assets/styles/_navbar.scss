@@ -47,7 +47,7 @@ li.nav-item button.nav-link:hover,
 li.nav-item button.nav-link.active {
     background: rgb(242, 210, 129);
     border: rgb(242, 210, 129);
-    color: black;
+    color: black !important;
 }
 
 li.nav-item button.nav-link:hover::before,
@@ -166,7 +166,6 @@ ul.navbar-nav li:hover a.nav-link {
     .nav-item-right:hover  {
         color:#f2d281 !important;
     }
-
 }
 
 
