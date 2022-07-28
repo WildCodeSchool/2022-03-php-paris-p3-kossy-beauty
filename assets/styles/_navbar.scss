@@ -1,12 +1,19 @@
 nav,
 ul.nav,
 footer {
-    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    background-color: #00a19a;
+}
+
+ul.navbar-nav {
+    z-index:99;
+}
+
+div.chevron.position-absolute {
+    z-index: 98;
 }
 
 form.search-form {
-    left: 6.1rem;
-    position: relative;
+    width: 50%;
 }
 
 .select-location {
@@ -27,14 +34,11 @@ form.search-form {
 
 .tab-pane.position-absolute {
     z-index: 100 !important;
-    background-color: #f2d281;
+    background: rgb(0,0,0, 0.8);
 }
 
 li.nav-item button.nav-link {
     font-weight: bold;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-bottom: 0;
     border: none;
     position: relative;
 }
@@ -62,14 +66,94 @@ li.nav-item button.nav-link.active::before {
 }
 
 div.tab-pane.smallnav {
-    background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    // background: linear-gradient(to right, rgb(0, 161, 154), rgb(242, 210, 129) 90%);
+    // background: rgb(242, 210, 129);
     border-top: 4px solid rgb(242, 210, 129);
 }
 
+// div.tab-pane.smallnav .card {
+//     background: white;
+// }
+
 div.tab-pane.smallnav .card {
-    background: white;
+    height: 7rem;
+}
+
+.object-fit-cover {
+    object-fit: cover;
 }
 
 div.tab-pane.smallnav .card:hover {
     background: rgb(242, 210, 129);
 }
+
+ul.navbar-nav li:hover {
+    background: #00a19a;
+    color: white;
+}
+
+ul.navbar-nav li:hover a.nav-link {
+    color: #f2d281 !important;
+}
+
+@include media-breakpoint-down(md) {
+    form.search-form {
+        width: 100%;
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    ul.navbar-nav
+    {
+        background-color: white;
+    }
+
+    form.search-form {
+        width: 75%;
+    }
+
+    ul.navbar-nav li:hover a.dropdown-item {
+        color: #212529;
+    }
+
+    ul.dropdown-menu li a.dropdown-item:hover {
+        background-color: none;
+        color:  #00a19a;
+    }
+}
+
+@media (min-width: 830px) {
+    .logo-navbar {
+        width : 5.5rem;
+        margin-top:-2.1rem;
+    }
+}
+
+@media (max-width: 830px) {
+    .logo-navbar {
+        width : 3.5rem;
+        margin-top:-1.8rem;
+        margin-left: -0.7rem !important;
+    }
+}
+
+.navbar-toggler {
+    border-color: white !important;
+}
+
+.text-service {
+    background-color: rgb(0,0,0, 0.4);
+}
+
+.text-service:hover {
+    background-color: transparent;
+}
+
+.nav-link-home:hover {
+    color : #f2d281;
+} 
+
+.form-select-district {
+    text-overflow: ellipsis;
+}
+

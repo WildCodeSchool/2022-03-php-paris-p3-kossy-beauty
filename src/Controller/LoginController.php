@@ -21,10 +21,12 @@ class LoginController extends AbstractController
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
+        if ($error) {
+            $this->addFlash('danger', 'Les identifiants renseignés sont incorrects');
+        }
         $lastUsername = $authenticationUtils->getLastUsername();
         return $this->render('login/index.html.twig', [
             'last_username' => $lastUsername,
-            'error'         => $error
         ]);
     }
 }

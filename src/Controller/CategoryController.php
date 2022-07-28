@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ServiceRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,12 +68,19 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_category_delete', methods: ['POST'])]
-    public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
-    {
+    public function delete(
+        Request $request,
+        Category $category,
+        CategoryRepository $categoryRepository,
+        ServiceRepository $serviceRepository
+    ): Response {
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+            $servicesToDelete = $serviceRepository->findBy(['category' => $category]);
+            foreach ($servicesToDelete as $service) {
+                $serviceRepository->remove($service, true);
+            }
             $categoryRepository->remove($category, true);
         }
-
         return $this->redirectToRoute('app_admin', [], Response::HTTP_SEE_OTHER);
     }
 }

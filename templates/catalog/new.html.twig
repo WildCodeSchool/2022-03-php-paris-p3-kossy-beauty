@@ -3,9 +3,9 @@
 {% block title %}New Catalog{% endblock %}
 
 {% block body %}
-    <h1>Create new Catalog</h1>
+    <h1>Ajouter une photo</h1>
 
     {{ include('catalog/_form.html.twig') }}
 
-    <a href="{{ path('app_catalog_index') }}">back to list</a>
+    <a class="btn p-0 mt-3" href="{{ path('app_provider_services_list', {id: app.user.id}) }}"><i class="bi bi-arrow-left"></i> Retour</a>
 {% endblock %}

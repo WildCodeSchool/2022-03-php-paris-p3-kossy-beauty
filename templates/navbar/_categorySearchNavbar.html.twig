@@ -1,34 +1,49 @@
-
-    <ul class="nav nav-tabs d-flex justify-content-center" id="myTab" role="tablist">
-        {% for category in globalCategories.getAll %}
-        <li class="nav-item" role="presentation">
-            <button class="nav-link color-black px-4 py-2" id="profile-tab" data-bs-toggle="tab" data-bs-target="#category{{ category.id }}"
-                type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
-                {{ category.name }}
-            </button>
-        </li>
-        {% endfor %}
-    </ul>
-    <div class="tab-content d-flex justify-content-center position-relative smallnav" id="myTabContent">
-        {% for category in globalCategories.getAll %}
-        <div class="tab-pane fade position-absolute smallnav" id="category{{ category.id }}" role="tabpanel" aria-labelledby="profile-tab"
-            tabindex="0">
-            <div class="container row row-cols-1 row-cols-md-5 g-4 mt-1">
-                {% for service in globalServices.getServiceByCategoryId(category.id)%}
-                <div class="col pb-4">
-                    <div class="card d-flex align-items-center pt-1 h-100">
-                        <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="card-img-top rounded-circle w-25"/>
-                        <div class="card-body p-1">
-                            <p class="card-text">
-                                <a class="no-decoration color-black stretched-link" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">{{
-                                    service.name }}</a>
-                            </p>
-                        </div>
+<ul class="nav nav-tabs d-flex align-items-center justify-content-md-center pt-3 overflow-auto flex-nowrap" id="categories-services" role="tablist">
+    <div class="chevron bg-primary-kb position-absolute start-0 d-block d-md-none py-1">
+        <i class="bi bi-chevron-left f-w-bolder fs-3"></i>
+    </div>
+    <li class="nav-item ms-3 ms-md-0">
+        <a class="nav-link-home nav-link color-white px-4 py-2" href="{{ path('home') }}" role="button" aria-selected="false">
+            <i class="bi bi-house-fill"></i>
+        </a>
+    </li>
+    {% for category in globalCategories.getAll %}
+    <li class="nav-item" role="presentation">
+        <button class="nav-link color-white mx-0 mx-md-2 px-4 py-2 text-nowrap" id="profile-tab{{ category.id }}" data-bs-toggle="tab" data-bs-target="#category{{ category.id }}"
+            type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+            {{ category.name }}
+        </button>
+    </li>
+    {% endfor %}
+    <div class="chevron bg-primary-kb position-absolute end-0 d-block d-md-none py-1">
+        <i class="bi bi-chevron-right f-w-bolder fs-3"></i>
+    </div>
+</ul>
+<div class="tab-content d-flex justify-content-center position-relative smallnav" id="myTabContent">
+    {% for category in globalCategories.getAll %}
+    <div class="tab-pane fade position-absolute smallnav shadow bg-body rounded-bottom w-75" id="category{{ category.id }}" role="tabpanel" aria-labelledby="profile-tab"
+        tabindex="0">
+        <div class="container row row-cols-4 row-cols-md-5 g-2 g-md-4 mt-1 mb-4 mx-auto">
+            {% for service in globalServices.getServiceByCategoryId(category.id)%}
+            <div class="col">
+                <div class="card d-flex border-0 w-100 position-relative">
+                    {% if service.image %}
+                        <img src="{{ vich_uploader_asset(service) }}" alt="{{ service.name }}" class="rounded object-fit-cover w-100 h-100"/>
+                    {% else %}
+                        <img src="{{ asset('build/images/comb-and-scissors.jpeg') }}" alt="Default image for service" class="rounded object-fit-cover w-100 h-100">
+                    {% endif %}
+                    <div class="card-body p-1 position-absolute d-flex align-items-end rounded text-service w-100 h-100">
+                        <p class="card-text mx-auto">
+                            <a class="no-decoration text-white shadow-sm stretched-link fw-bolder" href="{{ path('app_provider_service_show_provider_by_service', {id: service.id}) }}">
+                                {{ service.name }}
+                            </a>
+                        </p>
                     </div>
                 </div>
-                {% endfor %}
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 

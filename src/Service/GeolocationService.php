@@ -101,6 +101,9 @@ class GeolocationService
     public function getDistrict(): ?string
     {
         $this->district = $this->getIpLocation()['district'];
+        if ($this->district === null || $this->district === 'Akwa I') {
+            $this->district = 'Akwa';
+        }
         return $this->district;
     }
 

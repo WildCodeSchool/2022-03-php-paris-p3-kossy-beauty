@@ -69,6 +69,7 @@ class UserFixtures extends Fixture
         $superAdmin->setIsArchived(false);
         $superAdmin->setTelephone('0975318642');
         $superAdmin->setRoles(['ROLE_SUPER_ADMIN']);
+        $superAdmin->setIsVerified(true);
         $hashedPassword = $this->passwordHasher->hashPassword(
             $superAdmin,
             'superadmin'

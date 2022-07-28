@@ -19,6 +19,7 @@ class ServiceType extends AbstractType
                 'required'      => false,
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_uri' => true, // not mandatory, default is true
+                'label' => 'Choisir une image',
         ])
         ;
     }

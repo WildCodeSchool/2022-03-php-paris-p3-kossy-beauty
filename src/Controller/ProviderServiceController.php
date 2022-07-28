@@ -6,6 +6,7 @@ use App\Entity\ProviderService;
 use App\Entity\Service;
 use App\Entity\User;
 use App\Form\ProviderServiceType;
+use App\Repository\CatalogRepository;
 use App\Repository\ProviderServiceRepository;
 use App\Repository\ServiceRepository;
 use App\Repository\UserRepository;
@@ -43,13 +44,17 @@ class ProviderServiceController extends AbstractController
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                $providerService->setProvider($this->getUser());
                 $provServRepository->add($providerService, true);
 
-                return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_provider_services_list', [
+                    'id' => $this->getUser()->getId()
+                ], Response::HTTP_SEE_OTHER);
             }
             return $this->renderForm('provider_service/new.html.twig', [
                 'provider_service' => $providerService,
                 'form' => $form,
+                'id' => $this->getUser()->getId()
             ]);
         } else {
             return $this->redirect('../../');
@@ -85,36 +90,44 @@ class ProviderServiceController extends AbstractController
         ]);
     }
 
+    #[Route('/list/{id}', name: 'app_provider_service_show_provider_by_service', methods: ['GET'])]
+    public function showProviderByService(
+        Service $service,
+        ProviderServiceRepository $provServRepository,
+    ): Response {
+        return $this->render('provider_service/showProviderByService.html.twig', [
+            'service' => $service,
+            'providerServices' => $provServRepository->findBy(['service' => $service])
+        ]);
+    }
+
+    #[Route('/{id}/services', name: 'app_provider_services_list', methods: ['GET'])]
+    public function showServiceByProvider(
+        User $user,
+        ProviderServiceRepository $provServRepository,
+        CatalogRepository $catalogRepository
+    ): Response {
+        return $this->render('provider_service/provider_services.html.twig', [
+            'services' => $provServRepository->findBy(['provider' => $user]),
+            'catalog' => $catalogRepository->findBy(['user' => $user]),
+            'user' => $user,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_provider_service_delete', methods: ['POST'])]
     public function delete(
         Request $request,
         ProviderService $providerService,
-        ProviderServiceRepository $provServRepository
+        ProviderServiceRepository $provServRepository,
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $providerService->getId(), $request->request->get('_token'))) {
             $provServRepository->remove($providerService, true);
         }
 
-        return $this->redirectToRoute('app_provider_service_index', [], Response::HTTP_SEE_OTHER);
-    }
-
-    #[Route('/list/{id}', name: 'app_provider_service_show_provider_by_service', methods: ['GET'])]
-    public function showProviderByService(
-        Service $service,
-        ProviderServiceRepository $provServRepository
-    ): Response {
-        return $this->render('provider_service/showProviderByService.html.twig', [
-            'service' => $service,
-            'providerServices' => $provServRepository->findBy(['service' => $service]),
-        ]);
-    }
-
-    #[Route('/{id}/services', name: 'app_provider_services_list', methods: ['GET'])]
-    public function showServiceByProvider(User $user, ProviderServiceRepository $provServRepository): Response
-    {
-        return $this->render('provider_service/provider_services.html.twig', [
-            'services' => $provServRepository->findBy(['provider' => $user]),
-            'user' => $user
-        ]);
+        return $this->redirectToRoute(
+            'app_provider_services_list',
+            ['id' => $this->getUser()->getId()],
+            Response::HTTP_SEE_OTHER
+        );
     }
 }

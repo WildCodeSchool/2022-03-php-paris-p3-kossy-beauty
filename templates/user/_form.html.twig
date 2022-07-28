@@ -3,16 +3,24 @@
 <div class="container rounded bg-white">
     <div class="row">
         <div class="col-md-2 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ vich_uploader_asset(user) }}"></span>  
+            <div class="d-flex flex-column align-items-center text-center px-3 pb-0 pt-3 py-md-5">
+                {% if user.image %}
+            <img class="profile-image rounded-circle" src="{{ vich_uploader_asset(user) }}" alt="Profile picture of the provider">
+            {% else %}
+            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+              </svg>
+            {% endif %}
             </div>
         </div>
-        <div class="col-md-5 border-right mt-5">
-            <div class="p-3 py-5">
+        <div class="col-md-10 border-right mt-4 mt-md-0 d-md-flex">
+            <div class="px-3 pt-0 py-md-5">
                 <div class="row">
                     <div class="col-md-6" id="form-edit"><div>{{ form_row(userForm.firstname, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6"><div>{{ form_row(userForm.lastname, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
-                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.lastname, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.telephone, {'attr': {'class': 'edit'}}) }}</div></div> 
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.email, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% if is_granted("ROLE_PROVIDER") %}
                     <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyName, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% endif %}
@@ -20,28 +28,23 @@
                     <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isTop, {'attr': {'class': 'edit'}}) }}</div></div>
                     <div class="col-md-3 mt-4"><div> {{ form_row(userForm.isArchived, {'attr': {'class': 'edit'}}) }}</div></div>
                     {% endif %}
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.town, {'attr': {'class': 'edit'}}) }}</div></div>
+                    <div class="col-md-6 mt-1"><div>{{ form_row(userForm.district, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% if is_granted("ROLE_PROVIDER") %}
+                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
+                    {% endif %}
+                    {{ form_end(userForm) }}  
+                    <div class="container d-flex justify-content-center">
+                        <div class="text-center m-3"><button class="btn btn-success profile-button">{{ button_label|default('Save') }}</button></div>
+                    </div>      
+
                 </div>
             </div>
         </div>
-        <div class="col-md-5 border-right mt-5">
-            <div class="p-3 py-5">
-                <div class="row">
-                    <div class="col-md-6"><div>{{ form_row(userForm.town, {'attr': {'class': 'edit'}}) }}</div></div>
-                    <div class="col-md-6"><div>{{ form_row(userForm.district, {'attr': {'class': 'edit'}}) }}</div></div>
-                    {% if is_granted("ROLE_PROVIDER") %}
-                    <div class="col-md-6 mt-2"><div>{{ form_row(userForm.companyDescription, {'attr': {'class': 'edit'}}) }}</div></div>
-                    {% endif %}              
-                </div>
-            </div>
-        </div> 
     </div>
 </div>
-</div>
-</div>
-
-<div class="container d-flex justify-content-center">
-    <div class="text-center m-3"><button class="btn btn-primary profile-button">{{ button_label|default('Save') }}</button></div>
-</div>
 
 
-{{ form_end(userForm) }}
+
+
+
