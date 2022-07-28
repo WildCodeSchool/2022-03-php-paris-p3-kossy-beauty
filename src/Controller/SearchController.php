@@ -188,14 +188,21 @@ class SearchController extends AbstractController
                     "Matanda Massadi" => "Matanda Massadi"
                 ],
                 'attr' => [
-                    'class' => 'form-select btn btn-light border 
+                    'class' => 'form-select-district form-select btn btn-light border 
                     border-1 text-nowrap text-dark rounded-0 select-locations'
                 ]
             ])
             ->add('recherche', SubmitType::class, [
                 'attr' => [
-                    'class' => 'btn btn-light border border-1 text-nowrap text-dark submit-searchbar'
-                ]
+                    'class' => 'd-none d-md-block btn btn-light border border-1 text-nowrap text-dark submit-searchbar'
+                ],
+            ])
+            ->add('recherche_mobile', SubmitType::class, [
+                'attr' => [
+                    'class' => 'd-md-none bi bi-search btn btn-light border
+                    border-1 text-nowrap text-dark submit-searchbar'
+                ],
+                'label' => false,
             ])
             ->getForm();
         //var_dump($geolocationService->getJsonContent()['Countries']['Cameroon']['Cities']['Districts']); die;
