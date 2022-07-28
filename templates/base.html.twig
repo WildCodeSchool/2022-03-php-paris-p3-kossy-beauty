@@ -19,11 +19,12 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="bg-light">
+    <body class="">
+
         {% include "navbar/_navbar.html.twig" %}
         {% include "navbar/_categorySearchNavbar.html.twig" %}
         
-        <main class="container my-5 pb-5">
+        <main class="container my-5 pb-5 pt-0 mt-4">
             {% for category, messages in app.flashes %}
                 {% for message in messages %}
                     <div class="alert alert-{{ category }} text-center">

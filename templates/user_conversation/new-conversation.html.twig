@@ -2,16 +2,16 @@
 %} {% block body %}
 
 <div
-    class="container w-50 mb-2 d-flex align-items-center justify-content-between"
+    class="container w-75 mb-2 d-flex align-items-center justify-content-between"
 >
     <a
-        class="btn btn-outline-secondary"
+        class="btn btn-outline-secondary me-2"
         href="{{ path('app_my_conversations') }}"
         >Retour</a
     >
     <p class="m-0">Envoyer un message à {{ recipient.firstname }}</p>
 </div>
-<div class="container w-50 mt-3">
+<div class="container w-75 mt-3">
     {{ form_start(form) }}
     {{ form_widget(form.content, {'attr': {'class': 'form-control
                 form-control-lg'

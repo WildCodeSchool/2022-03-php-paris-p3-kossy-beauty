@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light py-3 pb-1">
   <div class="container-fluid">
     <a class="navbar-brand" href="/"><img class="logo-navbar position-absolute ms-2 d-md-block pt-2"src="{{ asset('build/images/Kossy-08.png') }}" alt="Logo"></a>
-    {{ render(controller(
+    {# {{ render(controller(
         'App\\Controller\\SearchController::searchBar'
-      )) }}
+      )) }} #}
     <div class="collapse navbar-collapse pt-0 justify-content-end align-items-center" id="navbarSupportedContent">
       <ul class="navbar-nav nav-item-right rounded text-center position-absolute end-0 mt-2 mt-md-1 me-2 p-3 ps-4 p-md-0">
         {% if notification.notification is same as false %}
