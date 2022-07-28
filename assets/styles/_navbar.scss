@@ -153,21 +153,6 @@ ul.navbar-nav li:hover a.nav-link {
     color : #f2d281;
 } 
 
-@media (min-width: 994px) {
-    .nav-link {
-        color:white !important;
-    }
-}
-
-@media (min-width: 994px) {
-    .nav-item-right  {
-        color:white !important;
-    }
-    .nav-item-right:hover  {
-        color:#f2d281 !important;
-    }
-}
-
 .form-select-district {
     text-overflow: ellipsis;
 }
