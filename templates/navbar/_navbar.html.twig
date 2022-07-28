@@ -5,23 +5,23 @@
         'App\\Controller\\SearchController::searchBar'
       )) }} #}
     <div class="collapse navbar-collapse pt-0 justify-content-end align-items-center" id="navbarSupportedContent">
-      <ul class="navbar-nav nav-item-right rounded text-center position-absolute end-0 mt-2 mt-md-1 me-2 p-3 ps-4 p-md-0">
+      <ul class="navbar-nav rounded text-center position-absolute end-0 mt-2 mt-md-1 me-2 p-3 ps-4 p-md-0">
         {% if notification.notification is same as false %}
           <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center color-red">
             <i class="bi bi-envelope-exclamation-fill me-1 fs-5"></i>
         {% else %}
-          <li class=" nav-item nav-item-right rounded align-items-center position-relative me-3 p-2 text-start text-md-center text-dark w-100">
+          <li class=" nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center text-dark w-100">
             <i class="bi bi-envelope-fill me-1 fs-5"></i>
         {% endif %}
-            <a class="nav-link d-inline d-lg-block active stretched-link p-0 text-dark" aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
+            <a class="nav-link d-inline d-lg-block active stretched-link p-0 text-dark " aria-current="page" href="{{ path('app_my_conversations') }}">Messages</a> 
           </li>
           <li><hr class="dropdown-divider"></li>
           {% if is_granted("ROLE_USER") %}
             {% include "navbar/_navLoggedUser.html.twig" %}
           {% else %}
-            <li class="nav-item nav-item-right rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100 text-dark">
-              <i class="bi bi-person-bounding-box me-1 fs-5"></i>
-              <a class="nav-link d-inline d-lg-block active stretched-link p-0 text-dark" aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
+            <li class="nav-item rounded align-items-center position-relative me-3 p-2 text-start text-md-center w-100 text-dark">
+              <i class="bi bi-person-bounding-box me-1 fs-5 "></i>
+              <a class="nav-link d-inline d-lg-block active stretched-link p-0 text-dark " aria-current="page" href="{{ path('login') }}"></i>Connexion</a>
             </li>
           {% endif %}
       </ul>
